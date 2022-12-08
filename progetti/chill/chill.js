@@ -270,10 +270,10 @@ function draw() {
   background(0);
 
   if (bach != null) {
-    bach.setVolume(volumeSlider.value());
+    bach.setVolume(volumeSlider.value);
   }
   if (chill != null) {
-    chill.setVolume(fxSlider.value());
+    chill.setVolume(fxSlider.value);
   }
 
   if (!started) {
