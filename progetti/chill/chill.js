@@ -249,8 +249,8 @@ function inizia() {
   giocatore.velocita[1] = 0.0;
   started = true;
 
-  bach = loadSound("assets/Bach.mp3", loaded);
-  chill = loadSound("assets/Chill.wav");
+//  bach = loadSound("assets/Bach.mp3", loaded);
+//  chill = loadSound("assets/Chill.wav");
 
   morti = document.getElementById('morti')
   livelli = document.getElementById('livello');
@@ -262,9 +262,9 @@ function inizia() {
   misc++;
 }
 
-function loaded() {
+/*function loaded() {
   bach.loop();
-}
+}*/
 
 function draw() {
   background(0);
