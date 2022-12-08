@@ -353,10 +353,10 @@ function morte() {
   riposiziona();
   if (hard) {
     vite--;
-    viteP.html("VITE: " + vite.toString());
+    viteP.innerHtml="VITE: " + vite.toString();
   }
   morti_counter++;
-  morti.html("MORTI: " + morti_counter.toString());
+  morti.innerHtml="MORTI: " + morti_counter.toString();
 }
 function riposiziona() {
   giocatore = new player(lato / 2, height - (lato / 2), 4, [255, 255, 255], [242, 0, 204]);
@@ -365,11 +365,11 @@ function vittoria() {
   generaLabirinto();
   riposiziona();
   livelli_counter++;
-  livelli.html("LIVELLO: " + livelli_counter.toString());
+  livelli.innerHtml="LIVELLO: " + livelli_counter.toString();
   if (hard) {
     if (livelli_counter % 3 == 0) {
       vite++;
-      viteP.html("VITE: " + vite.toString());
+      viteP.innerHtml="VITE: " + vite.toString();
     }
   }
 }
