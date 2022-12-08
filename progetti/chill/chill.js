@@ -172,7 +172,7 @@ class cella {
 }
 
 function setup() {
-  const c = createCanvas(1,1);
+  const c = createCanvas(1, 1);
   c.parent('canvas');
   started = false;
 }
@@ -240,7 +240,7 @@ function inizia() {
   lato = urlParams.get('lato') || 50;
   resizeCanvas(larghezza * lato, altezza * lato);
 
-  hard = urlParams.get('hard')?(urlParams.get('larghezza')=='on'):false;
+  hard = urlParams.get('hard') ? (urlParams.get('larghezza') == 'on') : false;
 
   /*creazione labirinto*/
   generaLabirinto();
@@ -249,15 +249,15 @@ function inizia() {
   giocatore.velocita[1] = 0.0;
   started = true;
 
-//  bach = loadSound("assets/Bach.mp3", loaded);
-//  chill = loadSound("assets/Chill.wav");
+  //  bach = loadSound("assets/Bach.mp3", loaded);
+  //  chill = loadSound("assets/Chill.wav");
 
   morti = document.getElementById('morti')
   livelli = document.getElementById('livello');
 
   if (hard) {
-    viteP=document.getElementById('vite')
-    viteP.innerHTML="VITE: 3";
+    viteP = document.getElementById('vite')
+    viteP.innerHTML = "VITE: 3";
   }
   misc++;
 }
