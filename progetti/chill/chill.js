@@ -172,10 +172,9 @@ class cella {
 }
 
 function setup() {
-  createCanvas(500, 500);
-  bach = null;
+  const c = createCanvas(1,1);
+  c.parent('canvas');
   started = false;
-  document.getElementById("start").addEventListener('click', inizia);
 }
 
 function generaLabirinto() {
