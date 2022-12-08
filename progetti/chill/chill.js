@@ -172,9 +172,35 @@ class cella {
 }
 
 function setup() {
-  const c = createCanvas(1, 1);
-  c.parent('canvas');
-  started = false;
+  const urlParams = new URLSearchParams(window.location.search);
+  volumeSlider = document.getElementById('musica')
+  fxSlider = document.getElementById('effetti')
+
+  larghezza = urlParams.get('larghezza') || 10;
+  altezza = urlParams.get('altezza') || 10;
+  lato = urlParams.get('lato') || 50;
+  createCanvas(larghezza * lato, altezza * lato).parent('canvas');
+
+  hard = urlParams.get('hard') ? (urlParams.get('larghezza') == 'on') : false;
+
+  /*creazione labirinto*/
+  generaLabirinto();
+
+  giocatore = new player(lato / 2, height - (lato / 2), 4, [255, 255, 255], [242, 0, 204]);
+  giocatore.velocita[1] = 0.0;
+  started = true;
+
+  //  bach = loadSound("assets/Bach.mp3", loaded);
+  //  chill = loadSound("assets/Chill.wav");
+
+  morti = document.getElementById('morti')
+  livelli = document.getElementById('livello');
+
+  if (hard) {
+    viteP = document.getElementById('vite')
+    viteP.innerHTML = "VITE: 3";
+  }
+  misc++;
 }
 
 function generaLabirinto() {
@@ -228,38 +254,6 @@ function generaLabirinto() {
       stack.push(prossimo);
     }
   }
-}
-
-function inizia() {
-  const urlParams = new URLSearchParams(window.location.search);
-  volumeSlider = document.getElementById('musica')
-  fxSlider = document.getElementById('effetti')
-
-  larghezza = urlParams.get('larghezza') || 10;
-  altezza = urlParams.get('altezza') || 10;
-  lato = urlParams.get('lato') || 50;
-  resizeCanvas(larghezza * lato, altezza * lato);
-
-  hard = urlParams.get('hard') ? (urlParams.get('larghezza') == 'on') : false;
-
-  /*creazione labirinto*/
-  generaLabirinto();
-
-  giocatore = new player(lato / 2, height - (lato / 2), 4, [255, 255, 255], [242, 0, 204]);
-  giocatore.velocita[1] = 0.0;
-  started = true;
-
-  //  bach = loadSound("assets/Bach.mp3", loaded);
-  //  chill = loadSound("assets/Chill.wav");
-
-  morti = document.getElementById('morti')
-  livelli = document.getElementById('livello');
-
-  if (hard) {
-    viteP = document.getElementById('vite')
-    viteP.innerHTML = "VITE: 3";
-  }
-  misc++;
 }
 
 /*function loaded() {
@@ -353,10 +347,10 @@ function morte() {
   riposiziona();
   if (hard) {
     vite--;
-    viteP.innerHtml="VITE: " + vite.toString();
+    viteP.innerHTML="VITE: " + vite.toString();
   }
   morti_counter++;
-  morti.innerHtml="MORTI: " + morti_counter.toString();
+  morti.innerHTML="MORTI: " + morti_counter.toString();
 }
 function riposiziona() {
   giocatore = new player(lato / 2, height - (lato / 2), 4, [255, 255, 255], [242, 0, 204]);
@@ -365,13 +359,11 @@ function vittoria() {
   generaLabirinto();
   riposiziona();
   livelli_counter++;
-  livelli.innerHtml="LIVELLO: " + livelli_counter.toString();
+  livelli.innerHTML="LIVELLO: " + livelli_counter.toString();
   if (hard) {
     if (livelli_counter % 3 == 0) {
       vite++;
-      viteP.innerHtml="VITE: " + vite.toString();
+      viteP.innerHTML="VITE: " + vite.toString();
     }
   }
 }
-
-window.onload = inizia;
