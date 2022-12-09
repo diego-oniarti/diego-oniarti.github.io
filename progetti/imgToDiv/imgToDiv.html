@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js"
+        integrity="sha512-WJXVjqeINVpi5XXJ2jn0BSCfp0y80IKrYh731gLRnkAS9TKc5KNt/OfLtu+fCueqdWniouJ1ubM+VI/hbo7POQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Maze</title>
+</head>
+
+<body>
+    <h1><a href="../../index.html">Diego Oniarti</a></h1>
+    <h2>Image To Div</h2>
+
+    <script src="./sketch.js"></script>
+
+    <fieldset>
+        <legend>upload an image</legend>
+        <form action="#" onsubmit="return generaImmagine(this)">
+            <table>
+                <tr>
+                    <td>
+                        <label for="file">immaigne</label>
+                    </td>
+                    <td>
+                        <input type="file" name="immagine" accept="image/jpeg, image/png">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="altezza">altezza</label>
+                    </td>
+                    <td>
+                        <input type="number" name="altezza" id="altezza" min="10">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="larghezza">larghezza</label>
+                    </td>
+                    <td>
+                        <input type="number" name="larghezza" id="larghezza" min="10">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="threshold">threshold</label>
+                    </td>
+                    <td>
+                        <input type="number" name="threshold" id="threshold" min="1" value="50">
+                    </td>
+                </tr>
+            </table>
+            <tr>
+                <input type="submit" value="Conferma">
+            </tr>
+        </form>
+    </fieldset>
+
+    <div id="canvas"></div>
+    <button id="download" disabled="disabled">download</button>
+</body>
+
+</html>
