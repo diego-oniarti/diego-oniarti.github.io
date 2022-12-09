@@ -181,7 +181,7 @@ function setup() {
   lato = urlParams.get('lato') || 50;
   createCanvas(larghezza * lato, altezza * lato).parent('canvas');
 
-  hard = urlParams.get('hard') ? (urlParams.get('larghezza') == 'on') : false;
+  hard = urlParams.get('hard') ? (urlParams.get('hard') == 'on') : false;
 
   /*creazione labirinto*/
   generaLabirinto();
