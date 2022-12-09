@@ -1,4 +1,5 @@
-let run=false, immagine, regioni;
+let run = false, immagine, regioni;
+let imageWidth, imageHeight;
 
 function generaImmagine(form) {
     if (form.immagine.value == '') return false;
@@ -6,8 +7,8 @@ function generaImmagine(form) {
     larghezza = (form.larghezza.value != '') ? form.larghezza.value : null;
     altezza = (form.altezza.value != '') ? form.altezza.value : null;
     limite = (form.threshold.value != '') ? form.threshold.value : null;
-    
-    immagine = loadImage(form.immagine.value, ()=>{
+
+    immagine = loadImage(URL.createObjectURL(form.immagine.files[0]), () => {
         main(immagine, larghezza, altezza, limite)
     });
 
@@ -17,15 +18,15 @@ function generaImmagine(form) {
 
 function setup() {
     createCanvas(1, 1).parent('canvas');
+    frameRate(10);
 }
 
-function main(immagine,larghezza,altezza,limite) {
-    imageWidth = larghezza || immagine.width;
-    imageHeight = altezza || immagine.height;
+function main(immagine, larghezza, altezza, limite) {
+    imageWidth = parseInt(larghezza || immagine.width);
+    imageHeight = parseInt(altezza || immagine.height);
     limite = limite || 50;
-    salva = true;
 
-    resizeCanvas(imageWidth, imageHeight * 2);
+    resizeCanvas(imageWidth*2, imageHeight);
     immagine.resize(imageWidth, imageHeight);
     immagine.loadPixels();
 
@@ -66,25 +67,41 @@ function main(immagine,larghezza,altezza,limite) {
 
         indice++;
     }
-    run=true;
-    if (salva) {
-        saveCSS();
-    }
+    run = true;
+    saveCSS();
 }
 
+t = 0;
 function draw() {
     if (!run) return;
+    if (t >= regioni.length) return;
 
-    background(0);
-    image(immagine, 0, 0)
-    loadPixels();
-    for (let regione of regioni) {
-        for (let coordinata of regione.coordinate) {
-            set(coordinata % imageWidth, Math.floor(coordinata / imageWidth) + imageHeight, regione.colore)
-        }
+    if (t == 0) {
+        background(0);
+        image(immagine, 0, 0)
+        loadPixels();
     }
+
+    if (regioni[t].coordinate.size < 10) {
+        for (let j = 0; j < imageWidth; j++) {
+            for (let coordinata of regioni[min(t, regioni.length - 1)].coordinate) {
+                set((coordinata % (imageWidth) )+imageWidth, Math.floor(coordinata / (imageWidth)), regioni[min(t, regioni.length - 1)].colore)
+            }
+            t++;
+        }
+    } else {
+        for (let coordinata of regioni[t].coordinate) {
+            set((coordinata % imageWidth)+imageWidth, Math.floor(coordinata / imageWidth), regioni[t].colore )
+        }
+        t++
+    }
+
     updatePixels();
-    noLoop();
+    if (t >= regioni.length) {
+        setTimeout(()=>{
+            t=0;
+        },5000)
+    }
 }
 
 function saveCSS() {
@@ -128,9 +145,10 @@ function saveCSS() {
     linee.push('</div>');
 
     let button = document.getElementById('download')
-    button.addEventListener('click', ()=>{
+    button.addEventListener('click', () => {
         saveStrings(linee, "div.txt");
     });
+    button.disabled=false;
 }
 
 function cth(c) {
