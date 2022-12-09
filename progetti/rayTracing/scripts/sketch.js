@@ -85,9 +85,6 @@ function draw(){
     pop();
 
 }
-
-const element = document.getElementById('canvas');
-
 window.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
     event.preventDefault();
