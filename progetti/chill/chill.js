@@ -42,7 +42,8 @@ class player {
   disegna() {
     noStroke();
     fill(this.colore1[0], this.colore1[1], this.colore1[2]);
-    square(this.x - this.raggio, this.y - this.raggio, this.raggio * 2, this.raggio * 2);
+    //rect(this.x - this.raggio, this.y - this.raggio, this.raggio * 2, this.raggio * 2);
+    circle(this.x, this.y, this.raggio * 2.2);
     fill(this.colore2[0], this.colore2[1], this.colore2[2]);
     circle(this.x, this.y, this.raggio * 2);
   }
