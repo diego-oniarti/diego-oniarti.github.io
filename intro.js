@@ -88,10 +88,11 @@ const main = async ()=>{
         }
 
         await animazioni[Math.floor(Math.random()*animazioni.length)](nome);
+        await sleep(500);
 
         document.getElementById("main").classList.remove('anima');
 
-        await sleep(600);
+        await sleep(600*3);
 
         document.addEventListener('scroll', (eve)=>{
             checkScroll(10);

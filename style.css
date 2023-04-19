@@ -24,7 +24,7 @@ p{
     margin: auto;
     margin-top: 8vh;
     width: 80%;
-    transition: all ease-in-out 1s;
+    transition: all ease-in-out 3s;
 }
 #main.anima #pagina {
     width: 100%;
@@ -39,7 +39,7 @@ p{
     align-self: center;
     line-height: 10pc;
 
-    transition: all ease-in-out 1s;
+    transition: all ease-in-out 3s;
     color: black;
 }
 #main.anima #pagina #nome {
