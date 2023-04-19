@@ -1,0 +1,113 @@
+body {
+    background-color: rgb(200, 200, 200);
+    margin: 0%;
+}
+
+h1 {
+    font-family: 'Roboto Mono', monospace;
+}
+p{
+    font-family: 'Roboto', sans-serif;
+}
+
+
+#pagina {
+    min-height: calc(100vh - 8vh - 120px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    flex-wrap: wrap;
+    overflow: hidden;
+
+    background-color: white;
+    margin: auto;
+    margin-top: 8vh;
+    width: 80%;
+    transition: all ease-in-out 1s;
+}
+#main.anima #pagina {
+    width: 100%;
+    background-color: black;
+    margin-top: 0%;
+    transition: none;
+}
+
+
+#nome {
+    font-size: 5pc;
+    align-self: center;
+    line-height: 10pc;
+
+    transition: all ease-in-out 1s;
+    color: black;
+}
+#main.anima #pagina #nome {
+    margin: 0%;
+    line-height: 100vh;
+    color: white;
+    transition: none;
+}
+
+
+
+#corpo {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding-bottom: 8vh;
+}
+#main.anima #pagina #corpo {
+    display: none;
+}
+
+
+
+#footer {
+    display: block;
+    margin: auto;
+    width: 80%;
+    background-color: white;
+    height: 100px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    margin-top: 20px;
+}
+#main.anima #footer {
+    display: none;    
+}
+#footer p {
+    margin: 0%;
+}
+
+
+
+.scheda {
+    width: 80%;
+    background: rgb(200,200,200);
+    margin-top: 15px;
+    padding: 8px;
+    /*transform: translateX(-120%);*/
+    transition: transform ease-out 0.5s;
+}
+.scheda h1 {
+    margin: 0%;
+}
+.scheda:nth-child(2n) {
+    align-self: flex-end;
+}
+.scheda:nth-child(2n) h1 {
+    text-align: right;
+}
+
+.scheda.nascondi {
+    transform: translateX(-120%);
+    transition: none;
+}
+.scheda.nascondi:nth-child(2n)  {
+    transform: translateX(120%);
+}
