@@ -86,21 +86,30 @@ const main = async ()=>{
         for (let scheda of document.getElementsByClassName('scheda')){
             scheda.classList.add('nascondi');
         }
+        for (let toggle of document.getElementsByClassName('toggle')){
+            toggle.classList.add('nascondi');
+        }
 
         await animazioni[Math.floor(Math.random()*animazioni.length)](nome);
         await sleep(500);
 
         document.getElementById("main").classList.remove('anima');
 
-        await sleep(600*3);
-
-        document.addEventListener('scroll', (eve)=>{
-            checkScroll(10);
-        }, {
-            passive: true
-        });
-
-        checkScroll(-10);
+        setTimeout(()=>{
+            document.addEventListener('scroll', (eve)=>{
+                checkScroll(10);
+            }, {
+                passive: true
+            });
+            checkScroll(-10);
+        }, 600*3);
+        
+        setTimeout(async ()=>{
+            for (let toggle of document.getElementsByClassName('toggle')){
+                toggle.classList.remove('nascondi');
+                await sleep(100);
+            }
+        },3000);
     }
 
 }
