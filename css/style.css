@@ -215,11 +215,20 @@ img {
     #mainContainer, .boxes, .box {
         width: 100%;
     }
+    #titoloPagina {
+        font-size:5rex;
+    }
     #navBar {
         font-size:unset;
         text-overflow: clip;
     }
     #hobby-contatti {
         flex-direction: column;
+    }
+    #navBar {
+        flex-direction: column;
+    }
+    #navBar a {
+        padding: 6px;
     }
 }
