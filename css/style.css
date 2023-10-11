@@ -182,6 +182,10 @@ div:has(+.hr2) h2 ,h1:has(+.hr), h2:has(+.hr2) {
     flex-direction: column;
 }
 
+img {
+    object-fit: contain;
+}
+
 /* PALETTE */
 #palette {
     position: absolute;
@@ -204,3 +208,18 @@ div:has(+.hr2) h2 ,h1:has(+.hr), h2:has(+.hr2) {
 #p6 { background-color: var(--shade6); }
 #p7 { background-color: var(--shade7); }
 #p8 { background-color: var(--shade8); }
+
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    #mainContainer, .boxes, .box {
+        width: 100%;
+    }
+    #navBar {
+        font-size:unset;
+        text-overflow: clip;
+    }
+    #hobby-contatti {
+        flex-direction: column;
+    }
+}
