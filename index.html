@@ -15,15 +15,17 @@
 <body>
     <!-- NAVBAR -->
     <div id="navBar">
-        <div class="navBarSection">
+        <div class="navBarSection" id="navTitle">
             <a>Diego Oniarti</a>
+            <a id="navCollapse">...</a>
         </div>
-        <div class="navBarSection">
+        <div class="navBarSection navCollapsible">
             <a href="#chiSono">Chi Sono</a>
             <a href="#esperienza">Esperienza</a>
+            <a href="#skills">Skills</a>
             <a href="#progetti">Progetti</a>
         </div>
-        <div class="navBarSection">
+        <div class="navBarSection navCollapsible">
             <a id="themeButton">☼</a>
             <a>🇮🇹</a>
         </div>
@@ -37,129 +39,163 @@
         <div class="boxes">
             <!-- CHI SONO -->
             <div class="box" id="chiSono">
-                <h1>CHI SONO</h1>
+                <div class="flex"><h1>CHI SONO</h1> <button class="collapseButton"><h1>V</h1></button></div>
                 <div class="hr"></div>
-                <div class="flex">
-                    <div style="flex: 1;">
-                        <p>
-                            Ciao! Sono Diego Oniarti, uno studente di informatica nato e cresciuto in Trentino. <br>
-                            Ho varie passioni, come i videogiochi e la musica. Suono principalmente il sassofono ma provo altri strumenti di tanto in tanto.
-                        </p>
+
+                <div class="section">
+                    <div class="flex">
+                        <div style="flex: 1;">
+                            <p>
+                                Ciao! Sono Diego Oniarti, uno studente di informatica nato e cresciuto in Trentino. <br>
+                                Ho varie passioni, come i videogiochi e la musica. Suono principalmente il sassofono ma provo altri strumenti di tanto in tanto.
+                            </p>
+                        </div>
+                        <img width="20%" src="immagini/portrait.jpeg" alt="photo of me">
                     </div>
-                    <img width="20%" src="immagini/portrait.jpeg" alt="photo of me">
-                </div>
-                <div id="hobby-contatti" class="flex">
-                    <div id="hobby">
-                        <h2>I MIEI HOBBY</h2>
-                        <div class="hr2"></div>
-                        <ul>
-                            <li>Videogiochi</li>
-                            <li>Musica</li>
+                    <div id="hobby-contatti" class="flex">
+                        <div id="hobby">
+                            <h2>I MIEI HOBBY</h2>
+                            <div class="hr2"></div>
                             <ul>
-                                <li>Sassofono</li>
-                                <li>Flauto dolce</li>
+                                <li>Videogiochi</li>
+                                <li>Musica</li>
+                                <ul>
+                                    <li>Sassofono</li>
+                                    <li>Flauto dolce</li>
+                                </ul>
+                                <li>Origami</li>
+                                <li>Generative art</li>
                             </ul>
-                            <li>Origami</li>
-                            <li>Generative art</li>
-                        </ul>
-                    </div>
-                    <div id="contatti">
-                        <h2>CONTATTI</h2>
-                        <div class="hr2"></div>
-                        <ul>
-                            <li>diego.oniarti@gmail.com</li>
-                            <li>+39 391 134 5350</li>
-                            <li><a href="https://www.instagram.com/diego.oniarti/">instagram</a></li>
-                            <li><a href="https://www.linkedin.com/in/diego-oniarti-177300218/">linkedin</a></li>
-                        </ul>
+                        </div>
+                        <div id="contatti">
+                            <h2>CONTATTI</h2>
+                            <div class="hr2"></div>
+                            <ul>
+                                <li>diego.oniarti@gmail.com</li>
+                                <li>+39 391 134 5350</li>
+                                <li><a href="https://www.instagram.com/diego.oniarti/">instagram</a></li>
+                                <li><a href="https://www.linkedin.com/in/diego-oniarti-177300218/">linkedin</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- ESPERIENZA -->
             <div class="box" id="esperienza">
-                <h1>ESPERIENZA</h1>
+                <div class="flex"><h1>ESPERIENZA</h1> <button class="collapseButton"><h1>V</h1></button></div>
                 <div class="hr"></div>
 
-                <div id="esperienze" class="flex-column">
+                <div class="section">
+                    <div id="esperienze" class="flex-column">
 
-                    <!-- UNI -->
-                    <div class="flex" style="width: 90%;">
-                        <h2>Università di Trento</h2>
-                        <h2>2021 - Ongoing</h2>
-                    </div>
-                    <div class="hr2"></div>
-                    <p>
-                        Frequento correntemente l'università di Trento. <br>
-                        Anche in questo corso di studio sto seguendo la mia passione per l'informatica.
-                    </p>
+                        <!-- UNI -->
+                        <div class="flex" style="width: 90%;">
+                            <h2>Università di Trento</h2>
+                            <h2>2021 - Ongoing</h2>
+                        </div>
+                        <div class="hr2"></div>
+                        <p>
+                            Frequento correntemente l'università di Trento. <br>
+                            Anche in questo corso di studio sto seguendo la mia passione per l'informatica.
+                        </p>
 
-                    <!-- Web Walley -->
-                    <div class="flex" style="width: 90%;">
-                        <h2>Web Walley Reimagined</h2>
-                        <h2>2021</h2>
-                    </div>
-                    <div class="hr2"></div>
-                    <p>
-                        Un evento organizzato dalla Fondazione Bruno Kessler e dall'Istituto Pavoniano Artigianelli di Trento. <br>
-                        Durante la settimana di corso, un gruppo di studenti italiani e statunitensi segue corsi intensivi riguardanti data analisis e machine learning. <br>
-                        Il progetto si chiude con la presentazione del lavoro che gli studenti hanno prodotto in modalità scrum.
-                    </p>
+                        <!-- Web Walley -->
+                        <div class="flex" style="width: 90%;">
+                            <h2>Web Walley Reimagined</h2>
+                            <h2>2021</h2>
+                        </div>
+                        <div class="hr2"></div>
+                        <p>
+                            Un evento organizzato dalla Fondazione Bruno Kessler e dall'Istituto Pavoniano Artigianelli di Trento. <br>
+                            Durante la settimana di corso, un gruppo di studenti italiani e statunitensi segue corsi intensivi riguardanti data analisis e machine learning. <br>
+                            Il progetto si chiude con la presentazione del lavoro che gli studenti hanno prodotto in modalità scrum.
+                        </p>
 
-                    <!-- ITT -->
-                    <div class="flex" style="width: 90%;">
-                        <h2>ITT Buonarroti</h2>
-                        <h2>2016 - 2021</h2>
-                    </div>
-                    <div class="hr2"></div>
-                    <p>
-                        Ho frequentato l'Istituto Tecnico Tecnologico Michelangelo Buonarroti di Trento.<br>
-                        Voto di diploma: 100
-                    </p>
+                        <!-- ITT -->
+                        <div class="flex" style="width: 90%;">
+                            <h2>ITT Buonarroti</h2>
+                            <h2>2016 - 2021</h2>
+                        </div>
+                        <div class="hr2"></div>
+                        <p>
+                            Ho frequentato l'Istituto Tecnico Tecnologico Michelangelo Buonarroti di Trento.<br>
+                            Voto di diploma: 100
+                        </p>
 
-                    <!-- Amsterdam -->
-                    <div class="flex" style="width: 90%;">
-                        <h2>Progetto PON Cittadinanza Europea</h2>
-                        <h2>2019</h2>
-                    </div>
-                    <div class="hr2"></div>
-                    <p>
-                        Un progetto dalla durata di vari mesi in cui un gruppo di studenti di scuola superiore impara il funzionamento dell'unione europea. <br>
-                        Il progetto termina con 3 settimane di scambio culturale ad Amsterdam. In queste settimane gli studenti frequentano una scuola che pratica il metodo Montrssori d'insegnamento.
-                    </p>
+                        <!-- Amsterdam -->
+                        <div class="flex" style="width: 90%;">
+                            <h2>Progetto PON Cittadinanza Europea</h2>
+                            <h2>2019</h2>
+                        </div>
+                        <div class="hr2"></div>
+                        <p>
+                            Un progetto dalla durata di vari mesi in cui un gruppo di studenti di scuola superiore impara il funzionamento dell'unione europea. <br>
+                            Il progetto termina con 3 settimane di scambio culturale ad Amsterdam. In queste settimane gli studenti frequentano una scuola che pratica il metodo Montrssori d'insegnamento.
+                        </p>
 
-                    <!-- Hackabot -->
-                    <div class="flex" style="width: 90%;">
-                        <h2>Vincitore Open Data HackaBot Trentino</h2>
-                        <h2>2018</h2>
+                        <!-- Hackabot -->
+                        <div class="flex" style="width: 90%;">
+                            <h2>Vincitore Open Data HackaBot Trentino</h2>
+                            <h2>2018</h2>
+                        </div>
+                        <div class="hr2"></div>
+                        <p> 
+                            Un hackaton di due giorni in cui diversi gruppi utilizzano open data per sviluppare diverse aplicazioni. <br>
+                            L'obbiettivo dei progetti presentati è quello di innovare il modo in cui l'amministrazione pubblica si interfaccia con cittadini e aziende.  <br>
+                            Il gruppo vincitore è scelto da stakeholder e busines locali. 
+                        </p>
                     </div>
-                    <div class="hr2"></div>
-                    <p> 
-                        Un hackaton di due giorni in cui diversi gruppi utilizzano open data per sviluppare diverse aplicazioni. <br>
-                        L'obbiettivo dei progetti presentati è quello di innovare il modo in cui l'amministrazione pubblica si interfaccia con cittadini e aziende.  <br>
-                        Il gruppo vincitore è scelto da stakeholder e busines locali. 
-                    </p>
                 </div>
             </div>
+
+            <!-- SKILLS -->
+            <div class="box" id="skills">
+                <div class="flex"><h1>SKILLS</h1> <button class="collapseButton"><h1>V</h1></button></div>
+
+                <div class="hr"></div>
+                <div class="section">
+                    <h2>Programmazione</h2>
+                    <div class="hr2"></div>
+                    <p>
+                        Ho esperienza sia con il paradigma di programmazione procedurale che con quello ad oggetti, oltre a nozioni di programmazione funzionale.
+                        <br>
+                        Conosco diversi linguaggi di programmazione tra cui: <code>C, C++, C#, Java, JavaScript, Python</code>
+                    </p>
+
+                    <h2>Teamwork</h2>
+                    <div class="hr2"></div>
+                    <p>Ho partecipato a diversi progetti di gruppo, tentando sempre di svolgere la mia parte al meglio e di integrarmi con i miei colleghi</p>
+
+                    <h2>Progettazione Software</h2>
+                    <div class="hr2"></div>
+                    <p>Sono capace di leggere e scrivere diagrammi UML utili per l'analisi di requisiti e la progettazione di software conforme ad essi</p>
+                </div>
+            </div>
+
+            <!-- PROGETTI -->
             <div class="box" id="progetti">
-                <h1>PROGETTI</h1>
-                <h2>Progetti p5JS</h2>
-                <ul>
-                    <li><a target="_blank" href="./progetti/chill/menu.html">chill</a></li>
-                    <li><a target="_blank" href="./progetti/mazeSolver/maze.html">maze solver</a></li>
-                    <li><a target="_blank" href="./progetti/path/path.html">path</a></li>
-                    <li><a target="_blank" href="./progetti/rayCasting/rayCasting.html">ray casting</a></li>
-                    <li><a target="_blank" href="./progetti/rayTracing/rayTracing.html">ray tracing</a></li>
-                    <li><a target="_blank" href="./progetti/maze/maze.html">maze</a></li>
-                    <li><a target="_blank" href="./progetti/imgToDiv/imgToDiv.html">image to div</a></li>
-                </ul>
+                <div class="flex"><h1>PROGETTI</h1> <button class="collapseButton"><h1>V</h1></button></div>
+                <div class="hr"></div>
 
-                <h2>Progetti three.js</h2>
-                <ul>
-                    <li><a target="_blank" href="./progetti/primo/primo.html">primo</a></li>
-                    <li><a target="_blank" href="./progetti/flock3d/flock.html">flock</a></li>
-                </ul>
+                <div class="section">
+                    <h2>Progetti p5JS</h2>
+                    <ul>
+                        <li><a target="_blank" href="./progetti/chill/menu.html">chill</a></li>
+                        <li><a target="_blank" href="./progetti/mazeSolver/maze.html">maze solver</a></li>
+                        <li><a target="_blank" href="./progetti/path/path.html">path</a></li>
+                        <li><a target="_blank" href="./progetti/rayCasting/rayCasting.html">ray casting</a></li>
+                        <li><a target="_blank" href="./progetti/rayTracing/rayTracing.html">ray tracing</a></li>
+                        <li><a target="_blank" href="./progetti/maze/maze.html">maze</a></li>
+                        <li><a target="_blank" href="./progetti/imgToDiv/imgToDiv.html">image to div</a></li>
+                    </ul>
 
+                    <h2>Progetti three.js</h2>
+                    <ul>
+                        <li><a target="_blank" href="./progetti/primo/primo.html">primo</a></li>
+                        <li><a target="_blank" href="./progetti/flock3d/flock.html">flock</a></li>
+                    </ul>
+                </div>
 
             </div>
         </div>
