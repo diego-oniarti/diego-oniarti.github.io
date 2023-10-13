@@ -20,7 +20,6 @@ function resizeCollapsable () {
 }
 resizeCollapsable();
 window.addEventListener('resize', ()=>{
-    console.log("A")
     resizeCollapsable();
 })
 

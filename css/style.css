@@ -46,7 +46,7 @@ a {
     margin-top: 35px;
     padding-bottom: 35px;
     width: 80%;
-    min-height: calc(100vh - 63px - 35px - 63px - 2px);
+    min-height: calc(100vh - 63px - 35px - 63px);
     background-color: var(--shade3);
     display: flex;
     flex-direction: column;
@@ -266,6 +266,7 @@ img {
     }
     #navBar a {
         padding: 6px;
+        text-decoration-thickness: 2px;
     }
 
     #navCollapse {
