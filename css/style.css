@@ -235,8 +235,8 @@ img {
     justify-content: space-evenly;
 }
 .scheda {
-    background-image: url("../immagini/placeholder.webp");
-    background-size: cover;
+    overflow: hidden;
+    position: relative;
     width: 32%;
     background-position: center;
     margin-bottom: 1%;
@@ -244,6 +244,22 @@ img {
     border: var(--shade8) 3px solid;
     padding-top: 20%;
     transition: padding-top 200ms ease-in-out, width 200ms ease-in-out;
+}
+.backgroundScheda {
+    z-index: -1;
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../immagini/placeholder.webp");
+    background-position: center;
+    background-size: cover;
+    filter: saturate(1);
+    transition: filter 200ms ease-in-out;
+}
+.scheda:hover .backgroundScheda {
+    filter:saturate(0)
 }
 .scheda:hover {
     width: 45.5%;
@@ -257,6 +273,19 @@ img {
 div:has(.grid .scheda:hover) > .grid:not(:has(.scheda:hover)) > .scheda {
     padding-top: 15%;
 }
+.faded {
+    position: absolute;
+    text-shadow: -2px 2px 3px var(--shade1);
+    top: 3px;
+    left: 3px;
+    opacity: 0;
+    color: #122d24;
+    transition: opacity 200ms ease-in-out;
+}
+.scheda:hover .faded {
+    opacity: 1;
+}
+
 
 /* PALETTE */
 #palette {
