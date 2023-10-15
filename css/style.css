@@ -105,6 +105,7 @@ div:has(+.hr2) h2, div:has(+.hr) h1 ,h1:has(+.hr), h2:has(+.hr2) {
 
 /* NAVBAR */
 #navBar {
+    z-index: 100;
     background-color: var(--shade1);
     position: sticky;
     top: 0px;
@@ -274,24 +275,56 @@ img {
     width: 25.5%;
 }
 div:has(.grid .scheda:hover) > .grid:not(:has(.scheda:hover)) > .scheda {
-    padding-top: 15%;
+    padding-top: 16.7%;
 }
 .faded {
+    width: 100%;
+    text-align: center;
     position: absolute;
-    text-shadow: -2px 2px 3px var(--shade8);
-    top: 3px;
-    left: 3px;
+    background-color: var(--shade8);
+    top: 0;
+    left: 0;
     opacity: 0;
     transition: text-shadow 200ms ease-in-out, opacity 200ms ease-in-out;
 }
 .dark .faded {
-    text-shadow: -2px 2px 3px var(--shade1);
+    background-color: var(--shade1);
 }
 .scheda:hover .faded {
     opacity: 1;
 }
+.linkScheda {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 
-
+#mazeSolver {
+    background-image: url("../immagini/mazeSolver.png");
+}
+#pathFinder {
+    background-image: url("../immagini/path.png");
+}
+#chill {
+    background-image: url("../immagini/chill.png");
+}
+#rayCasting {
+    background-image: url("../immagini/rayCasting.png");
+}
+#rayTracing {
+    background-image: url("../immagini/rayTracing.png");
+}
+#maze {
+    background-image: url("../immagini/maze.png");
+}
+#primo {
+    background-image: url("../immagini/3dwave.png");
+}
+#flock {
+    background-image: url("../immagini/flock.png");
+}
 /* PALETTE */
 #palette {
     position: absolute;

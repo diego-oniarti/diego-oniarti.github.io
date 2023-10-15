@@ -1,6 +1,11 @@
 /* Fai il click tu tutto il div anzi che sulla V */
 
 document.getElementById('themeButton').addEventListener('click',e=>{
+    if (document.getElementsByTagName('body')[0].classList.contains('dark')) {
+        document.getElementById('themeButton').innerHTML='◐';
+    }else{
+        document.getElementById('themeButton').innerHTML='◑';
+    }
     document.getElementsByTagName('body')[0].classList.toggle('dark')
 });
 
