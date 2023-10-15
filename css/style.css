@@ -241,9 +241,12 @@ img {
     background-position: center;
     margin-bottom: 1%;
     border-radius: 1rem;
-    border: var(--shade8) 3px solid;
+    border: var(--shade1) 3px solid;
     padding-top: 20%;
     transition: padding-top 200ms ease-in-out, width 200ms ease-in-out;
+}
+.dark .scheda {
+    border: var(--shade8) 3px solid;
 }
 .backgroundScheda {
     z-index: -1;
@@ -275,12 +278,14 @@ div:has(.grid .scheda:hover) > .grid:not(:has(.scheda:hover)) > .scheda {
 }
 .faded {
     position: absolute;
-    text-shadow: -2px 2px 3px var(--shade1);
+    text-shadow: -2px 2px 3px var(--shade8);
     top: 3px;
     left: 3px;
     opacity: 0;
-    color: #122d24;
-    transition: opacity 200ms ease-in-out;
+    transition: text-shadow 200ms ease-in-out, opacity 200ms ease-in-out;
+}
+.dark .faded {
+    text-shadow: -2px 2px 3px var(--shade1);
 }
 .scheda:hover .faded {
     opacity: 1;
@@ -316,7 +321,7 @@ div:has(.grid .scheda:hover) > .grid:not(:has(.scheda:hover)) > .scheda {
         min-height: calc(100vh - 33px - 63px);
     }
     .boxes {
-        row-gap: 10px;
+        row-gap: 0px;
     }
     #mainContainer, .boxes, .box {
         width: 100%;
@@ -348,5 +353,31 @@ div:has(.grid .scheda:hover) > .grid:not(:has(.scheda:hover)) > .scheda {
     .navCollapsible {
         max-height: 0;
         transition: max-height 200ms ease-in-out;
+    }
+
+    .grid {
+        flex-wrap: wrap;
+    }
+    .scheda, .scheda:hover {
+        width: 100%;
+        padding-top: 15%;
+    }
+    .grid:has(.scheda:hover) > .scheda{
+        width: 100%;
+        padding-top: 15%;
+    }
+    .grid:has(.scheda:hover) .scheda:not(:hover) {
+        width: 100%;
+        padding-top: 15%;
+    }
+    div:has(.grid .scheda:hover) > .grid:not(:has(.scheda:hover)) > .scheda {
+        width: 100%;
+       padding-top: 15%;
+    }
+    .faded {
+        opacity: 1;
+    }
+    .backgroundScheda {
+        filter:saturate(0)
     }
 }
