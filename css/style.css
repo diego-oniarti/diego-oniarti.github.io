@@ -1,17 +1,22 @@
 :root {
-    --shade1: #090c04;
-    --shade2: #0c190e;
+    --shade1: #0097af;
+    --shade2: #007284;
     --shade3: #122d24;
     --shade4: #1e4548;
     --shade5: #36647a;
     --shade6: #6087b7;
     --shade7: #a1b0f8;
-    --shade8: #fae1ff;
+    --shade8: #ffffff;
 }
 
 * {
     box-sizing: border-box;
     transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 63px;
 }
 
 body {
@@ -23,46 +28,35 @@ body {
     align-items: center;
     margin: 0;
     background-color: var(--shade8);
+}
+
+p, h1, h2, li, a {
+    color: var(--shade1);
+}
+.dark p, .dark h1, .dark h2, .dark li, .dark a {
     color: var(--shade8);
 }
 
 body.dark {
     background-color: var(--shade1);
-    color: var(--shade1);
+    color: var(--shade8);
 }
 
 p,ul {
     font-size: large;
 }
-a {
-    color: var(--shade8);
-}
-.dark a {
-    color: var(--shade1);
-}
-
 
 #mainContainer {
-    margin-top: 35px;
     padding-bottom: 35px;
     width: 80%;
-    min-height: calc(100vh - 63px - 35px - 63px);
-    background-color: var(--shade3);
+    min-height: calc(100vh - 63px - 63px);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.dark #mainContainer {
-    background-color: var(--shade6);
-}
-
 #titoloPagina {
     font-size: 50px;
-}
-
-.dark #titoloPagina {
-    color: var(--shade1);
 }
 
 ul {
@@ -72,13 +66,13 @@ ul {
 .hr {
     width: 100%;
     height: 3px;
-    background-color: var(--shade8);
+    background-color: var(--shade1);
     margin-bottom: 15px;
 }
 .hr2 {
     width: 90%;
     height: 2px;
-    background-color: var(--shade8);
+    background-color: var(--shade1);
 }
 div:has(+.hr2) h2, div:has(+.hr) h1 ,h1:has(+.hr), h2:has(+.hr2) {
     margin-bottom: 6px;
@@ -86,23 +80,23 @@ div:has(+.hr2) h2, div:has(+.hr) h1 ,h1:has(+.hr), h2:has(+.hr2) {
 
 
 .dark .hr, .dark .hr2 {
-    background-color: var(--shade1);
+    background-color: var(--shade8);
 }
 
 /* BOX */
 .box {
     width: 100%;
     padding: 0 20px;
-    background-color: var(--shade2);
+    border-radius: 1rem;
+    /*box-shadow: 2px 2px 5px var(--shade1);*/
+    box-shadow: 0px 0px 0px 3px var(--shade1);
+    transition: box-shadow 200ms ease-in-out
 }
-
 .dark .box {
-    background-color: var(--shade7);
-    color: var(--shade1);
+    box-shadow: 0px 0px 0px 3px var(--shade8);
 }
-
 .boxes {
-    width: 90%;
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -133,8 +127,7 @@ div:has(+.hr2) h2, div:has(+.hr) h1 ,h1:has(+.hr), h2:has(+.hr2) {
 
 #navBar a {
     padding: 15px;
-    text-decoration: underline;
-    text-decoration-thickness: 3px;
+    text-decoration: none;
     color: var(--shade8);
     background-color: transparent;
     transition: all 200ms ease-in-out;
@@ -173,22 +166,26 @@ div:has(+.hr2) h2, div:has(+.hr) h1 ,h1:has(+.hr), h2:has(+.hr2) {
     height: 63px;
     position: relative;
 }
+#footer p {
+    color: var(--shade8);
+}
+.dark #footer p {
+    color: var(--shade1);
+} 
 
 .dark #footer {
     background-color: var(--shade8);
-    color: var(--shade1);
 }
 
 
 
 /* VARIE */
-
 .flex {
     display: flex;
     width: 100%;
     justify-content: space-between;
 }
-.flex > div {
+.flex > div:not(.V) {
     width: 100%;
 }
 .flex-column {
@@ -204,24 +201,62 @@ img {
 .collapseButton {
     background-color: transparent;
     border: none;
-    color: var(--shade8);
     cursor: pointer;
+    align-items: flex-end;
 }
-.collapseButton h1 {
-    transition: color 200ms ease-in-out, background-color 200ms ease-in-out, transform 500ms ease-in-out ; /*cubic-bezier(0.69,-0.65, 0.62, 1.22)*/
-}
-.dark .collapseButton {
-    color: var(--shade1);
+.collapseButton .V {
+    transition: color 200ms ease-in-out, background-color 200ms ease-in-out, transform 300ms ease-in-out ; /*cubic-bezier(0.69,-0.65, 0.62, 1.22)*/
 }
 .flipped {
     transform: rotateZ(90deg);
 }
 .section {
     overflow: hidden;
-    transition: max-height 500ms ease-in-out;
+    transition: max-height 300ms ease-in-out;
+}
+
+.V {
+    width: 43px;
+    height: 43px;
+    background-color: var(--shade1);
+    /*clip-path: polygon(20% 20%, 80% 20%, 50% 80%);*/
+    clip-path: polygon(15% 36%, 25% 26%, 50% 51%, 75% 26%, 85% 36%, 50% 71%);
+    margin-bottom: 6px;
+}
+.dark .V {
+    background-color: var(--shade8);
 }
 
 
+/* GRIGLIA */
+.grid {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.scheda {
+    background-image: url("../immagini/placeholder.webp");
+    background-size: cover;
+    width: 32%;
+    background-position: center;
+    margin-bottom: 1%;
+    border-radius: 1rem;
+    border: var(--shade8) 3px solid;
+    padding-top: 20%;
+    transition: padding-top 200ms ease-in-out, width 200ms ease-in-out;
+}
+.scheda:hover {
+    width: 45.5%;
+}
+.grid:has(.scheda:hover) > .scheda{
+    padding-top: 30%;
+}
+.grid:has(.scheda:hover) .scheda:not(:hover) {
+    width: 25.5%;
+}
+div:has(.grid .scheda:hover) > .grid:not(:has(.scheda:hover)) > .scheda {
+    padding-top: 15%;
+}
 
 /* PALETTE */
 #palette {
@@ -248,8 +283,17 @@ img {
 
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
+    #mainContainer {
+        min-height: calc(100vh - 33px - 63px);
+    }
+    .boxes {
+        row-gap: 10px;
+    }
     #mainContainer, .boxes, .box {
         width: 100%;
+    }
+    .box {
+        border-radius: 0%;
     }
     #titoloPagina {
         font-size:5rex;

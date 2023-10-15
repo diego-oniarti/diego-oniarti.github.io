@@ -1,3 +1,5 @@
+/* Fai il click tu tutto il div anzi che sulla V */
+
 document.getElementById('themeButton').addEventListener('click',e=>{
     document.getElementsByTagName('body')[0].classList.toggle('dark')
 });
@@ -25,8 +27,13 @@ window.addEventListener('resize', ()=>{
 
 for (let bottone of document.getElementsByClassName('collapseButton')) {    
     bottone.addEventListener('click',e=>{
-        bottone.children[0].classList.toggle('flipped')
-        for (element of bottone.parentElement.parentElement.children) {
+        bottone.children[1].classList.toggle('flipped')
+        for (element of bottone.parentElement.children) {
+            if (element.style.backgroundColor=='transparent') 
+                element.style.backgroundColor=''
+            else
+                element.style.backgroundColor='transparent'
+            
             if (element.classList.contains('section')) {
                 if (element.style.maxHeight!='0px'){
                     element.style.maxHeight = '0px';
