@@ -30,10 +30,10 @@ body {
     background-color: var(--shade8);
 }
 
-p, h1, h2, li, a {
+p, h1, h2, li, a, b {
     color: var(--shade1);
 }
-.dark p, .dark h1, .dark h2, .dark li, .dark a {
+.dark p, .dark h1, .dark h2, .dark li, .dark a, .dark b {
     color: var(--shade8);
 }
 
@@ -241,6 +241,37 @@ img {
 #p1, #p2, #p3, #p4, #p5, #p6, #p7, #p8 {
     width: 20px;
     height: 20px;
+}
+
+div.code {
+    background-color: var(--shade1);
+}
+.dark div.code {
+    background-color: var(--shade8);
+}
+line {
+    color: var(--shade8);
+}
+.dark line {
+    color: var(--shade4);
+}
+div.code::before {
+    counter-reset: listing;
+}
+div.code line {
+    counter-increment: listing;
+    white-space: pre;
+    font-family: monospace;
+}
+div.code line::before {
+    content: counter(listing) ". ";
+    display: inline-block;
+    width: 3em;
+    text-align: right;
+}
+div.code line::after {
+    content: "\A";
+    white-space: pre;
 }
 
 #p1 { background-color: var(--shade1); }

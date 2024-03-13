@@ -1,52 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maze</title>
+    <title>Diego Oniarti</title>
+    <link rel="stylesheet" href="./css/main.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <script defer src="../../scripts/themeButton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js"
+    integrity="sha512-WJXVjqeINVpi5XXJ2jn0BSCfp0y80IKrYh731gLRnkAS9TKc5KNt/OfLtu+fCueqdWniouJ1ubM+VI/hbo7POQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="./path.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
 </head>
+<body class="dark">
+    <!-- NAVBAR -->
+    <div id="navBar">
+        <div class="navBarSection" id="navTitle">
+            <a href="../../index.html">Diego Oniarti</a>
+            <a id="navCollapse">...</a>
+        </div>
+        <div class="navBarSection navCollapsible">
+            <a href="#chiSono">Chi Sono</a>
+            <a href="#esperienza">Esperienza</a>
+            <a href="#skills">Skills</a>
+            <a href="#progetti">Progetti</a>
+        </div>
+        <div class="navBarSection navCollapsible">
+            <a id="themeButton">◑</a>
+            <a>🇮🇹</a>
+        </div>
+    </div>
 
-<body>
-    <h1><a href="../../index.html">Diego Oniarti</a></h1>
-    <h2>Maze Solver</h2>
-    <fieldset style="float:left;">
-        <legend>menu</legend>
-        <form action="./animazione.html" method="get">
-            <table>
-                <tr>
-                    <td>
-                        <label for="larghezza">larghezza</label>
-                    </td>
-                    <td>
-                        <input type="number" name="larghezza" value="10" min="1">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="altezza">altezza</label>
-                    </td>
-                    <td>
-                        <input type="number" name="altezza" value="10" min="1">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="lato">lato</label>
-                    </td>
-                    <td>
-                        <input type="number" name="lato" value="50" min="5">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" value="Inizia">
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </fieldset>
+
+    <!-- MAIN -->
+    <div id="mainContainer">
+        <h1 id="titoloPagina">MAZE SOLVER</h1>
+        
+        <div class="boxes">
+            <div class="box">
+                <div class="flex collapseButton">
+                    <h1>Idea</h1> <div class="V"></div>
+                </div>
+                <div class="hr"></div>
+                <div class="section">
+                    <p>
+                        Abbiamo visto come trovare il percorso più veloce da un punto <b><span style="color:green">A</span></b> a un punto <b><span style="color:red">B</span></b> utilizzando <a href="../path/path.html">A*</a>. <br>
+                        Ora però abbiamo il problema di dover disegnare ogni volta un percorso a ostacoli. Non possiamo automatizzare questo processo? <br>
+                        Possiamo generare un <b>labirinto</b> su cui far eseguire l'algoritmo di pathfinding.
+                    </p>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="flex collapseButton">
+                    <h1>Generare Un Labirinto</h1> <div class="V"></div>
+                </div>
+                <div class="hr"></div>
+                <div class="section">
+                    <p>
+                        L'algoritmo che utilizzeremo è descritto in maggior dettagli in <a href="https://en.wikipedia.org/wiki/Maze_generation_algorithm#Recursive_implementation">questo articolo</a>, ma ne daremo una descrizione in breve qui. <br>
+                        Genereremo il labirinto partendo da una griglia e effettuando una visita in profondità.
+                    </p>
+                    <h2>Pseudocodice</h2>
+                    <p>Supponiamo che:</p>
+                    <ul>
+                        <li>A è la cella di partenza</li>
+                        <li>La griglia ha dei muri che divino ogni cella da quelle adiacenti</li>
+                        <li>Tutte le celle iniziano come <b>non</b> visitate</li>
+                    </ul>
+                    <div class="code">
+                        <line>imposta A come visitato</line>
+                        <line>S <- Stack</line>
+                        <line>S.push(A)</line>
+                        <line>while (S non è vuoto):</line>
+                        <line>    corrente <- S.pop()</line>
+                        <line>    vicini <- celle adiacenti a 'corrente' non ancora visitate</line>
+                        <line>    if (vicini non è vuoto)</line>
+                        <line>        S.push(corrente)</line>
+                        <line>        prossimo <- vicini[random]</line>
+                        <line>        togli il muro tra corrente e prossimo</line>
+                        <line>        imposta prossimo come visitato</line>
+                        <line>        S.push(prossimo)</line>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- FOOTER -->
+    <div id="footer">
+        <p>fatto a mano, da me ♥ </p>
+        <div id="palette">
+            <div id="p1"></div>
+            <div id="p2"></div>
+            <div id="p3"></div>
+            <div id="p4"></div>
+            <div id="p5"></div>
+            <div id="p6"></div>
+            <div id="p7"></div>
+            <div id="p8"></div>
+        </div>
+    </div>
 </body>
-
 </html>
