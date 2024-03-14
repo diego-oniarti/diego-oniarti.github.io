@@ -4,6 +4,7 @@ let states = {setup:0, generate:1, generate_done:2, solve:3, solve_done:4}
 let state = states.setup;
 
 let size_slider = document.getElementById("size_slider");
+const div = document.getElementById('canvas');
 
 //Variabili Labirinto
 let stack = [];
@@ -17,7 +18,8 @@ let endPoint;
 let corrente;
 
 function setup() {
-    canvas = createCanvas(500,500);
+    let lato = Math.min(500, div.clientWidth);
+    canvas = createCanvas(lato,lato);
     canvas.parent("canvas"); 
     slider = document.getElementById("size_slider");
     resizeCollapsable();
@@ -156,6 +158,13 @@ bottone.onclick = (e) => {
 }
 
 function windowResized() {
+    let lato = Math.min(500, div.clientWidth);
+    resizeCanvas(lato,lato,false);
+    for (riga of griglia) {
+        for (cel of riga) {
+            cel.lato = lato/Number(size_slider.value);
+        }
+    }
 }
 
 function inizializzaLabirinto() {

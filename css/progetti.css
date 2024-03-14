@@ -32,7 +32,7 @@ div.code::before {
 }
 div.code line {
     counter-increment: listing;
-    white-space: pre;
+    white-space: pre-wrap;
     font-family: monospace;
 }
 div.code line::before {
