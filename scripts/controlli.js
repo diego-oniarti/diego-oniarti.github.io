@@ -6,8 +6,7 @@ document.getElementById('themeButton').addEventListener('click',e=>{
     }
     const body = document.getElementsByTagName('body')[0];
     body.classList.toggle('dark');
-    document.cookie = `mode=${body.classList.contains('dark')}`;
-    console.log(`mode=${body.classList.contains('dark')?'dark':'light'};`)
+    document.cookie = `mode=${body.classList.contains('dark')?'dark':'light'}`;
 });
 window.addEventListener("load", (event) => {
     const cookie = document.cookie;
