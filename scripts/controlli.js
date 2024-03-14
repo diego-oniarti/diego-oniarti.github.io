@@ -11,7 +11,7 @@ document.getElementById('themeButton').addEventListener('click',e=>{
 });
 window.addEventListener("load", (event) => {
     const cookie = document.cookie;
-    mode = cookie.match('mode=(?<mode>light|dark);')?.groups['mode'];
+    mode = cookie.match('mode=(?<mode>light|dark)')?.groups['mode'];
     if (mode==="light") {
         document.getElementsByTagName('body')[0].classList.remove('dark');
     }
