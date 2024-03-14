@@ -18,7 +18,7 @@ let endPoint;
 let corrente;
 
 function setup() {
-    let lato = Math.min(500, div.clientWidth);
+    let lato = Math.min(500, div.parentElement.parentElement.clientWidth);
     canvas = createCanvas(lato,lato);
     canvas.parent("canvas"); 
     slider = document.getElementById("size_slider");
@@ -158,7 +158,7 @@ bottone.onclick = (e) => {
 }
 
 function windowResized() {
-    let lato = Math.min(500, div.clientWidth);
+    let lato = Math.min(500, div.parentElement.parentElement.clientWidth);
     resizeCanvas(lato,lato,false);
     for (riga of griglia) {
         for (cel of riga) {

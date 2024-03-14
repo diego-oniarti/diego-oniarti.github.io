@@ -5,7 +5,7 @@
     --shade4: #1e4548;
     --shade5: #36647a;
     --shade6: #6087b7;
-    --shade7: #a1b0f8;
+    --shade7: #dcedff;
     --shade8: #ffffff;
 }
 
@@ -30,10 +30,10 @@ body {
     background-color: var(--shade8);
 }
 
-p, h1, h2, li, a, b, span {
+p, h1, h2, li, a, b, span, label {
     color: var(--shade1);
 }
-.dark p, .dark h1, .dark h2, .dark li, .dark a, .dark b, .dark span {
+.dark p, .dark h1, .dark h2, .dark li, .dark a, .dark b, .dark span, .dark label {
     color: var(--shade8);
 }
 
