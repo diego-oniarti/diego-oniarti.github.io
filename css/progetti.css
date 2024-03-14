@@ -1,0 +1,53 @@
+.box, .dark .box {
+    box-shadow: none;
+}
+
+.red, .dark .red {
+    color: red;
+}
+.black, .dark .black {
+    color: black;
+}
+.green {
+    color: green;
+}
+.dark .green {
+    color: lime;
+}
+
+div.code {
+    background-color: var(--shade1);
+}
+.dark div.code {
+    background-color: var(--shade8);
+}
+line {
+    color: var(--shade8);
+}
+.dark line {
+    color: var(--shade4);
+}
+div.code::before {
+    counter-reset: listing;
+}
+div.code line {
+    counter-increment: listing;
+    white-space: pre;
+    font-family: monospace;
+}
+div.code line::before {
+    content: counter(listing) ". ";
+    display: inline-block;
+    width: 3em;
+    text-align: right;
+}
+div.code line::after {
+    content: "\A";
+    white-space: pre;
+}
+div.code b, div.code a {
+    color: var(--shade8)
+}
+.dark div.code b, .dark div.code a {
+    color: var(--shade4)
+}

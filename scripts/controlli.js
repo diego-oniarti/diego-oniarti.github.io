@@ -1,12 +1,20 @@
-/* Fai il click tu tutto il div anzi che sulla V */
-
 document.getElementById('themeButton').addEventListener('click',e=>{
     if (document.getElementsByTagName('body')[0].classList.contains('dark')) {
         document.getElementById('themeButton').innerHTML='◐';
     }else{
         document.getElementById('themeButton').innerHTML='◑';
     }
-    document.getElementsByTagName('body')[0].classList.toggle('dark')
+    const body = document.getElementsByTagName('body')[0];
+    body.classList.toggle('dark');
+    document.cookie = `mode=${body.classList.contains('dark')}`;
+    console.log(`mode=${body.classList.contains('dark')?'dark':'light'};`)
+});
+window.addEventListener("load", (event) => {
+    const cookie = document.cookie;
+    mode = cookie.match('mode=(?<mode>light|dark);')?.groups['mode'];
+    if (mode==="light") {
+        document.getElementsByTagName('body')[0].classList.remove('dark');
+    }
 });
 
 document.getElementById('navCollapse').addEventListener('click',e=>{

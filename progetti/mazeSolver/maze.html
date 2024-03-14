@@ -5,48 +5,112 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maze</title>
+    <title>Diego Oniarti</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/progetti.css">
+    <script defer src="../../scripts/controlli.js"></script>
+
+    <script src="../p5/p5.min.js"></script>
 </head>
 
-<body>
-    <h1><a href="../../index.html">Diego Oniarti</a></h1>
-    <h2>Maze Solver</h2>
-    <fieldset style="float:left;">
-        <legend>menu</legend>
-        <form action="./animazione.html" method="get">
-            <table>
-                <tr>
-                    <td>
-                        <label for="larghezza">larghezza</label>
-                    </td>
-                    <td>
-                        <input type="number" name="larghezza" value="10" min="1">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="altezza">altezza</label>
-                    </td>
-                    <td>
-                        <input type="number" name="altezza" value="10" min="1">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="lato">lato</label>
-                    </td>
-                    <td>
-                        <input type="number" name="lato" value="50" min="5">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" value="Inizia">
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </fieldset>
+<body class="dark">
+    <!-- NAVBAR -->
+    <div id="navBar">
+        <div class="navBarSection" id="navTitle">
+            <a href="../../index.html">Diego Oniarti</a>
+            <a id="navCollapse">...</a>
+        </div>
+        <div class="navBarSection navCollapsible">
+            <a id="themeButton">◑</a>
+            <a>🇮🇹</a>
+        </div>
+    </div>
+
+
+    
+    <!-- MAIN -->
+    <div id="mainContainer">
+        <h1 id="titoloPagina">MAZE SOLVER</h1>
+        
+        <div class="boxes">
+
+            <!-- Intro -->
+            <div class="box">
+                <div class="flex collapseButton"><h1>INTRO</h1> <div class="V"></div></div>
+                <div class="hr"></div>
+
+                <div class="section">
+                    <p>Abbiamo già visto un <a href="../path/path.html">algoritmo che trova un percorso da un punto A a un punto B</a>. <br>
+                    E se non volessimo disegnare gli ostacoli a mano ogni volta? <br>
+                    Possiamo generare un labirinto su cui far eseguire l'algoritmo di pathfinding.
+                <br><br>
+                    Ci sono diversi algoritmi per generare un algoritmo, ma noi useremo quello più piacevole da animare. <br>
+                    Una spiegazione di altri algoritmi (e di quello che vedremo qui) può essere trovata <a target="_blank" href="https://en.wikipedia.org/wiki/Maze_generation_algorithm#Iterative_implementation_(with_stack)">qui</a></p>
+                </div>
+            </div>
+
+            <!-- Spiegazione Algoritmo -->
+            <div class="box">
+                <div class="flex collapseButton"><h1>L'ALGORITMO</h1> <div class="V"></div></div>
+                <div class="hr"></div>
+
+                <div class="section">
+                    <p>
+                        L'algoritmo che vedremo oggi è ricorsivo e basato su una semplice stack. <br>
+                        La mappa è rappresentata da una griglia di celle, inizialmente separate da <b>muri</b> <span class="red">■</span> e indicate come <b>non visitate</b> <span class="black">■</span>. <br>
+                        L'andamento dell'algoritmo è il seguente: <br>
+                    </p>
+                    <div class="code">
+                        <line>Scegliere una cella di partenza (in questo caso quella centrale)</line>
+                        <line>Aggiungerla alla stack</line>
+                        <line>Segnarla come <b>visitata</b> <span class="green">■</span></line>
+                        <line>Ripetere finchè la stack non è vuota:</line>
+                        <line>    Rimuovere una cella dalla stack e chiamarla <b>corrente</b></line>
+                        <line>    Se la cella ha alcun vicino<a href="#nb">[*]</a> <b>non visitato</b> <span class="black">■</span>:</line>
+                        <line>        Aggiungi la cella <b>corrente</b> allo stack</line>
+                        <line>        Scegli uno dei vicini <b>non visitati</b> <span class="black">■</span> a caso</line>
+                        <line>        Rimuovi il <b>muro</b> <span class="red">■</span> tra la cella <b>corrente</b> e il <b>vicino</b></line>
+                        <line>        Segna il vicino come <b>visitato</b> <span class="green">■</span> e aggiungilo alla stack</line>
+                    </div>
+                    <p id="nb">
+                        * I vicini cono controllati solo nella 4 direzioni cardinali. Non le fiagonali
+                    </p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="flex collapseButton"><h1>ANIMAZIONE</h1> <div class="V"></div></div>
+                <div class="hr"></div>
+
+                <div class="section">
+                    <div id="canvas" style="min-height: 1px;"></div>
+                    <script defer src="sketch.js"></script>
+                    <label for="size">Size</label>
+                    <input type="range" min="10" max="50" value="20" name="size" id="size_slider">
+                    <br>
+                    <input type="button" value="Inizia Generazione" name="advance" id="advance_button">
+                    <br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- FOOTER -->
+    <div id="footer">
+        <p>fatto a mano, da me ♥ </p>
+        <div id="palette">
+            <div id="p1"></div>
+            <div id="p2"></div>
+            <div id="p3"></div>
+            <div id="p4"></div>
+            <div id="p5"></div>
+            <div id="p6"></div>
+            <div id="p7"></div>
+            <div id="p8"></div>
+        </div>
+    </div>
+
 </body>
 
 </html>

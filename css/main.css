@@ -30,10 +30,10 @@ body {
     background-color: var(--shade8);
 }
 
-p, h1, h2, li, a {
+p, h1, h2, li, a, b, span {
     color: var(--shade1);
 }
-.dark p, .dark h1, .dark h2, .dark li, .dark a {
+.dark p, .dark h1, .dark h2, .dark li, .dark a, .dark b, .dark span {
     color: var(--shade8);
 }
 
@@ -43,7 +43,7 @@ body.dark {
 }
 
 p,ul {
-    font-size: large;
+    font-size: larger;
 }
 
 #mainContainer {
