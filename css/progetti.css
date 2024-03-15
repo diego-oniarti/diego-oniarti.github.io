@@ -134,7 +134,54 @@ input[type=range]:disabled::-webkit-slider-thumb {
     border: 3px solid var(--shade8);
 }
 
+/*toggle*/
+.toggle {
+    height: 50px;
+    width: 94px;
+    border: 3px solid var(--shade1);
+    border-radius: 25px;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: var(--shade7);
+}
+.dark .toggle {
+    border: 3px solid var(--shade8);
+    background-color: var(--shade2);
+}
+.toggle input {
+    display: none;
+}
+.toggle_slider {
+    height: 44px;
+    width: 44px;
+    border-radius: 22px;
+    background-color: var(--shade1);
+    position: absolute;
+    left: 0%;
+    transition: left 50ms ease-in-out;
+    border: 3px solid var(--shade1);
+}
+.dark .toggle_slider {
+    border: 3px solid var(--shade8);
+    background-color: var(--shade8);
+}
+.toggle:checked+.toggle_slider {
+    left: 50%;
+}
+.toggle:disabled+.toggle_slider {
+    background-color: transparent;
+}
+.toggle:has(.toggle:disabled) {
+    background-color: transparent;
+}
 
+/*
+<span class="toggle">
+    <input type="checkbox" name="random" id="random" class="toggle">
+    <div class="toggle_slider"></div>
+</span>
+*/
 
 label {
     font-size: 1.5em;

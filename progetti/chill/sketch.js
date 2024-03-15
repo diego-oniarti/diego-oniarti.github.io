@@ -125,6 +125,7 @@ function keyPressed() {
     case stati.idle:
         if (["a","d","ArrowLeft","ArrowRight"].includes(key)) {
             stato=stati.countdown;
+            document.getElementById('random').disabled=true;
             countdown_start = new Date();
             newLevel();
             return false;
@@ -156,6 +157,7 @@ function mousePressed() {
         case stati.idle:
             stato=stati.countdown;
             countdown_start = new Date();
+            document.getElementById('random').disabled=true;
             newLevel();
             return false;
         case stati.play:
@@ -175,6 +177,7 @@ function restart() {
     game.size= 9,
     game.lives= 3,
     game.level= 1,
+    document.getElementById('random').disabled=true;
     updateScoreboard();
     
     stato=stati.countdown;
@@ -212,6 +215,7 @@ function die() {
     game.lives--;
     document.getElementById("lives").value=game.lives;
     if (game.lives==0) {
+        document.getElementById('random').disabled=false;
         stato=stati.end;
     }
 }
@@ -264,7 +268,9 @@ function resetPlayer() {
 }
 
 function getMaze(n) {
-    randomSeed(n);
+    if (document.getElementById('random').checked) {
+        randomSeed(n);
+    }
     const celle = [];
     for (let i=0; i<n; i++) {
         celle.push([]);
