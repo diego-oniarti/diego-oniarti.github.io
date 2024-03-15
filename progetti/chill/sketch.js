@@ -220,7 +220,7 @@ function updatePlayer() {
     const dt = 80/frameRate();
 
     player.vel.y -= gravity *dt;
-    player.vel.x *= 0.99 ;
+    player.vel.x -= player.vel.x*0.01*dt ;
     player.pos.y -= player.vel.y *dt;
     player.pos.x += player.vel.x *dt;
 }
