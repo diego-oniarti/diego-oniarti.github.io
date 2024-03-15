@@ -118,3 +118,24 @@ input[type=range]:disabled::-webkit-slider-thumb {
 .large-button:disabled {
     background-color: transparent;
 }
+
+/*number output*/
+.number-out {
+    color: var(--shade1);
+    border: 3px solid var(--shade1);
+    font-size: 1.5em;
+    height: 50px;
+    padding: 10px;
+    border-radius: 35px;
+}
+.dark .number-out {
+    color: var(--shade8);
+    background-color: var(--shade2);
+    border: 3px solid var(--shade8);
+}
+
+
+
+label {
+    font-size: 1.5em;
+}

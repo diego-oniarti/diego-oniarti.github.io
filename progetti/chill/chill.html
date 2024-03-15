@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diego Oniarti</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/progetti.css">
+    <script defer src="../../scripts/controlli.js"></script>
+
+    <script src="../p5/p5.min.js"></script>
+</head>
+
+<body class="dark">
+    <!-- NAVBAR -->
+    <div id="navBar">
+        <div class="navBarSection" id="navTitle">
+            <a href="../../index.html">Diego Oniarti</a>
+            <a id="navCollapse">...</a>
+        </div>
+        <div class="navBarSection navCollapsible">
+            <a id="themeButton">◑</a>
+            <a>🇮🇹</a>
+        </div>
+    </div>
+
+
+    
+    <!-- MAIN -->
+    <div id="mainContainer">
+        <h1 id="titoloPagina">CHILL</h1>
+        
+        <div class="boxes">
+
+            <!-- Intro -->
+            <div class="box">
+                <div class="flex collapseButton"><h1>IL GIOCO</h1> <div class="V"></div></div>
+                <div class="hr"></div>
+
+                <div class="section">
+                    <h2>Cos'è Chill?</h2>
+                    <p>
+                        <figure style="width: 20%; float: right; margin: 10px;">
+                            <img width="100%" src="./assets/alex.png" alt="An image of Alex">
+                            <figcaption>Fig.1 - Alex</figcaption>
+                        </figure>
+                        Chill è un gioco molto semplice. <br>
+                        Te controlli una palla chiamata "Alex", che deve muoversi in un <a href="../mazeSolver/maze.html">labirinto</a> per raggiungere l'uscita. <br>
+                        <br>
+                        A discapito di quanto potrebbe suggerire il nome, il gioco non è molto rilassante. Anzi, è progettato per essere il più frustrante possibile. <br>
+                        Ma cosa lo rende fastidioso?
+                    </p>
+                    <h2>I Controlli</h2>
+                    <p>
+                        Alex è affetto da gravità, che lo spinge costantemente verso il basso, ma può saltare a destra o sinistra con i tasti <code>A</code> e <code>D</code> (o con le frecce a destra e sinistra). <br>
+                        Ogni volta che salta, Alex guadagna della cuota che gli permette di non cadere.
+                        Controllare Alex con precisione è importante, perché toccare un qualsiasi muro ti riporterà all'inizio del livello.
+                    </p>
+                    <h2>Multitasking</h2>
+                    <p>
+                        Quando si gioca Chill è importante riuscire a mantere Alex in vita mentre si risolve il labirinto a mente. Altrimenti si potrebbero finire le <b>3</b> vite che si hanno a disposizione. <br>
+                        Una nuova vita è guadagnata ogni tre livelli superati, ma i labirinti diventano gradualmente più difficili.
+                    </p>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="flex collapseButton"><h1>GIOCA</h1> <div class="V"></div></div>
+                <div class="hr"></div>
+
+                <div class="section">
+                    <div style="max-width: fit-content;">
+                        <div id="canvas" style="min-height: 1px;"></div>
+                        <script src="sketch.js"></script>
+                        <table>
+                            <tr>
+                                <td>
+                                    <label for="lives" style="float: right;">Vite</label>
+                                </td>
+                                <td>
+                                    <input type="number" name="lives" id="lives" value="3" class="number-out" disabled>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="score" style="float: right;">Punti</label>
+                                </td>
+                                <td>
+                                    <input type="number" name="score" id="score" value="0" class="number-out" disabled>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="flex collapseButton"><h1>ALTRE IDEE</h1> <div class="V"></div></div>
+                <div class="hr"></div>
+
+                <div class="section">
+                    <p>
+                        Altre idee e aggiunte potrebbero essere
+                        <ul>
+                            <li>Vite extra da raccogliere nei livello</li>
+                            <li>Collezionabili che diano punti extra nei livelli</li>
+                            <li>Collezionabili che devono essere raccolti prima di poter andare all'uscita</li>
+                            <li>Aggiungere una scoreboard</li>
+                            <li>Ridurre il campo visivo del giocatore</li>
+                        </ul>
+                        Forse un giorno tornerò su questo progetto e implementerò queste idee.
+                    </p>
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- FOOTER -->
+    <div id="footer">
+        <p>fatto a mano, da me ♥ </p>
+        <div id="palette">
+            <div id="p1"></div>
+            <div id="p2"></div>
+            <div id="p3"></div>
+            <div id="p4"></div>
+            <div id="p5"></div>
+            <div id="p6"></div>
+            <div id="p7"></div>
+            <div id="p8"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>
