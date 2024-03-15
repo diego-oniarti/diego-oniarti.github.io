@@ -203,6 +203,7 @@ function win() {
     newLevel();
 }
 function updateScoreboard() {
+    document.getElementById('lives').value=game.lives;
     document.getElementById('score').value=game.score;
 }
 
