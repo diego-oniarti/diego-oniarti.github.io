@@ -30,10 +30,10 @@ body {
     background-color: var(--shade8);
 }
 
-p, h1, h2, li, a, b, span, label {
+p, h1, h2, li, a, b, span, label, code, figcaption {
     color: var(--shade1);
 }
-.dark p, .dark h1, .dark h2, .dark li, .dark a, .dark b, .dark span, .dark label {
+.dark p, .dark h1, .dark h2, .dark li, .dark a, .dark b, .dark span, .dark label, .dark code, .dark figcaption {
     color: var(--shade8);
 }
 
