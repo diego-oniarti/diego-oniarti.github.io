@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diego Oniarti</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/progetti.css">
+    <script defer src="../../scripts/controlli.js"></script>
+
+    <script src="../p5/p5.min.js"></script>
+</head>
+
+<body class="dark">
+    <!-- NAVBAR -->
+    <div id="navBar">
+        <div class="navBarSection" id="navTitle">
+            <a href="../../index.html">Diego Oniarti</a>
+            <a id="navCollapse">...</a>
+        </div>
+        <div class="navBarSection navCollapsible">
+            <a id="themeButton">◑</a>
+            <a>🇮🇹</a>
+        </div>
+    </div>
+
+
+    
+    <!-- MAIN -->
+    <div id="mainContainer">
+        <h1 id="titoloPagina">MAZE WALKER</h1>
+        
+        <div class="boxes">
+
+            <!-- Intro -->
+            <div class="box">
+                <div class="flex collapseButton"><h1>L'OBBIETTIVO</h1> <div class="V"></div></div>
+                <div class="hr"></div>
+
+                <div class="section">
+
+                    <p>
+                        Abbiamo fatto un gioco molto semplice in un <a href="../../progetti/chill/chill.html">articolo precedente</a> utilizzando una visuale 2D. <br>
+                        Ora proveremo a fare un altro gioco ancora più semplice, ma visualizzandolo in <b>prima persona</b>. <br>
+                    </p>
+                    <h2>Compromiessi</h2>
+                    <figure style="width: 30%; float: left; margin: 10px;">
+                        <img width="100%" src="./assets/doom.png" alt="A screenshot from the game Doom"/>
+                        <figcaption>Fig.1 - Una schermata di Doom</figcaption>
+                    </figure>
+                    <p>
+                        Ci sono vari approcci per renderizzare una scena tridimensionale in prima persona. Alcuni di questi li vedremo più avanti, ma per ora atteniamoci alle cose semplici. <br>
+                        Siccome stiamo lavorando in un labirinto bidimensionale e non ci importa dell'asse <code>Z</code>, possiamo tentare di ricreare un look simile a quello del primo Doom, usando il <b>Ray Casting</b>. <br>
+                        Inoltre possiamo fare delle altre assunzioni per semplificarci il lavoro: <br>
+                        <ul style="display: flow-root;">
+                            <li>Usare colori solidi al posto di texture</li>
+                            <li>Implementare ogni muro come un segmento di linea, devinito dalle coordinate delle sue estremità</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="flex collapseButton"><h1>COME FUNZIONA</h1> <div class="V"></div></div>
+                <div class="hr"></div>
+
+                <div class="section">
+                    <figure style="max-width: 400px; float: right; width: 40%;">
+                        <div style="width: 100%;" id="ray_casting_div"></div>
+                        <script src="./ray_cast/sketch.js" defer></script>
+                        <figcaption>Fig.2 - Un agente che casta raggi a 360°</figcaption>
+                    </figure>
+                    <p>
+                        Per prima cosa ci serve un <code>agente</code> che possa proiettare dei <b>raggi</b>. Questi raggi rappresentano la vista del nostro agente, quindi devono interrompersi quando incontrano un oggetto che ostacolerebbe la sua visuale. <br>
+                        Una tecnica piuttosto cruda per implementare questi raggi sarebbe quella di rappresentarli come una semiretta sul piano, che ha origine nlle coordinate dell'agente e si estende in una certa direzione. <br>
+                        Dopo di che un po' di algebra lineare ci permette di trovare l'intersezione delle due linee, ovvero il punto dove si interrompe il raggio.
+                    </p>
+                    <div class="code">
+                        <line>x1,y1 = x_agente,y_agente</line>
+                        <line>x2,y2 = (x1,y1)+direzione_raggio*(width+height)</line>
+                        <line>min_dist = inf</line>
+                        <line>intersezione = null</line>
+                        <line>per ogni muro w:</line>
+                        <line>  x3,y3,x4,y4 = w</line>
+                        <line>  den = (x1-x2)*(y3-y4)-(y1-y2)*(x3-x4)</line>
+                        <line>  se den==0:</line>
+                        <line>    continue</line>
+                        <line>  t = ((x1-x3)*(y3-y4)-(y1-y3)*(x3-x4))/den</line>
+                        <line>  u = -((x1-x2)*(y1-y3)-(y1-y2)*(x1-x3))/den</line>
+                        <line>  se t > 0 && t < 1 && u > 0 && u < 1 : </line>
+                        <line>    x = x1+t*(x2-x1)</line>
+                        <line>    y = y1+t*(y2-y1)</line>
+                        <line>    d = dist(x1,y1,x,y)</line>
+                        <line>    se d < min_dist: </line>
+                        <line>      min_dist = d</line>
+                        <line>      intersezione = (x,y)</line>
+                    </div>
+                    <p>
+                        * <code>direzione_raggio</code> è un vettore unitario che indica la direzione del raggio. Viene scalato per le dimensioni della viewport per dare l'impressione che il segmento si estenda all'infinito.
+                    </p>
+                    <figure style="width: 35%; float: left;">
+                        <img class="dark-only" width="100%" src="./assets/graph_dark.png" alt="Un grafico illustrativo">
+                        <img class="light-only" width="100%" src="./assets/graph_light.png" alt="Un grafico illustrativo">
+                        <figcaption>Fig.3 - Un grafico illustrativo</figcaption>
+                    </figure>
+
+                    <p>
+                        Un problema che salta subito all'occhio è che stiamo iterando su ogni muro, per ogni raggio. Questo può impattare le nostre performance significativamente. <br>
+                        Ci sono alcuni stratagemmi che possono aiutarci a diminuire considerevolmente il numero di confronti. Alcuni di essi derivano dal fatto che il labirinto si trova su una griglia.
+                        <ul style="display: flow-root;">
+                            <li>Controllare un solo quadrante della mappa, determinato dalla direzione del raggio</li>
+                            <li>Unire tra loro più muri contigui che giacciono sulla stessa retta</li>
+                            <li>Iterare sui muri in un ordine preciso, a anelli crescenti intorno all'agente. Così da trovare i muri più vicini per primi</li>
+                        </ul>
+                    </p>
+                    <h2>Dai Raggi Alla Vista</h2>
+                </div>
+            </div>
+
+            
+
+        </div>
+    </div>
+
+
+    <!-- FOOTER -->
+    <div id="footer">
+        <p>fatto a mano, da me ♥ </p>
+        <div id="palette">
+            <div id="p1"></div>
+            <div id="p2"></div>
+            <div id="p3"></div>
+            <div id="p4"></div>
+            <div id="p5"></div>
+            <div id="p6"></div>
+            <div id="p7"></div>
+            <div id="p8"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

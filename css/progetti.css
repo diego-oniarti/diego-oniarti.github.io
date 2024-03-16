@@ -17,6 +17,7 @@
 
 div.code {
     background-color: var(--shade1);
+    display: flow-root;
 }
 .dark div.code {
     background-color: var(--shade8);

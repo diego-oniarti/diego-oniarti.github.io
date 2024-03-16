@@ -194,9 +194,30 @@ div:has(+.hr2) h2, div:has(+.hr) h1 ,h1:has(+.hr), h2:has(+.hr2) {
     flex-direction: column;
 }
 
+figure {
+    margin: 10px;
+    border: 2px solid var(--shade1);
+    border-radius: 4px;
+}
+.dark figure {
+    border: 2px solid var(--shade8);
+}
+figure {
+    padding: 4px;
+}
 
 img {
     object-fit: contain;
+}
+
+.dark-only {
+    display: none;
+}
+.dark .dark-only {
+    display: unset;
+}
+.dark .light-only {
+    display: none;
 }
 
 .collapseButton {
