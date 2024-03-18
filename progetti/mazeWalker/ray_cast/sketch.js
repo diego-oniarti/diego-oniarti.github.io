@@ -1,5 +1,6 @@
 ray_cast_sketch = p => {
     p.div = document.getElementById('ray_casting_div');
+    p.looping=false;
 
     p.setup = function() {
         const lato = Math.min(p.div.clientWidth,400);
@@ -7,6 +8,7 @@ ray_cast_sketch = p => {
         canvas.parent('ray_casting_div');
         resizeCollapsable();
         p.stroke(255);
+        p.noLoop();
     }
     p.draw = function() {
         p.background(50);
@@ -28,11 +30,8 @@ ray_cast_sketch = p => {
 
         const x1 = p.constrain(p.mouseX,0,p.width);
         const y1 = p.constrain(p.mouseY,0,p.height);
-
-        p.strokeWeight(8);
         p.stroke(255);
-        p.point(x1,y1);
-        p.strokeWeight(2);
+
         for (let i=0; i<360; i++) {
             const dir = p5.Vector.fromAngle(i*Math.PI/180,p.width+p.height);
 
@@ -59,11 +58,26 @@ ray_cast_sketch = p => {
             p.line(x1,y1,x,y);
         }
 
+        p.strokeWeight(8);
+        p.stroke(0, 151, 175);
+        p.point(x1,y1);
+        p.strokeWeight(2);
+
         p.strokeWeight(3);
         p.stroke(0, 151, 175);
         for (let muro of muri) {
             p.line(muro.a.x, muro.a.y, muro.b.x, muro.b.y);
         }
+    }
+    p.mousePressed = function() {
+        if (p.mouseX<0||p.mouseY<0||p.mouseX>p.width||p.mouseY>p.height) return true;
+        p.looping = !p.looping;
+        if (p.looping) {
+            p.loop();
+        }else{
+            p.noLoop();
+        }
+        return false;
     }
 
     p.windowResized = function() {

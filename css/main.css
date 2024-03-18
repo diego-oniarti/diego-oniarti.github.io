@@ -189,6 +189,9 @@ div:has(+.hr2) h2, div:has(+.hr) h1 ,h1:has(+.hr), h2:has(+.hr2) {
 .flex > div:not(.V) {
     width: 100%;
 }
+.even {
+    justify-content: space-evenly;
+}
 .flex-column {
     display: flex;
     flex-direction: column;
