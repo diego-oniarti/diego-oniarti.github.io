@@ -1,7 +1,7 @@
 const game_div = document.getElementById('game_div');
 const map_div = document.getElementById('map_div');
 
-const N = 15;
+const N = 10;
 const SPEED = 0.03;
 const FOV = Math.PI/3;
 const N_RAYS = 100;
