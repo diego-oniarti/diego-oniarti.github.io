@@ -116,6 +116,11 @@
                         </ul>
                     </p>
                     <h2>Dai Raggi Alla Vista</h2>
+                    <p>
+                        Ora che abbiamo un agente che casta questi raggi, come arriviamo a disegnare la veduta del giocatore? <br>
+                        È abbastanza semplice. Iniziamo proiettando una quantità <code>n</code> di raggi all'interno del campo visivo del giocatore. Ogni uno di questi raggi corrisponderà a una banda verticale dello schermo. <br>
+                        In ogni banda verticale disegnamo un rettangolo di altezza inversamente proporzionale alle lunghezza del raggio corrispondente. Questo darà l'impressione che gli oggetti più distanti siano più piccoli di quelli vicini.
+                    </p>
                 </div>
             </div>
 
@@ -126,8 +131,8 @@
 
                 <div class="section">
                     <div class="flex even">
-                        <div id="game_div" style="max-width: 600px; width: 50%; min-height: 1px;"></div>
-                        <div id="map_div" style="max-width: 600px; width: 50%   ; min-height: 1px;"></div>
+                        <div id="game_div" style="max-width: 800px; width: 50%; min-height: 1px;"></div>
+                        <div id="map_div" style="max-width: 800px; width: 50%   ; min-height: 1px;"></div>
                         <script src="game/sketch.js" defer></script>
                     </div>
                 </div>
