@@ -14,6 +14,7 @@ new p5(p=>{
     p.setup = ()=>{
         const lato = game_div.clientWidth;
         const canvas = p.createCanvas(lato,lato);
+        canvas.class('bordered')
         canvas.parent('game_div');
         resizeCollapsable();
         
@@ -191,6 +192,7 @@ const map = new p5(p=>{
     p.setup = ()=>{
         const lato = map_div.clientWidth;
         const canvas = p.createCanvas(lato,lato);
+        canvas.class('bordered')
         canvas.parent('map_div');
         resizeCollapsable();
     }

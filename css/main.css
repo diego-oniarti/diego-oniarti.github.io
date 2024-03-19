@@ -181,6 +181,13 @@ div:has(+.hr2) h2, div:has(+.hr) h1 ,h1:has(+.hr), h2:has(+.hr2) {
 
 
 /* VARIE */
+.bordered {
+    border: 3px solid var(--shade1);
+}
+.dark .bordered {
+    border: 3px solid var(--shade8);
+}
+
 .flex {
     display: flex;
     width: 100%;

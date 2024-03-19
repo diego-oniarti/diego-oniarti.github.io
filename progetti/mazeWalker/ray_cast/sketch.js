@@ -1,6 +1,6 @@
 ray_cast_sketch = p => {
     p.div = document.getElementById('ray_casting_div');
-    p.looping=false;
+    p.looping=true;
 
     p.setup = function() {
         const lato = Math.min(p.div.clientWidth,400);
@@ -8,7 +8,6 @@ ray_cast_sketch = p => {
         canvas.parent('ray_casting_div');
         resizeCollapsable();
         p.stroke(255);
-        p.noLoop();
     }
     p.draw = function() {
         p.background(50);
