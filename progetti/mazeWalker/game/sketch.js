@@ -1,13 +1,16 @@
 const game_div = document.getElementById('game_div');
 const map_div = document.getElementById('map_div');
 
-const N = 10;
+const N = 15;
 const SPEED = 0.03;
 const FOV = Math.PI/3;
 const N_RAYS = 100;
 let maze, player, walls;
 
 new p5(p=>{
+    p.stati = {idle:0, game:1, ended:2};
+    p.stato = p.stati.idle;
+
     p.setup = ()=>{
         const lato = game_div.clientWidth;
         const canvas = p.createCanvas(lato,lato);
@@ -23,139 +26,116 @@ new p5(p=>{
         };
 
         // crea il labirinto
-        maze = [];
-        for (let i=0; i<N; i++) {
-            maze.push([]);
-            for (let j=0; j<N; j++) {
-                maze[i].push({
-                    visitato: false,
-                    muri: [true,true,true,true],
-                    x:j,y:i,
-                });
-            }
-        }
-    
-        const stack = [];
-        maze[0][0].visitato = true;
-        stack.push(maze[0][0]);
-        while (stack.length>0) {
-            const corrente = stack.pop();
-            const vicini = [0,1,2,3].map(d=>{
-                const y = corrente.y + [-1,0,1,0][d];
-                const x = corrente.x + [0,1,0,-1][d];
-                if (x>=0 && y>=0 && x<N && y<N && maze[y][x].visitato===false) {
-                    return {
-                        cella: maze[y][x],
-                        dir: d
-                    };
-                }
-                return null;
-            }).filter(a=>a);
-            if (vicini.length>0) {
-                stack.push(corrente);
-                const prossimo = vicini[Math.floor(Math.random()*vicini.length)]
-                prossimo.cella.visitato=true;
-                corrente.muri[prossimo.dir] = false;
-                prossimo.cella.muri[(prossimo.dir+2)%4] = false;
-                stack.push(prossimo.cella)
-            }
-        }
-        
-        const blue = p.color(0,151,175);
-        const white = p.color(255,255,255);
-        walls = [
-            {a:p.createVector(N,0),b:p.createVector(N,N),game_color:white,map_color:blue},
-            {a:p.createVector(0,N),b:p.createVector(N,N),game_color:white,map_color:blue},
-            {a:p.createVector(N-0.8,N-0.8),b:p.createVector(N-0.2,N-0.2),map_color:p.color(0,255,0), game_color:p.color(0,255,0)},
-            {a:p.createVector(N-0.2,N-0.8),b:p.createVector(N-0.8,N-0.2),map_color:p.color(0,255,0), game_color:p.color(0,255,0)},
-        ];
-        let wall_start, wall_end;
-        for (let i=0; i<N; i++) {
-            for (let j=0; j<N; j++) {
-                if (!wall_start && maze[i][j].muri[0]) {
-                    wall_start = p.createVector(j,i);
-                }
-                if (wall_start && maze[i][j].muri[0]) {
-                    wall_end = p.createVector(j+1,i);
-                }
-                if (wall_start && !maze[i][j].muri[0]) {
-                    walls.push({a:wall_start,b:wall_end,game_color:white,map_color:blue});
-                    wall_start = undefined;
-                    wall_end = undefined;
-                }
-            }
-            if (wall_start) {
-                walls.push({a:wall_start,b:wall_end,game_color:white,map_color:blue});
-                wall_start = undefined;
-                wall_end = undefined;
-            }
-        }
-        wall_start=undefined, wall_end=undefined;
-        for (let j=0; j<N; j++) {
-            for (let i=0; i<N; i++) {
-                if (!wall_start && maze[i][j].muri[3]) {
-                    wall_start = p.createVector(j,i);
-                }
-                if (wall_start && maze[i][j].muri[3]) {
-                    wall_end = p.createVector(j,i+1);
-                }
-                if (wall_start && !maze[i][j].muri[3]) {
-                    walls.push({a:wall_start,b:wall_end,game_color:white,map_color:blue});
-                    wall_start = undefined;
-                    wall_end = undefined;
-                }
-            }
-            if (wall_start) {
-                walls.push({a:wall_start,b:wall_end,game_color:white,map_color:blue});
-                wall_start = undefined;
-                wall_end = undefined;
-            }
-        }
+        calcMaze(p); 
     }
     p.draw = ()=>{
-        const band_width = p.width/N_RAYS;
+        switch (p.stato) {
+            case p.stati.idle:
+                p.background(50);
+                p.fill(255);
+                p.noStroke();
+                p.textAlign(p.CENTER,p.CENTER);
+                p.textSize(p.width/20);
+                p.text("use WASD or the arrow keys to move.\nExplore the maze and find the green tile",p.width/2,p.height/2);
+                break;
+            case p.stati.game:
+                const band_width = p.width/N_RAYS;
 
-        p.background(50);
+                p.background(50);
+        
+                p.noStroke();
+                player.rays = [];
+                for (let i=0; i<N_RAYS; i++) {
+                    const angolo = player.dir + p.map(i,0,100,-FOV/2,FOV/2);
+                    const ray = cast_ray(angolo);
+                    player.rays.push(ray);
+        
+                    const d = Math.cos( angolo-player.dir ) * ray.dist * 1.5;
+                    const dd = Math.pow(d,1/2);
+                    
+                    let col = ray.wall.game_color;
+                    p.fill(col.levels[0]/dd, col.levels[1]/dd, col.levels[2]/dd);
+                    const h = p.height/3*2/d;
+                    p.rect(i*band_width, (p.height-h)/2, band_width+1, h);
+                }
+       
+                if (map.stato==map.stati.hidden) {
+                    const time = (new Date() - p.startTime) / 1000;
+                    p.noStroke();
+                    p.fill(255,0,0);
+                    p.textAlign(p.LEFT);
+                    p.textSize(20);
+                    p.text(`${
+                        Math.floor(time/60).toString().padStart(2,'0')
+                    }:${
+                        Math.floor(time%60).toString().padStart(2,'0')
+                    }`,0,20);
+                }
 
-        p.noStroke();
-        player.rays = [];
-        for (let i=0; i<N_RAYS; i++) {
-            const angolo = player.dir + p.map(i,0,100,-FOV/2,FOV/2);
-            const ray = cast_ray(angolo);
-            player.rays.push(ray);
+                //update player
+                const check = [-p.PI/2,0,p.PI/2,p.PI].map(ang=>{
+                    return cast_ray(ang);
+                });
+                const box = [check[0].y+0.01, check[1].x-0.01, check[2].y-0.01, check[3].x+0.01];
+                if (player.keys.w) {
+                    player.pos.add(p5.Vector.fromAngle(player.dir, SPEED));
+                }
+                if (player.keys.s) {
+                    player.pos.sub(p5.Vector.fromAngle(player.dir, SPEED));
+                }
+                player.pos.x = p.constrain(player.pos.x, box[3],box[1]);
+                player.pos.y = p.constrain(player.pos.y, box[0],box[2]);
+        
+                if (player.keys.a) {
+                    player.dir -= p.PI/40;
+                }
+                if (player.keys.d) {
+                    player.dir += p.PI/40;
+                }
 
-            //const d = Math.pow(p.map(ray.dist,0,N,0,1),1/2)*4;
-            const d = Math.cos( angolo-player.dir ) * ray.dist * 1.5;
-            const dd = Math.pow(d,1/2);
-            
-            let col = ray.wall.game_color;
-            p.fill(col.levels[0]/dd, col.levels[1]/dd, col.levels[2]/dd);
-            const h = p.height/3*2/d;
-            p.rect(i*band_width, (p.height-h)/2, band_width+1, h);
-        }
-
-        //update player
-        const check = [-p.PI/2,0,p.PI/2,p.PI].map(ang=>{
-            return cast_ray(ang);
-        })
-        const box = [check[0].y+0.001, check[1].x-0.001, check[2].y-0.001, check[3].x+0.001];
-        if (player.keys.w) {
-            player.pos.add(p5.Vector.fromAngle(player.dir, SPEED));
-        }
-        if (player.keys.s) {
-            player.pos.sub(p5.Vector.fromAngle(player.dir, SPEED));
-        }
-        player.pos.x = p.constrain(player.pos.x, box[3],box[1]);
-        player.pos.y = p.constrain(player.pos.y, box[0],box[2]);
-
-        if (player.keys.a) {
-            player.dir -= p.PI/40;
-        }
-        if (player.keys.d) {
-            player.dir += p.PI/40;
+                if (player.pos.x>N-0.8&&player.pos.x<N-0.2&&player.pos.y>N-0.8&&player.pos.y<N-0.2) {
+                    p.endTime=new Date();
+                    p.stato = p.stati.ended;
+                    p.old_map_state = map.stato;
+                    map.stato=map.stati.shown;
+                }
+                break;
+            case p.stati.ended:
+                const time_s=(p.endTime-p.startTime)/1000;
+                p.background(50);
+                p.fill(255);
+                p.noStroke();
+                p.textAlign(p.CENTER,p.CENTER);
+                p.textSize(p.width/20);
+                if (p.old_map_state==map.stati.hidden) {
+                    p.text(`You Won!\nTime: ${
+                        Math.floor(time_s/60).toString().padStart(2,'0')
+                    }:${
+                        Math.floor(time_s%60).toString().padStart(2,'0')
+                    }`,p.width/2,p.height/2);
+                }else{
+                    p.text("You Won!",p.width/2,p.height/2);
+                }
+                break;
         }
     }
+
+
     p.keyPressed = ()=>{
+        if ((p.stato==p.stati.idle || p.stato==p.stati.ended) && ["w","a","s","d","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(p.key)) {
+            if (p.stato==p.stati.ended) {
+                calcMaze(p);
+                player = {
+                    pos: p.createVector(0.5, 0.5),
+                    dir: 0,
+                    keys: {w:false,a:false,s:false,d:false},
+                    rays: [],
+                };
+                map.stato=map.stati.hidden;
+            }
+            p.stato=p.stati.game;
+            p.startTime=new Date();
+        }
         if(["w","ArrowUp"].includes(p.key)) {
             player.keys.w=true;
             return false;
@@ -299,4 +279,95 @@ function cast_ray(angle) {
         wall: muro,
         dist: min_dist,
     };
+}
+
+function calcMaze(p) {
+    maze = [];
+    for (let i=0; i<N; i++) {
+        maze.push([]);
+        for (let j=0; j<N; j++) {
+            maze[i].push({
+                visitato: false,
+                muri: [true,true,true,true],
+                x:j,y:i,
+            });
+        }
+    }
+
+    const stack = [];
+    maze[0][0].visitato = true;
+    stack.push(maze[0][0]);
+    while (stack.length>0) {
+        const corrente = stack.pop();
+        const vicini = [0,1,2,3].map(d=>{
+            const y = corrente.y + [-1,0,1,0][d];
+            const x = corrente.x + [0,1,0,-1][d];
+            if (x>=0 && y>=0 && x<N && y<N && maze[y][x].visitato===false) {
+                return {
+                    cella: maze[y][x],
+                    dir: d
+                };
+            }
+            return null;
+        }).filter(a=>a);
+        if (vicini.length>0) {
+            stack.push(corrente);
+            const prossimo = vicini[Math.floor(Math.random()*vicini.length)]
+            prossimo.cella.visitato=true;
+            corrente.muri[prossimo.dir] = false;
+            prossimo.cella.muri[(prossimo.dir+2)%4] = false;
+            stack.push(prossimo.cella)
+        }
+    }
+    
+    const blue = p.color(0,151,175);
+    const white = p.color(255,255,255);
+    walls = [
+        {a:p.createVector(N,0),b:p.createVector(N,N),game_color:white,map_color:blue},
+        {a:p.createVector(0,N),b:p.createVector(N,N),game_color:white,map_color:blue},
+        {a:p.createVector(N-0.8,N-0.8),b:p.createVector(N-0.2,N-0.2),map_color:p.color(0,255,0), game_color:p.color(0,255,0)},
+        {a:p.createVector(N-0.2,N-0.8),b:p.createVector(N-0.8,N-0.2),map_color:p.color(0,255,0), game_color:p.color(0,255,0)},
+    ];
+    let wall_start, wall_end;
+    for (let i=0; i<N; i++) {
+        for (let j=0; j<N; j++) {
+            if (!wall_start && maze[i][j].muri[0]) {
+                wall_start = p.createVector(j,i);
+            }
+            if (wall_start && maze[i][j].muri[0]) {
+                wall_end = p.createVector(j+1,i);
+            }
+            if (wall_start && !maze[i][j].muri[0]) {
+                walls.push({a:wall_start,b:wall_end,game_color:white,map_color:blue});
+                wall_start = undefined;
+                wall_end = undefined;
+            }
+        }
+        if (wall_start) {
+            walls.push({a:wall_start,b:wall_end,game_color:white,map_color:blue});
+            wall_start = undefined;
+            wall_end = undefined;
+        }
+    }
+    wall_start=undefined, wall_end=undefined;
+    for (let j=0; j<N; j++) {
+        for (let i=0; i<N; i++) {
+            if (!wall_start && maze[i][j].muri[3]) {
+                wall_start = p.createVector(j,i);
+            }
+            if (wall_start && maze[i][j].muri[3]) {
+                wall_end = p.createVector(j,i+1);
+            }
+            if (wall_start && !maze[i][j].muri[3]) {
+                walls.push({a:wall_start,b:wall_end,game_color:white,map_color:blue});
+                wall_start = undefined;
+                wall_end = undefined;
+            }
+        }
+        if (wall_start) {
+            walls.push({a:wall_start,b:wall_end,game_color:white,map_color:blue});
+            wall_start = undefined;
+            wall_end = undefined;
+        }
+    }
 }
