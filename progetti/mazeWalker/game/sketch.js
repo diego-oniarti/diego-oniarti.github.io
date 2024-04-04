@@ -120,7 +120,7 @@ new p5(p=>{
                 break;
         }
     }
-
+    
 
     p.keyPressed = ()=>{
         if ((p.stato==p.stati.idle || p.stato==p.stati.ended) && ["w","a","s","d","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(p.key)) {

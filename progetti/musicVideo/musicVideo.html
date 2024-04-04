@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diego Oniarti</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/progetti.css">
+    <script defer src="../../scripts/controlli.js"></script>
+
+    <script src="../p5/p5.min.js"></script>
+    <script src="../p5/p5.sound.min.js"></script>
+</head>
+
+<body class="dark">
+    <!-- NAVBAR -->
+    <div id="navBar">
+        <div class="navBarSection" id="navTitle">
+            <a href="../../index.html">Diego Oniarti</a>
+            <a id="navCollapse">...</a>
+        </div>
+        <div class="navBarSection navCollapsible">
+            <a id="themeButton">◑</a>
+            <a>🇮🇹</a>
+        </div>
+    </div>
+
+
+    
+    <!-- MAIN -->
+    <div id="mainContainer">
+        <h1 id="titoloPagina">MUSIC VIDEO</h1>
+        
+        <div class="boxes">
+
+            <!-- Intro -->
+            <div class="box">
+                <div class="flex collapseButton"><h1>IL RISULTATO</h1> <div class="V"></div></div>
+                <div class="hr"></div>
+                <div class="section">
+                    <div class="flex center">
+                        <div id="final_sketch" style="max-width: 800px; width: 50%; min-height: 1px;"></div>
+                    </div>
+                    <br>
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6eA1d5hq5vwyIu6GOYKph9?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    <script src="./mainSketch/sketch.js" defer></script>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="flex collapseButton"><h1>COME FUNZIONA</h1> <div class="V"></div></div>
+                <div class="hr"></div>
+                <div class="section">
+                    <div style="overflow:hidden">
+                    <h2>Oggetti 3D e Prospettiva</h2>
+                    <figure style="max-width: 400px; float: right; width: 30%;">
+                        <div style="width: 100%;" id="flat_fish_div"></div>
+                        <script type="module" src="./flat_fish/sketch.js" defer></script>
+                        <figcaption>Fig.1 - Un pesce che gira</figcaption>
+                    </figure>
+                    <p>
+                    Iniziamo disegnando degli oggetti 3D. Per fare questo caricheremo dei file <code>.obj</code>, che sono facili da parsare essendo human readable. <br>
+                    Un file <code>.obj</code>, infatti, è composto da una sequenza di righe che indicano le coordiate dei vertici seguita da una di righe che dicono come sono connessi <br> 
+                    <br>
+                    Ora basta ruotare i vertici moltiplicando le coordinate per una <a href="https://en.wikipedia.org/wiki/Rotation_matrix">matrice di rotazione</a> e collegarli. <br>
+                    Se disegnami i punti in base alle loro coordinate <code>x</code> e <code>y</code> otteniamo una buona rappresentazione dell'oggetto (fig.1). Manca però la prospettiva.
+                    </p>
+
+                    <figure style="max-width: 400px; float: left; width: 50%;">
+                        <div style="width: 100%;" id="meme_fish_div"></div>
+                        <script type="module" src="./meme_fish/sketch.js" defer></script>
+                        <figcaption>Fig.2 - Fish</figcaption>
+                    </figure>
+                    <p>
+                    Se vogliamo aggiungere della prospettiva all'oggetto possiamo usare librerie apposite per il rendering 3D come <a href="https://threejs.org/">Three.js</a> o la modalità 3D di <a href="https://p5js.org/">P5.js</a> (la libreria che stiamo usando). <br>
+                    Oppure possiamo implementare la proiezione dei punti 3D su uno schermo 2D. <br>
+                    Questo può essere fatto con una matrice di proiezione ma, in questo caso semplice, ci basterà dividere <code>(x,y)</code> dei punti per <code>z</code>. <br>
+                    </p>
+                    </div>
+                    <h2>Effetto Glitch</h2>
+                    <p>
+                    Un altro effetto carino l'ho scoperto tentando di emulare l'effetto mostrato in <a href="https://youtu.be/TdTMeNXCnTs">questo video</a>. L'effetto si basa sul disegnare linee senza cancellare lo sfondo tra un frame e l'altro. <br>
+                    Oltra a questo, una linea non setta il colore della canvas, ma effettua un'operazione di xor. Questo fa in modo che le linee siano "visibili" quando sono in movimento, e spariscano quando l'animazione si ferma. <br>
+                    I dettagli sono esplorati in maggiore dettaglio nel video originale. <br>
+                    </p>
+                    <h3>L'implementazione</h3>
+                    <p>
+                    L'implementazione più ovvia che mi è venuta in mente all'inizio consisteva nel riscrivere una funzione <code>line</code> che eseguisse uno xor invece che settare il colore dei pixel. <br>
+                    Questo metodo è un po' proibitivo però:
+                    </p>
+                    <ul>
+                        <li>Dovrer implementare ogni primitiva da 0</li>
+                        <li>Essere confinati solo alle primitive riscritte</li>
+                    </ul>
+                    <p>
+                    L'implementazione che ho scelto alla fine si basa su questo processo:
+                    </p>
+                    <div class="code">
+                        <line>crea 2 buffer "corrente" e "accumulatore"</line>
+                        <line>setta tutti i punti del buffer accumulatore a 0</line>
+                        <line>fer ogni frame:</line>
+                        <line>    setta tutto il buffer corrente a 0</line>
+                        <line>    disegna le primitive normalmente (settando i pixel) sul buffer corrente</line>
+                        <line>    usa una shader per fare lo xor tra i pixel dei due buffer e salva il risultato nell'accumulatore</line>
+                        <line>    disegna l'accumulatore a schermo</line>
+                    </div>
+                    <p>
+                    Che permette di creare animazioni come queste:
+                    </p>
+                    <div class="flex equal">
+                        bouncing_lines, spinning_cube, bouncing_cube, bouncing_cube_glitch
+                    </div>
+                    <p>
+                    * Queste animazioni possono impattare le performance del sito a causa dell'utilizza di shader. Quindi sono disabilitate finché non le si clicca <br>
+                    <br>
+                    L'effetto visibile nel ultimo riquadro è quello usato nell'animazione completa per dare l'impressione che l'immagine stia "glitchando". È ottenuto ridisegnando periodicamente lo sfondo nel buffer accumulatore. <br>
+                    La frequenza con cui viene ridisegnato è legata all'intensità degli alti nella canzone. <br>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- FOOTER -->
+    <div id="footer">
+        <p>fatto a mano, da me ♥ </p>
+        <div id="palette">
+            <div id="p1"></div>
+            <div id="p2"></div>
+            <div id="p3"></div>
+            <div id="p4"></div>
+            <div id="p5"></div>
+            <div id="p6"></div>
+            <div id="p7"></div>
+            <div id="p8"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>
