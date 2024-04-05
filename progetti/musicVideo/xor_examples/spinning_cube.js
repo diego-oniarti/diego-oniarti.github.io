@@ -1,7 +1,7 @@
 import { read_obj } from "../shared/read_obj.js";
 
 new p5(p=>{
-    const div = document.getElementById("bouncing_cube");
+    const div = document.getElementById("spinning_cube");
 
     let stopped = true;
 
@@ -11,9 +11,6 @@ new p5(p=>{
     let righe, loaded_righe, prom_righe = new Promise(r=>loaded_righe=r);
     const vertici = [], facce = [];
 
-    let cube_position, cube_velocity;
-    let A;
-    
     p.preload = async function() {
         XOR  = p.loadShader("./shaders/XOR/shader.vert","./shaders/XOR/shader.frag",loaded_xor);
         righe= p.loadStrings("../musicVideo/objs/cube.obj",loaded_righe);
@@ -26,11 +23,11 @@ new p5(p=>{
         const canvas = p.createCanvas(lato,lato);
         p.background(50);
         resizeCollapsable();
-        canvas.parent("bouncing_cube");
+        canvas.parent("spinning_cube");
         canvas.class("bordered");
 
         old_frame = p.createGraphics(lato,lato);
-        old_frame.background(255);
+        old_frame.background(255,0,0);
         next_frame = p.createGraphics(lato,lato,p.WEBGL);
         changes = p.createGraphics(lato,lato);
 
@@ -38,10 +35,7 @@ new p5(p=>{
         vertici.push(...letti.vertici);
         facce.push(...letti.facce);
 
-        cube_position = p.createVector(0,0,2);
-        cube_velocity = p5.Vector.random3D();
 
-        A = p.PI*0.005;
         p.noLoop();
     }
 
@@ -50,9 +44,8 @@ new p5(p=>{
 
         const punti_proj = [];
         for (const vertice of vertici) {
-            let p_trans = p5.Vector.add(vertice, cube_position);
-
-            let p_proj = p.createVector(p_trans.x/3/p_trans.z, p_trans.y/3/p_trans.z);
+            let p_proj = p5.Vector.add(vertice, p.createVector(0,0,1.0));
+            p_proj = p.createVector(p_proj.x/p_proj.z, p_proj.y/p_proj.z);
             p_proj.mult(p.width);
             p_proj.x += p.width/2;
             p_proj.y += p.height/2;
@@ -60,7 +53,7 @@ new p5(p=>{
         }
 
         changes.stroke(255,0,0);
-        changes.strokeWeight(p.map(cube_position.z, 1,2.5, p.width/50,1));
+        changes.strokeWeight(p.width/50);
         for (const faccia of facce) {
             for (let i=0; i<faccia.length; i++) {
                 const a = punti_proj[faccia[i]];
@@ -69,8 +62,8 @@ new p5(p=>{
                 changes.line(a.x,a.y, b.x,b.y);
             }
         }
-        cube_position.add(p5.Vector.mult(cube_velocity,0.05));
 
+        const A = p.PI*0.005;
         for (let vertice of vertici) {
             let oldx = vertice.x;
             let oldz = vertice.z;
@@ -79,13 +72,9 @@ new p5(p=>{
             
             oldz = vertice.z;
             let oldy = vertice.y;
-            vertice.y = oldy*p.cos(A*1.1) - oldz*p.sin(A*1.1)
-            vertice.z = oldy*p.sin(A*1.1) + oldz*p.cos(A*1.1)
+            vertice.y = oldy*p.cos(A*5*(p.noise(p.frameCount/50)*2-1)) - oldz*p.sin(A*5*(p.noise(p.frameCount/50)*2-1))
+            vertice.z = oldy*p.sin(A*5*(p.noise(p.frameCount/50)*2-1)) + oldz*p.cos(A*5*(p.noise(p.frameCount/50)*2-1))
         }
-
-        if (cube_position.x < -1.5 || cube_position.x > 1.5) {cube_velocity.x *= -1;A*=-1;}
-        if (cube_position.y < -1.5 || cube_position.y > 1.5) {cube_velocity.y *= -1;A*=-1;}
-        if (cube_position.z < 1 || cube_position.z > 2.5) {cube_velocity.z *= -1;A*=-1;}
 
         next_frame.shader(XOR);
         XOR.setUniform('old_frame', old_frame);
@@ -109,7 +98,7 @@ new p5(p=>{
         const lato = div.clientWidth;
         p.resizeCanvas(lato,lato);
         old_frame.resizeCanvas(lato,lato);
-        old_frame.background(255);
+        old_frame.background(255,0,0);
         next_frame.resizeCanvas(lato,lato);
         changes.resizeCanvas(lato,lato);
         resizeCollapsable();
