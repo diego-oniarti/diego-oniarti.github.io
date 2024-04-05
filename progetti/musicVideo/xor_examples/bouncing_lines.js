@@ -20,7 +20,6 @@ new p5(p=>{
         }
     } 
 
-    const t = 0;
     let stopped = true;
 
     let XOR, loaded, prom=new Promise(r=>loaded=r);
@@ -36,6 +35,7 @@ new p5(p=>{
         await prom;
         const lato = div.clientWidth;
         const canvas = p.createCanvas(lato,lato);
+        p.background(50);
         resizeCollapsable();
         canvas.parent("bouncing_lines");
         canvas.class("bordered");
@@ -46,7 +46,7 @@ new p5(p=>{
         changes = p.createGraphics(lato,lato);
 
         const cv = p.createVector;
-        const rp = ()=>{return new Punto(cv(p.random(p.width),p.random(p.height)), p5.Vector.random2D(4));};
+        const rp = ()=>{return new Punto(cv(p.random(p.width),p.random(p.height)), p5.Vector.mult(p5.Vector.random2D(),1.5));};
         linee.push(new Linea(rp(), rp(), p.color(255,0,0)));
         linee.push(new Linea(rp(), rp(), p.color(0,255,0)));
         linee.push(new Linea(rp(), rp(), p.color(0,0,255)));
@@ -61,7 +61,7 @@ new p5(p=>{
 
     p.draw = function() {
         changes.background(255);
-        changes.strokeWeight(1);
+        changes.strokeWeight(2);
         changes.strokeCap(p.SQUARE);
 
         for (const linea of linee) {
@@ -80,7 +80,7 @@ new p5(p=>{
         next_frame.rect(0,0,next_frame.width*2,next_frame.height*2);
 
         old_frame.image(next_frame, 0,0, old_frame.width, old_frame.height);
-        old_frame.strokeWeight(5);
+        old_frame.strokeWeight(3);
 
 //        if (p.frameCount%10<3) {
 //            let ugly = false;
