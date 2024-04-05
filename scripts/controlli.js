@@ -8,12 +8,20 @@ document.getElementById('themeButton').addEventListener('click',e=>{
     body.classList.toggle('dark');
     document.cookie = `mode=${body.classList.contains('dark')?'dark':'light'};path=/;`;
 });
-window.addEventListener("load", (event) => {
+//window.addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const cookie = document.cookie;
     mode = cookie.match('mode=(?<mode>light|dark)')?.groups['mode'];
     if (mode==="light") {
         document.getElementsByTagName('body')[0].classList.remove('dark');
     }
+    var sheet = document.styleSheets[0];
+    var rules = sheet.cssRules || sheet.rules;
+
+    //rules[0].style.color = 'red';
+    setTimeout(()=>{
+        rules[1].style.transition = 'color 200ms ease-in-out, background-color 200ms ease-in-out';
+    },500);
 });
 
 document.getElementById('navCollapse').addEventListener('click',e=>{
