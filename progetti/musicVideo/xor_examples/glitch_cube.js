@@ -13,7 +13,7 @@ new p5(p=>{
 
     p.preload = async function() {
         XOR  = p.loadShader("./shaders/XOR/shader.vert","./shaders/XOR/shader.frag",loaded_xor);
-        righe= p.loadStrings("../musicVideo/objs/cube.obj",loaded_righe);
+        righe= p.loadStrings("./objs/cube.obj",loaded_righe);
     }
 
     p.setup = async function() {

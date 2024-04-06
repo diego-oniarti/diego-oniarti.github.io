@@ -110,22 +110,46 @@
                     Che permette di creare animazioni come queste:
                     </p>
                     <!-- bouncing_lines, spinning_cube, bouncing_cube, bouncing_cube_glitch -->
-                    <div class="flex equal">
-                        <div style="min-height:1px; width:23%" id="bouncing_lines"></div>  
-                        <div style="min-height:1px; width:23%" id="bouncing_cube"></div>  
-                        <div style="min-height:1px; width:23%" id="spinning_cube"></div>  
-                        <div style="min-height:1px; width:23%" id="glitch_cube"></div>  
-                        <script type="module" src="./xor_examples/bouncing_lines.js"></script>
-                        <script type="module" src="./xor_examples/bouncing_cube.js"></script>
-                        <script type="module" src="./xor_examples/spinning_cube.js"></script>
-                        <script type="module" src="./xor_examples/glitch_cube.js"></script>
+                    <div class="wide flex even" style="flex-wrap: wrap">
+                        <div style="min-height:1px; width:24%" id="bouncing_lines"></div>  
+                        <div style="min-height:1px; width:24%" id="bouncing_cube"></div>  
+                        <div style="min-height:1px; width:24%" id="spinning_cube"></div>  
+                        <div style="min-height:1px; width:24%" id="glitch_cube"></div>  
                     </div>
+                    <script type="module" src="./xor_examples/bouncing_lines.js"></script>
+                    <script type="module" src="./xor_examples/bouncing_cube.js"></script>
+                    <script type="module" src="./xor_examples/spinning_cube.js"></script>
+                    <script type="module" src="./xor_examples/glitch_cube.js"></script>
+
                     <p>
                     * Queste animazioni possono impattare le performance del browser a causa dell'utilizza di shader. Quindi sono disabilitate finché non le si clicca. <br>
                     <br>
                     L'effetto visibile nel ultimo riquadro è quello usato nell'animazione completa per dare l'impressione che l'immagine stia "glitchando". È ottenuto ridisegnando periodicamente lo sfondo nel buffer accumulatore. <br>
                     La frequenza con cui viene ridisegnato è legata all'intensità degli alti nella canzone. <br>
                     </p>
+                    <h2>Aberrazione Cromatica</h2>
+                    <figure style="float: right; width: min-content;">
+                        <img src="images/aberrazione.jpg">
+                        <script type="module" src="./flat_fish/sketch.js" defer></script>
+                        <figcaption>Fig.3 - Una foto affetta da aberrazione cromatica</figcaption>
+                    </figure>
+                    <p>
+                    L'<a href="https://it.wikipedia.org/wiki/Aberrazione_cromatica" target="_blank">aberrazione cromatica</a> è un fenomeno che si verifica in quasi ogni sistema ottico ed è causato direttamente dalla forma delle lenti. <br>
+                    L'effetto si verifica solitamente intorno ai bordi di un'immagine, e appare come la separazione dei colori che la compongono. Quelli più vicini al rosso sono spostati verso il centro dell'immagine, mentre quelli tendenti al viola vengono spinti all'esterno. <br>
+                    Per riprodurre l'effetto basta applicare una shader all'immagine e campionare i canali r,g, e b in punti più o meno vicini al centro. <br>
+                    Possiamo anche modificare l'effetto in modi creativi. Come imporre che la direzione sia costante (anzi che irradiare dal centro) e manipolarne l'intensità. <br>
+                    Altri scopi per cui si può usare questo effetto sono
+                    </p>
+                    <ul>
+                        <li>Dare l'impressione di velocità in un'immagine</li>
+                        <li>Attirare l'attenzione verso un punto focale</li>
+                    </ul>
+                    <div class="wide flex even">
+                        <div style="min-height:1px; width:33%" id="aberrazione_normale"></div>
+                        <div style="min-height:1px; width:33%" id="aberrazione_direzionale"></div>
+                    </div>
+                    <script type="module" src="./aberrazione/normale.js"></script>
+                    <script type="module" src="./aberrazione/direzionale.js"></script>
                 </div>
             </div>
 
