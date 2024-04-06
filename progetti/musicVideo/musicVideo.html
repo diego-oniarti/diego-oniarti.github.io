@@ -40,12 +40,15 @@
                 <div class="flex collapseButton"><h1>IL RISULTATO</h1> <div class="V"></div></div>
                 <div class="hr"></div>
                 <div class="section">
-                    <div class="flex center">
-                        <div id="final_sketch" style="max-width: 800px; width: 50%; min-height: 1px;"></div>
+                    <div class="flex center", style="width: min(80vh, 100%); flex-direction:column; margin:auto">
+                        <div id="final_sketch" class="wide" style="min-height: 1px;"></div>
+                        <input type="range" class="wide" id="mode_slider" min="0" max="3" value="1" step="1">
+                        <div class="wide">
+                            <div id="spotify_embed"></div>
+                        </div>
                     </div>
-                    <br>
-                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6eA1d5hq5vwyIu6GOYKph9?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                    <script src="./mainSketch/sketch.js" defer></script>
+                    <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+                    <script src="./main_sketch/sketch.js" type="module" defer></script>
                 </div>
             </div>
 
@@ -61,22 +64,49 @@
                         <figcaption>Fig.1 - Un pesce che gira</figcaption>
                     </figure>
                     <p>
-                    Iniziamo disegnando degli oggetti 3D. Per fare questo caricheremo dei file <code>.obj</code>, che sono facili da parsare essendo human readable. <br>
-                    Un file <code>.obj</code>, infatti, è composto da una sequenza di righe che indicano le coordiate dei vertici seguita da una di righe che dicono come sono connessi <br> 
-                    <br>
-                    Ora basta ruotare i vertici moltiplicando le coordinate per una <a href="https://en.wikipedia.org/wiki/Rotation_matrix">matrice di rotazione</a> e collegarli. <br>
-                    Se disegnami i punti in base alle loro coordinate <code>x</code> e <code>y</code> otteniamo una buona rappresentazione dell'oggetto (fig.1). Manca però la prospettiva.
+                    Iniziamo disegnando degli oggetti 3D. Per fare questo possiamo usare delle librerie apposite come <a href="https://threejs.org/">Three.js</a> o la modalità 3D di <a href="https://p5js.org/">P5.js</a> (la libreria che stiamo usando per il 2D). <br>
+                    <b>Oppure</b> possiamo implementare noi la proiezione di oggetti 3D sulla nostra canvas 2D. <br> 
+                    Il primo passo sarà quello di caricare dei modelli 3D, non avremmo nulla da disegnare altrimenti. <br>
+                    Una buona scelta è quella di usare file <code>.obj</code>, che possono essere modellati in programmi come <a href="https://www.blender.org/" target="_blank">blender</a>, sono human readable e relativamente semplici da parsare, persino in JavaScript. <br>
+                    Un file <code>.obj</code>, infatti, ha una struttura di questo tipo: <br> 
                     </p>
-
+                    <div class="code">
+                        <line>v -0.000000 0.000000 4.131257</line>
+                        <line>v 0.000000 2.248623 -3.872571</line>
+                        <line>v 0.000000 -1.724368 -3.768059</line>
+                        <line></line>
+                        <line>t 0.375000 1.000000</line>
+                        <line>n 0.0000 0.8882 0.4594</line>
+                        <line></line>
+                        <line>f 11/1/1 2/2/1 9/3/1</line>
+                        <line>f 17/4/2 9/5/2 2/6/2 12/7/2</line>
+                        <line>f 12/8/3 2/9/3 13/10/3</line>
+                    </div>
+                    <p>
+                    Le righe del file hanno segnificati differenti in base al carattere iniziale.
+                    </p>
+                    <ul>
+                        <li><b><code>v</code></b>: Le coordinate <code>x</code>, <code>y</code>, e <code>z</code> di un vertice nello spazio </li>
+                        <li><b><code>t</code></b> o <b><code>n</code></b>: Informazioni sulle texture e le normali dell'oggetto. Siccome vogliamo solo disegnare un wireframe possiamo trascurarle </li>
+                        <li><b><code>f</code></b>: Una faccia dell'oggetto indicata come lista di indici. Ogni indice specifica un vertice che fa parte della faccia
+                    </ul>
+                    <p>
+                    Per disegnare l'oggetto iniziamo quindi dal mettere tutti i vertici in una lista, mantenendo l'ordine in cui vengono letti. <br>
+                    Poi, per ogni faccia, disegnamo una linea tra ogni vertice indicato e il successivo. <br>
+                    <br>
+                    Per poter visualizzare meglio l'oggetto possiamo ruotarlo. Questo effetto può essere raggiunto facilmente moltiplicando le coordinate di ogni vertice per una <a target="_blank" href="https://en.wikipedia.org/wiki/Rotation_matrix">matrice di rotazione</a>.
+                    Ora basta moltiplicare le coordinate di tutti i vertici per un fattore di scala per ottenere una visualizzazione come quella in <u>Fig.1</u>. <br>
+                    </p>
                     <figure style="max-width: 400px; float: left; width: 50%;">
                         <div style="width: 100%;" id="meme_fish_div"></div>
                         <script type="module" src="./meme_fish/sketch.js" defer></script>
                         <figcaption>Fig.2 - Fish</figcaption>
                     </figure>
                     <p>
-                    Se vogliamo aggiungere della prospettiva all'oggetto possiamo usare librerie apposite per il rendering 3D come <a href="https://threejs.org/">Three.js</a> o la modalità 3D di <a href="https://p5js.org/">P5.js</a> (la libreria che stiamo usando). <br>
-                    Oppure possiamo implementare la proiezione dei punti 3D su uno schermo 2D. <br>
-                    Questo può essere fatto con una matrice di proiezione ma, in questo caso semplice, ci basterà dividere <code>(x,y)</code> dei punti per <code>z</code>. <br>
+                    Il modello ora ha un aspetto molto "piatto" siccome stiamo usando solo le coordinate <code>x</code> e <code>y</code> di ogni vertice. Per aggiungere l'effetto della prospettiva abbiamo 2 opzioni. <br>
+                    Possiamo moltiplicare le coordinate dei vertici per una <a href="https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/building-basic-perspective-projection-matrix.html" target="_blank">matrice di proiezione</a>, che ci darebbe pieno controllo sul campo visivo e altri parametri. <br>
+                    Oppure possiamo dividere i componenti <code>x,y</code> di ogni vertice per il componente <code>z</code>. Questo metodo è meno elegante ma e più limitato, ma più semplice da implementare. <br>
+                    Usando la matrice di proiezione possiamo anche popolare un <a href="https://en.wikipedia.org/wiki/Z-buffering" target="_blank">buffer della profondità</a>, che per un progetto così semplice sarebbe eccessivo. <br>
                     </p>
                     </div>
                     <h2>Effetto Glitch</h2>
@@ -109,7 +139,6 @@
                     <p>
                     Che permette di creare animazioni come queste:
                     </p>
-                    <!-- bouncing_lines, spinning_cube, bouncing_cube, bouncing_cube_glitch -->
                     <div class="wide flex even" style="flex-wrap: wrap">
                         <div style="min-height:1px; width:24%" id="bouncing_lines"></div>  
                         <div style="min-height:1px; width:24%" id="bouncing_cube"></div>  
@@ -143,6 +172,7 @@
                     <ul>
                         <li>Dare l'impressione di velocità in un'immagine</li>
                         <li>Attirare l'attenzione verso un punto focale</li>
+                        <li>Trasmettere l'idea che qualcosa sia "sbagliato" nell'immagine</li>
                     </ul>
                     <div class="wide flex even">
                         <div style="min-height:1px; width:33%" id="aberrazione_normale"></div>
@@ -150,6 +180,28 @@
                     </div>
                     <script type="module" src="./aberrazione/normale.js"></script>
                     <script type="module" src="./aberrazione/direzionale.js"></script>
+                </div>
+            </div>
+
+
+            <div class="box">
+                <div class="flex collapseButton"><h1>ANIMAZIONE E RITMO</h1> <div class="V"></div></div>
+                <div class="hr"></div>
+                <div class="section">
+                    <p>
+                    Per dare il ritmo all'animazione possiamo usare la <a href="https://www.youtube.com/watch?v=spUNpyF58BY" target="_blank">FFT</a> della canzone. <br>
+                    Tramite questa possiamo calcolare l'energia del segnale in diverse bande di frequenza e associare ogni uno degli effetti mostrati sopra a una di esse <br>
+                    In questo caso:
+                    </p>
+                    <ul>
+                        <li>I bassi della musica controllano la dimensione dell'oggetto. Le coordinate di ogni vertice vengono moltiplicate per uno scalare proporzionale all'energia dei bassi</li>
+                        <li>La frequenza con cui viene attivato l'effetto di "glitch" è legata all'energia degli alti </li>
+                        <li>La velocità con cui ruota l'oggetto è proporzionale all'energia totale del segnale (il volume) </li>
+                        <li>L'intensità dell'aberrazione cromatica e il colore dello sfondo sono legati ai meti e gli alti della musica </li>
+                    </ul>
+                    <p>
+                    Un'altra idea sarebbe quella di isolare i singoli strumenti di una canzone e usare quelli per gestire elementi individuali dell'animazione, al posto delle bande di frequenza. <br>
+                    </p>
                 </div>
             </div>
 

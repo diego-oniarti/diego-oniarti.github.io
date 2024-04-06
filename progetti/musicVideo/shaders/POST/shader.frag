@@ -9,7 +9,11 @@ varying vec2 vTexCoord;
   
 void main() {
   vec2 uv = vTexCoord;
-  vec2 shift = vec2(0.002, 0.001)*pow(boom,.75)*50.;
+  uv.y = 1.-uv.y;
+  //vec2 shift = vec2(0.002, 0.001)*pow(boom,.75)*50.;
+  vec2 shift = uv-vec2(.5,.5);
+  float lung = distance(shift,vec2(0.,0.));
+  shift = shift / lung * pow(lung,2.) * 0.75 * boom;
   
   float colr = texture2D(frame, uv+shift).r;
   float colg = texture2D(frame, uv).g;
