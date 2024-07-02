@@ -8,6 +8,9 @@ document.getElementById('themeButton').addEventListener('click',e=>{
     body.classList.toggle('dark');
     document.cookie = `mode=${body.classList.contains('dark')?'dark':'light'};path=/;`;
 });
+document.getElementById('languageButton').addEventListener('click',e=>{
+    alert("This page is not translated yet");
+});
 //window.addEventListener("load", () => {
 document.addEventListener("DOMContentLoaded", () => {
     const cookie = document.cookie;
