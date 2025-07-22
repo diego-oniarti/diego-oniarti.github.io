@@ -1,17 +1,17 @@
-.box, .dark .box {
+.box {
     box-shadow: none;
 }
 
-.red, .dark .red {
+.red {
     color: red;
 }
-.black, .dark .black {
+.black {
     color: black;
 }
 .green {
     color: green;
 }
-.dark .green {
+[data-theme="dark"] .green {
     color: lime;
 }
 
@@ -19,14 +19,11 @@ div.code {
     background-color: var(--shade1);
     display: flow-root;
 }
-.dark div.code {
-    background-color: var(--shade8);
-}
 line {
     color: var(--shade8);
 }
-.dark line {
-    color: var(--shade4);
+[data-theme="dark"] line {
+    color: var(--shade5);
 }
 div.code::before {
     counter-reset: listing;
@@ -49,8 +46,8 @@ div.code line::after {
 div.code b, div.code a {
     color: var(--shade8)
 }
-.dark div.code b, .dark div.code a {
-    color: var(--shade4)
+[data-theme="dark"] div.code b, [data-theme="dark"] div.code a {
+    color: var(--shade5)
 }
 
 /* slider */
@@ -63,10 +60,6 @@ input[type="range"] {
     border-radius: 10px;
     background-color: var(--shade7);
     transition: border-radius 100ms ease;
-}
-.dark input[type="range"] {
-    border: 3px var(--shade8) solid;
-    background-color: var(--shade2);
 }
 input[type="range"]:disabled {
     background-color: transparent;
@@ -87,11 +80,6 @@ input[type=range]::-webkit-slider-thumb {
 input[type=range]:not([disabled]):hover::-webkit-slider-thumb {
     border-radius: 0%;
 }
-
-.dark input[type=range]::-webkit-slider-thumb {
-    border: 3px var(--shade8) solid;
-    background-color: var(--shade8);
-}
 input[type=range]:disabled::-webkit-slider-thumb {
     background-color: transparent;
 }
@@ -107,11 +95,6 @@ input[type=range]:disabled::-webkit-slider-thumb {
     width: 100%;
     font-size: x-large;
     transition: border-radius 100ms ease;
-}
-.dark .large-button {
-    background: var(--shade2);
-    border: 3px solid var(--shade8);
-    color: var(--shade8);
 }
 .large-button:not([disabled]):hover {
     border-radius: 0px;
@@ -129,10 +112,8 @@ input[type=range]:disabled::-webkit-slider-thumb {
     padding: 10px;
     border-radius: 35px;
 }
-.dark .number-out {
-    color: var(--shade8);
-    background-color: var(--shade2);
-    border: 3px solid var(--shade8);
+[data-theme="dark"] .number-out {
+    background-color: var(--shade8);
 }
 
 /*toggle*/
@@ -146,10 +127,6 @@ input[type=range]:disabled::-webkit-slider-thumb {
     vertical-align: middle;
     background-color: var(--shade7);
 }
-.dark .toggle {
-    border: 3px solid var(--shade8);
-    background-color: var(--shade2);
-}
 .toggle input {
     display: none;
 }
@@ -159,13 +136,9 @@ input[type=range]:disabled::-webkit-slider-thumb {
     border-radius: 22px;
     background-color: var(--shade1);
     position: absolute;
-    left: 0%;
+    left: -1%;
     transition: left 50ms ease-in-out;
     border: 3px solid var(--shade1);
-}
-.dark .toggle_slider {
-    border: 3px solid var(--shade8);
-    background-color: var(--shade8);
 }
 .toggle:checked+.toggle_slider {
     left: 50%;
@@ -176,13 +149,6 @@ input[type=range]:disabled::-webkit-slider-thumb {
 .toggle:has(.toggle:disabled) {
     background-color: transparent;
 }
-
-/*
-<span class="toggle">
-    <input type="checkbox" name="random" id="random" class="toggle">
-    <div class="toggle_slider"></div>
-</span>
-*/
 
 label {
     font-size: 1.5em;

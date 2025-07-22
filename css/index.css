@@ -17,9 +17,6 @@
     padding-top: 20%;
     transition: padding-top 200ms ease-in-out, width 200ms ease-in-out;
 }
-.dark .scheda {
-    border: var(--shade8) 3px solid;
-}
 .backgroundScheda {
     z-index: -1;
     position:absolute;
@@ -53,9 +50,7 @@ div:has(.grid .scheda:hover) > .grid:not(:has(.scheda:hover)) > .scheda {
     opacity: 0;
     transition: text-shadow 200ms ease-in-out, opacity 200ms ease-in-out;
 }
-.dark .faded {
-    background-color: var(--shade1);
-}
+
 .scheda:hover .faded {
     opacity: 1;
 }
@@ -65,6 +60,16 @@ div:has(.grid .scheda:hover) > .grid:not(:has(.scheda:hover)) > .scheda {
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+#carousel {
+    width: 20%;
+    overflow: hidden;
+}
+#carousel_inside {
+    position: relative;
+    left: -100%;
+    transition: left 200ms ease-out;
 }
 
 @media only screen and (max-width: 768px) {
@@ -89,6 +94,7 @@ div:has(.grid .scheda:hover) > .grid:not(:has(.scheda:hover)) > .scheda {
     }
     .faded {
         opacity: 1;
+        font-size: medium;
     }
     .backgroundScheda {
         filter:grayscale(0)

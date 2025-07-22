@@ -37,7 +37,11 @@ new p5(p=>{
                 p.noStroke();
                 p.textAlign(p.CENTER,p.CENTER);
                 p.textSize(p.width/20);
-                p.text("use WASD or the arrow keys to move.\nExplore the maze and find the green tile",p.width/2,p.height/2);
+                if (getLanguage()=='en') {
+                    p.text("use WASD or the arrow keys to move.\nExplore the maze and find the green tile",p.width/2,p.height/2);
+                }else{
+                    p.text("usa WASD o le freccette per muoverti.\nEsplora il labirinto e trova la casella verde",p.width/2,p.height/2);
+                }
                 break;
             case p.stati.game:
                 const band_width = p.width/N_RAYS;
@@ -109,18 +113,30 @@ new p5(p=>{
                 p.textAlign(p.CENTER,p.CENTER);
                 p.textSize(p.width/20);
                 if (p.old_map_state==map.stati.hidden) {
-                    p.text(`You Won!\nTime: ${
+                    if (getLanguage()=='en') {
+                        p.text(`You Won!\nTime: ${
                         Math.floor(time_s/60).toString().padStart(2,'0')
-                    }:${
+                        }:${
                         Math.floor(time_s%60).toString().padStart(2,'0')
-                    }`,p.width/2,p.height/2);
+                        }`,p.width/2,p.height/2);
+                    }else{
+                        p.text(`Hai Vinto!\nTempo: ${
+                        Math.floor(time_s/60).toString().padStart(2,'0')
+                        }:${
+                        Math.floor(time_s%60).toString().padStart(2,'0')
+                        }`,p.width/2,p.height/2);
+                    }
                 }else{
-                    p.text("You Won!",p.width/2,p.height/2);
+                    if (getLanguage()=='en') {
+                        p.text("You Won!",p.width/2,p.height/2);
+                    }else{
+                        p.text("Hai Vinto!",p.width/2,p.height/2);
+                    }
                 }
                 break;
         }
     }
-    
+
 
     p.keyPressed = ()=>{
         if ((p.stato==p.stati.idle || p.stato==p.stati.ended) && ["w","a","s","d","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(p.key)) {
@@ -205,7 +221,11 @@ const map = new p5(p=>{
                 p.noStroke();
                 p.fill(255);
                 p.textSize(p.height/20);
-                p.text("tap to\nshow map", p.width/2, p.height/2);
+                if (getLanguage()=="en") {
+                    p.text("tap to\nshow map", p.width/2, p.height/2);
+                }else{
+                    p.text("premi per\nmostrare la mappa", p.width/2, p.height/2);
+                }
                 break;
             case p.stati.shown:
                 p.background(50);
@@ -244,6 +264,14 @@ const map = new p5(p=>{
         const lato = map_div.clientWidth;
         p.resizeCanvas(lato,lato);
         resizeCollapsable();
+    }
+
+    p.keyPressed = ()=>{
+        // Suppress inputs
+        if(["w","ArrowUp","a","ArrowLeft","s","ArrowDown","d","ArrowRight"].includes(p.key)) {
+            return false;
+        }
+        return true;
     }
 });
 

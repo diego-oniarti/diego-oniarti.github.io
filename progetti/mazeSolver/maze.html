@@ -1,127 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diego Oniarti</title>
-    <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/progetti.css">
-    <script defer src="../../scripts/controlli.js"></script>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Diego Oniarti</title>
+		<link rel="stylesheet" href="../../css/main.css">
+		<link rel="stylesheet" href="../../css/progetti.css">
+		<script defer src="../../scripts/controlli.js"></script>
 
-    <script src="../p5/p5.min.js"></script>
-</head>
+		<script src="../p5/p5.min.js"></script>
+	</head>
 
-<body class="dark">
-    <!-- NAVBAR -->
-    <div id="navBar">
-        <div class="navBarSection" id="navTitle">
-            <a href="../../index.html">Diego Oniarti</a>
-            <a id="navCollapse">...</a>
-        </div>
-        <div class="navBarSection navCollapsible">
-            <a id="themeButton">◑</a>
-            <a id="languageButton">🇮🇹</a>
-        </div>
-    </div>
+	<body class="dark">
 
-
-    
-    <!-- MAIN -->
-    <div id="mainContainer">
-        <h1 id="titoloPagina">MAZE SOLVER</h1>
-        
-        <div class="boxes">
-
-            <!-- Intro -->
-            <div class="box">
-                <div class="flex collapseButton"><h1>INTRO</h1> <div class="V"></div></div>
-                <div class="hr"></div>
-
-                <div class="section">
-                    <p>Abbiamo già visto un <a href="../path/path.html">algoritmo che trova un percorso da un punto A a un punto B</a>. <br>
-                    E se non volessimo disegnare gli ostacoli a mano ogni volta? <br>
-                    Possiamo generare un labirinto su cui far eseguire l'algoritmo di pathfinding.
-                <br><br>
-                    Ci sono diversi algoritmi per generare un algoritmo, ma noi useremo quello più piacevole da animare. <br>
-                    Una spiegazione di altri algoritmi (e di quello che vedremo qui) può essere trovata <a target="_blank" href="https://en.wikipedia.org/wiki/Maze_generation_algorithm#Iterative_implementation_(with_stack)">qui</a></p>
-                </div>
-            </div>
-
-            <!-- Spiegazione Algoritmo -->
-            <div class="box">
-                <div class="flex collapseButton"><h1>L'ALGORITMO</h1> <div class="V"></div></div>
-                <div class="hr"></div>
-
-                <div class="section">
-                    <p>
-                        L'algoritmo che vedremo oggi è ricorsivo e basato su una semplice stack. <br>
-                        La mappa è rappresentata da una griglia di celle, inizialmente separate da <b>muri</b> <span class="red">■</span> e indicate come <b>non visitate</b> <span class="black">■</span>. <br>
-                        L'andamento dell'algoritmo è il seguente: <br>
-                    </p>
-                    <div class="code">
-                        <line>Scegliere una cella di partenza (in questo caso quella centrale)</line>
-                        <line>Aggiungerla alla stack</line>
-                        <line>Segnarla come <b>visitata</b> <span class="green">■</span></line>
-                        <line>Ripetere finchè la stack non è vuota:</line>
-                        <line>    Rimuovere una cella dalla stack e chiamarla <b>corrente</b></line>
-                        <line>    Se la cella ha alcun vicino<a href="#nb">[*]</a> <b>non visitato</b> <span class="black">■</span>:</line>
-                        <line>        Aggiungi la cella <b>corrente</b> allo stack</line>
-                        <line>        Scegli uno dei vicini <b>non visitati</b> <span class="black">■</span> a caso</line>
-                        <line>        Rimuovi il <b>muro</b> <span class="red">■</span> tra la cella <b>corrente</b> e il <b>vicino</b></line>
-                        <line>        Segna il vicino come <b>visitato</b> <span class="green">■</span> e aggiungilo alla stack</line>
-                    </div>
-                    <p id="nb">
-                        * I vicini cono controllati solo nella 4 direzioni cardinali. Non le fiagonali
-                    </p>
-                </div>
-            </div>
-            <div class="box">
-                <div class="flex collapseButton"><h1>ANIMAZIONE</h1> <div class="V"></div></div>
-                <div class="hr"></div>
-
-                <div class="section">
-                    <div style="max-width: fit-content;">
-                        <div id="canvas" style="min-height: 1px;"></div>
-                        <script defer src="sketch.js"></script>
-                        <input type="range" min="10" max="50" value="20" name="size" id="size_slider">
-                        <br>
-                        <input type="button" class="large-button" value="Inizia Generazione" name="advance" id="advance_button">
-                    </div>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="flex collapseButton"><h1>CONSIDERAZIONI</h1> <div class="V"></div></div>
-                <div class="hr"></div>
-
-                <div class="section">
-                    <p>
-                        A* non è l'algoritmo di pathfinding migliore nel caso specifico di un labirinto. <br>
-                    </p>
-                </div>
-            </div>
-
-        </div>
-    </div>
+		<div id="navBar">
+			<div class="navBarSection" id="navTitle">
+				<a href="../../index.html">Diego Oniarti</a>
+				<a id="navCollapse">...</a>
+			</div>
+			<div class="navBarSection navCollapsible">
+				<a id="themeButton">◑</a>
+				<a id="languageButton">🇮🇹</a>
+			</div>
+		</div>
 
 
-    <!-- FOOTER -->
-    <div id="footer">
-        <p>fatto a mano, da me ♥ </p>
-        <div id="palette">
-            <div id="p1"></div>
-            <div id="p2"></div>
-            <div id="p3"></div>
-            <div id="p4"></div>
-            <div id="p5"></div>
-            <div id="p6"></div>
-            <div id="p7"></div>
-            <div id="p8"></div>
-        </div>
-    </div>
+		<div id="mainContainer">
+			<h1 id="titoloPagina">MAZE SOLVER</h1>
 
-</body>
+			<div class="boxes">
+
+
+				<div class="box" id="">
+					<div class="flex collapseButton"><h1>INTO</h1> <div class="V"></div></div>
+					<div class="hr"></div>
+
+					<div class="section">
+
+						<p><span class="it"> 
+							Abbiamo già visto un <a href="../path/path.html">algoritmo che trova un percorso da un punto A a un punto B</a>. <br>
+							E se non volessimo disegnare gli ostacoli a mano ogni volta? <br>
+							Possiamo generare un labirinto su cui far eseguire l'algoritmo di pathfinding. <br>
+							<br>
+							Ci sono diversi algoritmi per generare un algoritmo, ma noi useremo quello più piacevole da animare. <br>
+							Una spiegazione di altri algoritmi (e di quello che vedremo qui) può essere trovata <a target="_blank" href="https://en.wikipedia.org/wiki/Maze_generation_algorithm#Iterative_implementation_(with_stack)">qui</a>
+						</span>
+						<span class="en"> 
+							We've already seed an <a href="../path/path.html">algorithm that finds a path from a point A to a point B</a>. <br>
+							But what if we did't want to manually draw the obstacles each time? <br>
+							We can generate a maze to run the algorithm on. <br>
+							<br>
+							There are many algorithms to generate a maze, but we will use the one which produces the most pleasing animation. <br>
+							A detailed explanation of other algorithms (and of this one) can be found <a target="_blank" href="https://en.wikipedia.org/wiki/Maze_generation_algorithm#Iterative_implementation_(with_stack)">here</a>.
+						</span></p>
+
+					</div>
+				</div>
+
+
+				<div class="box" id="">
+					<div class="flex collapseButton"><h1><span class="it"> L'ALGORITMO </span>
+							<span class="en"> THE ALGORITHM </span></h1> <div class="V"></div></div>
+					<div class="hr"></div>
+
+					<div class="section">
+
+						<p><span class="it"> 
+							L'algoritmo che vedremo oggi è ricorsivo e basato su una semplice stack. <br>
+							La mappa è rappresentata da una griglia di celle, inizialmente separate da <b>muri</b> <span class="red">■</span> e indicate come <b>non visitate</b> <span class="black">■</span>. <br>
+							L'andamento dell'algoritmo è il seguente: <br>
+						</span>
+						<span class="en"> 
+							The algorithms we're going to see is recursive and based on a simple stack. <br>
+							The map is represented by a grid of cells, initially separated by <b>walls</b> <span class="red">■</span> and marked as <b>not visited</b> <span class="black">■</span>. <br>
+							The algorithm works as such: <br>
+						</span></p>
+						<div class="it">
+
+							<div class="code">
+								<line>Scegliere una cella di partenza (in questo caso quella centrale)</line>
+								<line>Aggiungerla alla stack</line>
+								<line>Segnarla come <b>visitata</b> <span class="green">■</span></line>
+								<line>Ripetere finchè la stack non è vuota:</line>
+								<line>    Rimuovere una cella dalla stack e chiamarla <b>corrente</b></line>
+								<line>    Se la cella ha alcun vicino<a href="#nb">[*]</a> <b>non visitato</b> <span class="black">■</span>:</line>
+								<line>        Aggiungi la cella <b>corrente</b> allo stack</line>
+								<line>        Scegli uno dei vicini <b>non visitati</b> <span class="black">■</span> a caso</line>
+								<line>        Rimuovi il <b>muro</b> <span class="red">■</span> tra la cella <b>corrente</b> e il <b>vicino</b></line>
+								<line>        Segna il vicino come <b>visitato</b> <span class="green">■</span> e aggiungilo alla stack</line>
+							</div>
+
+						</div>
+						<div class="en">
+
+							<div class="code">
+								<line>Pick a starting chell (the center one in this case)</line>
+								<line>Add it to the stack</line>
+								<line>Mark it as <b>visited</b> <span class="green">■</span></line>
+								<line>Repeat until the stack is empty:</line>
+								<line>    Remove a cell from the stack and mark it as <b>current</b></line>
+								<line>    If the cell has <b>unvisited</b> neighbors <a href="#nb">[*]</a> <span class="black">■</span>:</line>
+								<line>        Add the <b>current</b> cell to the stack</line>
+								<line>        Pick a random one of the <b>unvisited</b> neighbors <span class="black">■</span></line>
+								<line>        Remove the <b>wall</b> <span class="red">■</span> between the <b>current</b> cell and the <b>neighbor</b></line>
+								<line>        Mark the neighbor as <b>visited</b> <span class="green">■</span> and add it to the stack</line>
+							</div>
+
+						</div>
+						<p id="nb"><span class="it"> 
+							* I vicini cono controllati solo nella 4 direzioni cardinali, non le diagonali.
+						</span>
+						<span class="en"> 
+							* Neighbors are checked on the 4 cardinal directions, not the diagonals.
+						</span></p>
+
+					</div>
+				</div>
+
+				<div class="box" id="">
+					<div class="flex collapseButton"><h1><span class="it"> ANIMAZIONE </span>
+							<span class="en"> ANIMATION </span></h1> <div class="V"></div></div>
+					<div class="hr"></div>
+
+					<div class="section">
+
+						<div style="max-width: fit-content;">
+							<div id="canvas" style="min-height: 1px;"></div>
+							<script defer src="sketch.js"></script>
+							<input type="range" min="10" max="50" value="20" name="size" id="size_slider">
+							<br>
+							<input type="button" class="large-button" value="Inizia Generazione" name="advance" id="advance_button">
+						</div>
+
+					</div>
+				</div>
+
+				<div class="box" id="">
+					<div class="flex collapseButton"><h1><span class="it"> CONSIDERAZIONI </span>
+							<span class="en"> CONSIDERATIONS </span></h1> <div class="V"></div></div>
+					<div class="hr"></div>
+
+					<div class="section">
+
+						<p><span class="it"> 
+							A* non è l'algoritmo di pathfinding migliore nel caso specifico di un labirinto. <br>
+						</span>
+						<span class="en"> 
+							A* is not the best pathfinding algorithm when traversing a maze. <br>
+						</span></p>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+
+		<div id="footer">
+			<p>
+			<span class="it">  fatto a mano, da me ♥  </span>
+			<span class="en">  handmade, by me ♥  </span>
+			</p>
+			<div id="palette">
+				<div id="p1"></div>
+				<div id="p2"></div>
+				<div id="p3"></div>
+				<div id="p4"></div>
+				<div id="p5"></div>
+				<div id="p6"></div>
+				<div id="p7"></div>
+				<div id="p8"></div>
+			</div>
+		</div>
+
+	</body>
 
 </html>

@@ -1,162 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diego Oniarti</title>
-    <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/progetti.css">
-    <script defer src="../../scripts/controlli.js"></script>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Diego Oniarti</title>
+		<link rel="stylesheet" href="../../css/main.css">
+		<link rel="stylesheet" href="../../css/progetti.css">
+		<script defer src="../../scripts/controlli.js"></script>
 
-    <script src="../p5/p5.min.js"></script>
-</head>
+		<script src="../p5/p5.min.js"></script>
+	</head>
 
-<body class="dark">
-    <!-- NAVBAR -->
-    <div id="navBar">
-        <div class="navBarSection" id="navTitle">
-            <a href="../../index.html">Diego Oniarti</a>
-            <a id="navCollapse">...</a>
-        </div>
-        <div class="navBarSection navCollapsible">
-            <a id="themeButton">◑</a>
-            <a id="languageButton">🇮🇹</a>
-        </div>
-    </div>
+	<body class="dark">
 
-
-    
-    <!-- MAIN -->
-    <div id="mainContainer">
-        <h1 id="titoloPagina">MAZE WALKER</h1>
-        
-        <div class="boxes">
-
-            <!-- Intro -->
-            <div class="box">
-                <div class="flex collapseButton"><h1>L'OBBIETTIVO</h1> <div class="V"></div></div>
-                <div class="hr"></div>
-
-                <div class="section">
-
-                    <p>
-                        Abbiamo fatto un gioco molto semplice in un <a href="../../progetti/chill/chill.html">articolo precedente</a> utilizzando una visuale 2D. <br>
-                        Ora proveremo a fare un altro gioco ancora più semplice, ma visualizzandolo in <b>prima persona</b>. <br>
-                    </p>
-                    <h2>Compromiessi</h2>
-                    <figure style="width: 30%; float: left; margin: 10px;">
-                        <img width="100%" src="./assets/doom.png" alt="A screenshot from the game Doom"/>
-                        <figcaption>Fig.1 - Una schermata di Doom</figcaption>
-                    </figure>
-                    <p>
-                        Ci sono vari approcci per renderizzare una scena tridimensionale in prima persona. Alcuni di questi li vedremo più avanti, ma per ora atteniamoci alle cose semplici. <br>
-                        Siccome stiamo lavorando in un labirinto bidimensionale e non ci importa dell'asse <code>Z</code>, possiamo tentare di ricreare un look simile a quello del primo Doom, usando il <b>Ray Casting</b>. <br>
-                        Inoltre possiamo fare delle altre assunzioni per semplificarci il lavoro: <br>
-                        <ul style="display: flow-root;">
-                            <li>Usare colori solidi al posto di texture</li>
-                            <li>Implementare ogni muro come un segmento di linea, devinito dalle coordinate delle sue estremità</li>
-                        </ul>
-                    </p>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="flex collapseButton"><h1>COME FUNZIONA</h1> <div class="V"></div></div>
-                <div class="hr"></div>
-
-                <div class="section">
-                    <figure style="max-width: 400px; float: right; width: 40%;">
-                        <div style="width: 100%;" id="ray_casting_div"></div>
-                        <script src="./ray_cast/sketch.js" defer></script>
-                        <figcaption>Fig.2 - Un agente che casta raggi a 360°</figcaption>
-                    </figure>
-                    <p>
-                        Per prima cosa ci serve un <code>agente</code> che possa proiettare dei <b>raggi</b>. Questi raggi rappresentano la vista del nostro agente, quindi devono interrompersi quando incontrano un oggetto che ostacolerebbe la sua visuale. <br>
-                        Una tecnica piuttosto cruda per implementare questi raggi sarebbe quella di rappresentarli come una semiretta sul piano, che ha origine nlle coordinate dell'agente e si estende in una certa direzione. <br>
-                        Dopo di che un po' di algebra lineare ci permette di trovare l'intersezione delle due linee, ovvero il punto dove si interrompe il raggio.
-                    </p>
-                    <div class="code">
-                        <line>x1,y1 = x_agente,y_agente</line>
-                        <line>x2,y2 = (x1,y1)+direzione_raggio*(width+height)</line>
-                        <line>min_dist = inf</line>
-                        <line>intersezione = null</line>
-                        <line>per ogni muro w:</line>
-                        <line>  x3,y3,x4,y4 = w</line>
-                        <line>  den = (x1-x2)*(y3-y4)-(y1-y2)*(x3-x4)</line>
-                        <line>  se den==0:</line>
-                        <line>    continue</line>
-                        <line>  t = ((x1-x3)*(y3-y4)-(y1-y3)*(x3-x4))/den</line>
-                        <line>  u = -((x1-x2)*(y1-y3)-(y1-y2)*(x1-x3))/den</line>
-                        <line>  se t > 0 && t < 1 && u > 0 && u < 1 : </line>
-                        <line>    x = x1+t*(x2-x1)</line>
-                        <line>    y = y1+t*(y2-y1)</line>
-                        <line>    d = dist(x1,y1,x,y)</line>
-                        <line>    se d < min_dist: </line>
-                        <line>      min_dist = d</line>
-                        <line>      intersezione = (x,y)</line>
-                    </div>
-                    <p>
-                        * <code>direzione_raggio</code> è un vettore unitario che indica la direzione del raggio. Viene scalato per le dimensioni della viewport per dare l'impressione che il segmento si estenda all'infinito.
-                    </p>
-                    <figure style="width: 35%; float: left;">
-                        <img class="dark-only" width="100%" src="./assets/graph_dark.png" alt="Un grafico illustrativo">
-                        <img class="light-only" width="100%" src="./assets/graph_light.png" alt="Un grafico illustrativo">
-                        <figcaption>Fig.3 - Un grafico illustrativo</figcaption>
-                    </figure>
-
-                    <p>
-                        Un problema che salta subito all'occhio è che stiamo iterando su ogni muro, per ogni raggio. Questo può impattare le nostre performance significativamente. <br>
-                        Ci sono alcuni stratagemmi che possono aiutarci a diminuire considerevolmente il numero di confronti. Alcuni di essi derivano dal fatto che il labirinto si trova su una griglia.
-                        <ul style="display: flow-root;">
-                            <li>Controllare un solo quadrante della mappa, determinato dalla direzione del raggio</li>
-                            <li>Unire tra loro più muri contigui che giacciono sulla stessa retta</li>
-                            <li>Iterare sui muri in un ordine preciso, a anelli crescenti intorno all'agente. Così da trovare i muri più vicini per primi</li>
-                        </ul>
-                    </p>
-                    <h2>Dai Raggi Alla Vista</h2>
-                    <p>
-                        Ora che abbiamo un agente che casta questi raggi, come arriviamo a disegnare la veduta del giocatore? <br>
-                        È abbastanza semplice. Iniziamo proiettando una quantità <code>n</code> di raggi all'interno del campo visivo del giocatore. Ogni uno di questi raggi corrisponderà a una banda verticale dello schermo. <br>
-                        In ogni banda verticale disegnamo un rettangolo di altezza inversamente proporzionale alle lunghezza del raggio corrispondente. Questo darà l'impressione che gli oggetti più distanti siano più piccoli di quelli vicini.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Game -->
-            <div class="box">
-                <div class="flex collapseButton"><h1>IL GIOCO</h1> <div class="V"></div></div>
-                <div class="hr"></div>
-
-                <div class="section">
-                    <div class="flex even">
-                        <div id="game_div" style="max-width: 800px; width: 50%; min-height: 1px;"></div>
-                        <div id="map_div" style="max-width: 800px; width: 50%; min-height: 1px;"></div>
-                        <script src="game/sketch.js" defer></script>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
+		<div id="navBar">
+			<div class="navBarSection" id="navTitle">
+				<a href="../../index.html">Diego Oniarti</a>
+				<a id="navCollapse">...</a>
+			</div>
+			<div class="navBarSection navCollapsible">
+				<a id="themeButton">◑</a>
+				<a id="languageButton">🇮🇹</a>
+			</div>
+		</div>
 
 
-    <!-- FOOTER -->
-    <div id="footer">
-        <p>fatto a mano, da me ♥ </p>
-        <div id="palette">
-            <div id="p1"></div>
-            <div id="p2"></div>
-            <div id="p3"></div>
-            <div id="p4"></div>
-            <div id="p5"></div>
-            <div id="p6"></div>
-            <div id="p7"></div>
-            <div id="p8"></div>
-        </div>
-    </div>
+		<div id="mainContainer">
+			<h1 id="titoloPagina">MAZE WALKER</h1>
 
-</body>
+			<div class="boxes">
+				<div class="box" id="">
+					<div class="flex collapseButton"><h1><span class="it"> L'OBBIETTIVO </span>
+							<span class="en"> THE OBJECTIVE </span></h1> <div class="V"></div></div>
+					<div class="hr"></div>
+
+					<div class="section">
+
+
+						<p><span class="it"> 
+							Abbiamo fatto un gioco molto semplice in un <a href="../../progetti/chill/chill.html">articolo precedente</a> utilizzando una visuale 2D. <br>
+							Ora proveremo a fare un altro gioco ancora più semplice, ma visualizzandolo in <b>prima persona</b>. <br>
+						</span>
+						<span class="en"> 
+							We've made a very simple game in a <a href="../../progetti/chill/chill.html">previous project</a> using 2D graphics. <br>
+							Now we're gonna try to make an even simpler game, but visualizing it in <b>first person</b>. <br>
+						</span></p>
+						<h2><span class="it"> Compromessi </span>
+							<span class="en"> Compromises </span></h2>
+						<figure style="width: 30%; float: left; margin: 10px;">
+							<img width="100%" src="./assets/doom.png" alt="A screenshot from the game Doom">
+							<figcaption>Fig.1 - <span class="it"> Una schermata di Doom </span>
+								<span class="en"> A screenshot from the videogame Doom </span></figcaption>
+						</figure>
+						<p><span class="it"> 
+							Ci sono vari approcci per renderizzare una scena tridimensionale in prima persona. Alcuni di questi li vedremo più avanti, ma per ora atteniamoci alle cose semplici. <br>
+							Siccome stiamo lavorando in un labirinto bidimensionale e non ci importa dell'asse <code>Z</code>, possiamo tentare di ricreare un look simile a quello del primo Doom, usando il <b>Ray Casting</b>. <br>
+							Inoltre possiamo fare delle altre assunzioni per semplificarci il lavoro: <br>
+						</span>
+						<span class="en"> 
+							There are several approaches to rendering a first-person, three-dimensional scene. We'll look at some of these later, but for now, let's keep things simple. <br>
+							Since we're working in a two-dimensional maze and don't care about the Z-axis, we can try to recreate a look similar to the original Doom using Ray Casting. <br>
+							We can also make a few other assumptions to simplify our work: <br>
+						</span></p>
+						<ul style="display: flow-root;">
+							<li>
+								<span class="it"> Usare colori solidi al posto di texture </span>
+								<span class="en"> We'll use solid colors instead of textures </span>
+							</li>
+							<li><span class="it"> Implementare ogni muro come un segmento di linea, definito dalle coordinate delle sue estremità </span>
+								<span class="en"> We'll implement each wall as a line segment, defined be the coordinates of its ends </span></li>
+						</ul>
+
+					</div>
+				</div>
+
+				<div class="box" id="">
+					<div class="flex collapseButton"><h1><span class="it"> COME FUNZIONA </span>
+							<span class="en"> HOW DOES IT WORK </span></h1> <div class="V"></div></div>
+					<div class="hr"></div>
+
+					<div class="section">
+
+						<figure style="max-width: 400px; float: right; width: 40%;">
+							<div style="width: 100%;" id="ray_casting_div"></div>
+							<script src="./ray_cast/sketch.js" defer></script>
+							<figcaption>Fig.2 - <span class="it"> Un agente che casta raggi a 360° </span>
+								<span class="en"> An agent casting rays at 360° </span></figcaption>
+						</figure>
+						<p><span class="it"> 
+							Per prima cosa ci serve un <code>agente</code> che possa proiettare dei <b>raggi</b>. Questi raggi rappresentano la vista del nostro agente, quindi devono interrompersi quando incontrano un oggetto che ostacolerebbe la sua visuale. <br>
+							Una tecnica piuttosto cruda per implementare questi raggi sarebbe quella di rappresentarli come una semiretta sul piano, che ha origine nlle coordinate dell'agente e si estende in una certa direzione. <br>
+							Dopo di che un po' di algebra lineare ci permette di trovare l'intersezione tra la semiretta e un muro, ovvero il punto dove si interrompe il raggio.
+						</span>
+						<span class="en"> 
+							The first thing we need is an <code>agent</code> capable of casting <b>rays</b>. These rays reppresent the view of the agent, so they need to stop whenever they reach a target that would break its line of sight <br>
+							A crude technique to implement the rays is to represent them as an half-line starting from the agent and extending infinitely in a certain direction. <br>
+							With a bit of linear algebra we can get the intersection between the half-line and a given wall, that being the ending point of the ray.
+						</span></p>
+						<div class="it">
+
+							<div class="code">
+								<line>x1,y1 = x_agente,y_agente</line>
+								<line>x2,y2 = (x1,y1) + direzione_raggio*(width+height)</line>
+								<line>min_dist = inf</line>
+								<line>intersezione = null</line>
+								<line>per ogni muro w:</line>
+								<line>  x3,y3,x4,y4 = w</line>
+								<line>  den = (x1-x2)*(y3-y4)-(y1-y2)*(x3-x4)</line>
+								<line>  se den==0:</line>
+								<line>    continue</line>
+								<line>  t = ((x1-x3)*(y3-y4)-(y1-y3)*(x3-x4))/den</line>
+								<line>  u = -((x1-x2)*(y1-y3)-(y1-y2)*(x1-x3))/den</line>
+								<line>  se t > 0 && t < 1 && u > 0 && u < 1 : </line>
+								<line>    x = x1+t*(x2-x1)</line>
+								<line>    y = y1+t*(y2-y1)</line>
+								<line>    d = dist(x1,y1,x,y)</line>
+								<line>    se d < min_dist: </line>
+								<line>      min_dist = d</line>
+								<line>      intersezione = (x,y)</line>
+							</div>
+
+						</div>
+						<div class="en">
+
+							<div class="code">
+								<line>x1,y1 = agent_x, agent_y</line>
+								<line>x2,y2 = (x1,y1) + ray_heading*(width+height)</line>
+								<line>min_dist = inf</line>
+								<line>intersection = null</line>
+								<line>for each wall w:</line>
+								<line>  x3,y3,x4,y4 = w</line>
+								<line>  den = (x1-x2)*(y3-y4)-(y1-y2)*(x3-x4)</line>
+								<line>  if den==0:</line>
+								<line>    continue</line>
+								<line>  t = ((x1-x3)*(y3-y4)-(y1-y3)*(x3-x4))/den</line>
+								<line>  u = -((x1-x2)*(y1-y3)-(y1-y2)*(x1-x3))/den</line>
+								<line>  if t > 0 && t < 1 && u > 0 && u < 1 : </line>
+								<line>    x = x1+t*(x2-x1)</line>
+								<line>    y = y1+t*(y2-y1)</line>
+								<line>    d = dist(x1,y1,x,y)</line>
+								<line>    if d < min_dist: </line>
+								<line>      min_dist = d</line>
+								<line>      intersection = (x,y)</line>
+							</div>
+
+						</div>
+						<p><span class="it"> 
+							* <code>direzione_raggio</code> è un vettore unitario che indica la direzione del raggio. Viene scalato per le dimensioni della viewport per dare l'impressione che il segmento si estenda all'infinito.
+						</span>
+						<span class="en"> 
+							* <code>ray_heading</code> is a unit vector with the heading of the ray. It gets scaled by the size of the viewport to give the impression that it extends infinitely.
+						</span></p>
+						<figure style="width: 35%; float: left;">
+							<img class="dark-only" width="100%" src="./assets/graph_dark.png" alt="Un grafico illustrativo">
+							<img class="light-only" width="100%" src="./assets/graph_light.png" alt="Un grafico illustrativo">
+							<figcaption>Fig.3 - <span class="it"> Un grafico illustrativo </span>
+								<span class="en"> An illustrative graph </span></figcaption>
+						</figure>
+
+						<p><span class="it"> 
+							Un problema che salta subito all'occhio è che stiamo iterando su ogni muro, per ogni raggio. Questo può impattare le nostre performance significativamente. <br>
+							Ci sono alcuni stratagemmi che possono aiutarci a diminuire considerevolmente il numero di confronti. Alcuni di essi derivano dal fatto che il labirinto si trova su una griglia.
+						</span>
+						<span class="en"> 
+							A glaring problem with this code is the it checks the intersection with each wall, for each ray, each frame. This can significantly impact performance. <br>
+							There are some tricks that can help reduce the number of checks. Some of these hinge on the assumption the maze is constructed on a grid.
+						</span></p>
+						<div class="it">
+
+							<ul style="display: flow-root;">
+								<li>Controllare un solo quadrante della mappa, determinato dalla direzione del raggio</li>
+								<li>Unire tra loro più muri contigui che giacciono sulla stessa retta</li>
+								<li>Iterare sui muri in un ordine preciso, a anelli crescenti intorno all'agente. Così da trovare i muri più vicini per primi</li>
+							</ul>
+
+						</div>
+						<div class="en">
+
+							<ul style="display: flow-root;">
+								<li>Only check one quadrant of the map, decided by the heading of the ray</li>
+								<li>Join together walls that lay on the same grid line</li>
+								<li>Iterate over the walls in a spiraling order emitting from the agent. This will lead to the closer walls being found first</li>
+							</ul>
+
+						</div>
+						<h2><span class="it"> Dai Raggi Alla Vista </span>
+							<span class="en"> From Rays to View </span></h2>
+						<p><span class="it"> 
+							Ora che abbiamo un agente che casta questi raggi, come arriviamo a disegnare la veduta del giocatore? <br>
+							È abbastanza semplice. Iniziamo proiettando una quantità <code>n</code> di raggi all'interno del campo visivo del giocatore. Ogni uno di questi raggi corrisponderà a una banda verticale dello schermo. <br>
+							In ogni banda verticale disegnamo un rettangolo di altezza inversamente proporzionale alle lunghezza del raggio corrispondente. Questo darà l'impressione che gli oggetti più distanti siano più piccoli di quelli vicini.
+						</span>
+						<span class="en"> 
+							Now that we have an agent casting some rays, how do we get to draw the player's view? <br>
+							We start by projecting <code>n</code> rays in the field of view of the player. Each one of these rays will be mapped to a vertical band of the screen. <br>
+							In each vertical band we will draw a rectangle, with his height scaled inversely to the corresponding ray's length. This will give the impression that further objects get smaller and vice versa.
+						</span></p>
+
+
+					</div>
+				</div>
+
+
+				<div class="box" id="">
+					<div class="flex collapseButton"><h1><span class="it"> IL GIOCO </span>
+							<span class="en"> THE GAME </span></h1> <div class="V"></div></div>
+					<div class="hr"></div>
+
+					<div class="section">
+
+						<div class="flex even">
+							<div id="game_div" style="max-width: 800px; width: 50%; min-height: 1px;"></div>
+							<div id="map_div" style="max-width: 800px; width: 50%; min-height: 1px;"></div>
+							<script src="game/sketch.js" defer></script>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+
+		<div id="footer">
+			<p>
+			<span class="it">  fatto a mano, da me ♥  </span>
+			<span class="en">  handmade, by me ♥  </span>
+			</p>
+			<div id="palette">
+				<div id="p1"></div>
+				<div id="p2"></div>
+				<div id="p3"></div>
+				<div id="p4"></div>
+				<div id="p5"></div>
+				<div id="p6"></div>
+				<div id="p7"></div>
+				<div id="p8"></div>
+			</div>
+		</div>
+
+	</body>
 
 </html>

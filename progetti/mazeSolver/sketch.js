@@ -115,10 +115,11 @@ function draw() {
 }
 
 const bottone = document.getElementById("advance_button");
-bottone.onclick = (e) => {
+register_string(bottone, "Inizia Generazione", "Start Generation", "value");
+bottone.onclick = ()=>{
     switch (state) {
         case states.setup:
-            bottone.value = "Risolvi Labirinto";
+            register_string(bottone, "Risolvi Labirinto", "Solve Maze", "value");
             bottone.disabled = true;
             size_slider.disabled = true;
             inizializzaLabirinto()
@@ -126,7 +127,7 @@ bottone.onclick = (e) => {
             break;
         case states.generate_done:
             bottone.disabled = true;
-            bottone.value = "Ricomincia";
+            register_string(bottone, "Ricomincia", "Restart", "value");
             const size = Number(size_slider.value);
             background(0);
             for (i = 0; i < size; i++) {
@@ -143,7 +144,7 @@ bottone.onclick = (e) => {
             break;
         case states.solve_done:
             size_slider.disabled = false;
-            bottone.value = "Genera Labirinto";
+            register_string(bottone, "Inizia Generazione", "Start Generation", "value");
             state = states.setup;
 
             stack = [];

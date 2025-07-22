@@ -1,267 +1,326 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diego Oniarti</title>
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/index.css">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Diego Oniarti</title>
+		<link rel="stylesheet" href="./css/main.css">
+		<link rel="stylesheet" href="./css/index.css">
 
-    <script defer src="scripts/controlli.js"></script>
-</head>
-<body class="dark">
-    <!-- NAVBAR -->
-    <div id="navBar">
-        <div class="navBarSection" id="navTitle">
-            <a>Diego Oniarti</a>
-            <a id="navCollapse">...</a>
-        </div>
-        <div class="navBarSection navCollapsible">
-            <a href="#chiSono">Chi Sono</a>
-            <a href="#esperienza">Esperienza</a>
-            <a href="#skills">Skills</a>
-            <a href="#progetti">Progetti</a>
-        </div>
-        <div class="navBarSection navCollapsible">
-            <a id="themeButton">◑</a>
-            <a id="languageButton">🇮🇹</a>
-        </div>
-    </div>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
+		<script defer src="scripts/controlli.js"></script>
+		<script defer src="scripts/carousel.js"></script>
+	</head>
+	<body>
 
-    <!-- MAIN -->
-    <div id="mainContainer">
-        <h1 id="titoloPagina">DIEGO ONIARTI</h1>
-        
-        <div class="boxes">
-            <!-- CHI SONO -->
-            <div class="box" id="chiSono">
-                <div class="flex collapseButton"><h1>CHI SONO</h1> <div class="V"></div></div>
-                <div class="hr"></div>
-
-                <div class="section">
-                    <div class="flex">
-                        <div style="flex: 1;">
-                            <p>
-                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                            </p>
-                            <p>
-                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                                    HHHHHHHHHHHHHHh
-                                    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                            </p>
-                        </div>
-                        <img width="20%" src="immagini/portrait.jpeg" alt="photo of me">
-                    </div>
-                    <div id="hobby-contatti" class="flex">
-                        <div id="hobby" class="wide">
-                            <h2>I MIEI HOBBY</h2>
-                            <div class="hr2"></div>
-                            <ul>
-                                <li>Videogiochi</li>
-                                <li>Musica</li>
-                                <ul>
-                                    <li>Sassofono</li>
-                                    <li>Flauto dolce</li>
-                                </ul>
-                                <li>Origami</li>
-                                <li>Generative art</li>
-                            </ul>
-                        </div>
-                        <div id="contatti" class="wide">
-                            <h2>CONTATTI</h2>
-                            <div class="hr2"></div>
-                            <ul>
-                                <li>diego.oniarti@gmail.com</li>
-                                <li>+39 391 134 5350</li>
-                                <li><a target="_blank" href="https://www.instagram.com/diego.oniarti/">instagram</a></li>
-                                <li><a target="_blank" href="https://www.linkedin.com/in/diego-oniarti-177300218/">linkedin</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ESPERIENZA -->
-            <div class="box" id="esperienza">
-                <div class="flex collapseButton"><h1>ESPERIENZA</h1> <div class="V"></div></div>
-                <div class="hr"></div>
-
-                <div class="section">
-                    <div id="esperienze" class="flex-column">
-
-                        <!-- UNI 2 -->
-                        <div class="flex" style="width: 90%;">
-                            <h2>Università di Trento - magistrale</h2>
-                            <h2>2024 - Ongoing</h2>
-                        </div>
-                        <div class="hr2"></div>
-                        <p>
-                            Continuo il mio studio dell'informatica presso l'università di Trento, nel settore informatico e con un interesse mirato all'ambito delle fondamenta della computazione.
-                        </p>
-
-                        <!-- UNI -->
-                        <div class="flex" style="width: 90%;">
-                            <h2>Università di Trento - triennale</h2>
-                            <h2>2021 - 2024</h2>
-                        </div>
-                        <div class="hr2"></div>
-                        <p>
-                            Conseguito la laurea triennale in informatica presso l'università di Trento.
-                        </p>
-
-                        <!-- Web Walley -->
-                        <div class="flex" style="width: 90%;">
-                            <h2>Web Walley Reimagined</h2>
-                            <h2>2021</h2>
-                        </div>
-                        <div class="hr2"></div>
-                        <p>
-                            Un evento organizzato dalla Fondazione Bruno Kessler e dall'Istituto Pavoniano Artigianelli di Trento. <br>
-                            Durante la settimana di corso, un gruppo di studenti italiani e statunitensi segue corsi intensivi riguardanti data analisis e machine learning. <br>
-                            Il progetto si chiude con la presentazione del lavoro che gli studenti hanno prodotto in modalità scrum.
-                        </p>
-
-                        <!-- ITT -->
-                        <div class="flex" style="width: 90%;">
-                            <h2>ITT Buonarroti</h2>
-                            <h2>2016 - 2021</h2>
-                        </div>
-                        <div class="hr2"></div>
-                        <p>
-                            Ho frequentato l'Istituto Tecnico Tecnologico Michelangelo Buonarroti di Trento.<br>
-                            Voto di diploma: 100
-                        </p>
-
-                        <!-- Amsterdam -->
-                        <div class="flex" style="width: 90%;">
-                            <h2>Progetto PON Cittadinanza Europea</h2>
-                            <h2>2019</h2>
-                        </div>
-                        <div class="hr2"></div>
-                        <p>
-                            Un progetto dalla durata di vari mesi in cui un gruppo di studenti di scuola superiore impara il funzionamento dell'unione europea. <br>
-                            Il progetto termina con 3 settimane di scambio culturale ad Amsterdam. In queste settimane gli studenti frequentano una scuola che pratica il metodo Montrssori d'insegnamento.
-                        </p>
-
-                        <!-- Hackabot -->
-                        <div class="flex" style="width: 90%;">
-                            <h2>Vincitore Open Data HackaBot Trentino</h2>
-                            <h2>2018</h2>
-                        </div>
-                        <div class="hr2"></div>
-                        <p> 
-                            Un hackaton di due giorni in cui diversi gruppi utilizzano open data per sviluppare diverse aplicazioni. <br>
-                            L'obbiettivo dei progetti presentati è quello di innovare il modo in cui l'amministrazione pubblica si interfaccia con cittadini e aziende.  <br>
-                            Il gruppo vincitore è scelto da stakeholder e busines locali. 
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SKILLS -->
-            <div class="box" id="skills">
-                <div class="flex collapseButton"><h1>SKILLS</h1><div class="V"></div></div>
-
-                <div class="hr"></div>
-                <div class="section">
-                    <h2>Programmazione</h2>
-                    <div class="hr2"></div>
-                    <p>
-                        Ho esperienza sia con il paradigma di programmazione procedurale che con quello ad oggetti, oltre a nozioni di programmazione funzionale.
-                        <br>
-                        Conosco diversi linguaggi di programmazione tra cui: <code>C, C++, C#, Java, JavaScript, Python</code>
-                    </p>
-
-                    <h2>Teamwork</h2>
-                    <div class="hr2"></div>
-                    <p>Ho partecipato a diversi progetti di gruppo, tentando sempre di svolgere la mia parte al meglio e di integrarmi con i miei colleghi</p>
-
-                    <h2>Progettazione Software</h2>
-                    <div class="hr2"></div>
-                    <p>Sono capace di leggere e scrivere diagrammi UML utili per l'analisi di requisiti e la progettazione di software conforme ad essi</p>
-                </div>
-            </div>
-
-            <!-- PROGETTI -->
-            <div class="box" id="progetti">
-                <div class="flex collapseButton"><h1>PROGETTI</h1> <div class="V"></div></div>
-                <div class="hr"></div>
-
-                <div class="section">
-                    <p>
-                        Questi sono alcuni progetti a cui ho lavorato in P5JS e ThreeJs. <br>
-                        Alcuni sono semplici visualizzazioni di algoritmi, mentre altri sono progetti più creativi. <br>
-                        Molti hanno richiami a progetti precedenti nella lista, mostrando come si può espandere su un idea iniziale poco alla volta. <br>
-                        <br>
-                        Sto ancora lavorando a scrivere una descrizione o piccolo articolo per ogni uno.
-                    </p>
-                    <div class="grid">
-                        <div class="scheda">
-                            <h1 class="faded">Path Finder</h1>
-                            <img src="immagini/path.png" class="backgroundScheda" alt="path">
-                            <a href="progetti/path/path.html"><div class="linkScheda"></div></a>
-                        </div>
-                        <div class="scheda">
-                            <h1 class="faded">Maze Solver</h1>
-                            <img src="immagini/mazeSolver.png" class="backgroundScheda" alt="maze solver">
-                            <a href="progetti/mazeSolver/maze.html"><div class="linkScheda"></div></a>
-                        </div>
-                        <div class="scheda">
-                            <h1 class="faded">CHILL</h1>
-                            <img src="immagini/chill.png" class="backgroundScheda" alt="chill">
-                            <a href="progetti/chill/chill.html"><div class="linkScheda"></div></a>
-                        </div>
-                    </div>
-                    <div class="grid">
-                        <div class="scheda">
-                            <h1 class="faded">MazeWalker</h1>
-                            <img src="immagini/maze.png" class="backgroundScheda" alt="maze walker">
-                            <a href="progetti/mazeWalker/mazeWalker.html"><div class="linkScheda"></div></a>
-                        </div>
-                        <div class="scheda">
-                            <h1 class="faded">3D Wave</h1>
-                            <img src="immagini/3dwave.png" class="backgroundScheda" alt="3D wave">
-                            <a href="progetti/primo/primo.html"><div class="linkScheda"></div></a>
-                        </div>
-                        <div class="scheda">
-                            <h1 class="faded">Flock</h1>
-                            <img src="immagini/flock.png" class="backgroundScheda" alt="flock">
-                            <a href="progetti/flock3d/flock.html"><div class="linkScheda"></div></a>
-                        </div>
-                    </div>
-                    <div class="grid">
-                        <div class="scheda">
-                            <h1 class="faded">Music Video</h1>
-                            <img src="immagini/music.png" class="backgroundScheda" alt="music video">
-                            <a href="progetti/musicVideo/musicVideo.html"><div class="linkScheda"></div></a>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
+		<div id="navBar">
+			<div class="navBarSection" id="navTitle">
+				<a>Diego Oniarti</a>
+				<a id="navCollapse">...</a>
+			</div>
+			<div class="navBarSection navCollapsible">
+				<a href="#chiSono"><span class="it"> Chi Sono </span>
+					<span class="en"> Who Am I </span></a>
+				<a href="#esperienza"><span class="it"> Esperienza </span>
+					<span class="en"> Experience </span></a>
+				<a href="#skills"><span class="it"> Skills </span>
+					<span class="en"> Skills </span></a>
+				<a href="#progetti"><span class="it"> Progetti </span>
+					<span class="en"> Projects </span></a>
+			</div>
+			<div class="navBarSection navCollapsible">
+				<a id="themeButton">◑</a>
+				<a id="languageButton">🇮🇹</a>
+			</div>
+		</div>
 
 
-    <!-- FOOTER -->
-    <div id="footer">
-        <p>fatto a mano, da me ♥ </p>
-        <div id="palette">
-            <div id="p1"></div>
-            <div id="p2"></div>
-            <div id="p3"></div>
-            <div id="p4"></div>
-            <div id="p5"></div>
-            <div id="p6"></div>
-            <div id="p7"></div>
-            <div id="p8"></div>
-        </div>
-    </div>
-</body>
+
+		<div id="mainContainer">
+			<h1 id="titoloPagina">DIEGO ONIARTI</h1>
+
+			<div class="boxes">
+
+				<div class="box" id="chiSono">
+					<div class="flex collapseButton"><h1><span class="it"> CHI SONO </span>
+							<span class="en"> WHO AM I </span></h1> <div class="V"></div></div>
+					<div class="hr"></div>
+
+					<div class="section">
+
+						<div class="flex" style="width: 95%">
+							<div style="flex: 1">
+								<p>
+								<span class="it"> Studente e appassionato di informatica presso l'università di Trento </span>
+								<span class="en"> Computer science student and enthusiast attending the university of Trento </span>
+								</p>
+							</div>
+							<div id="carousel">
+								<div id="carousel_inside" class="flex">
+									<img width="100%" src="immagini/portraits/portrait1.jpg" alt="photo of me">
+									<img width="100%" src="immagini/portraits/portrait2.jpg" alt="photo of me">
+									<img width="100%" src="immagini/portraits/portrait3.jpg" alt="photo of me">
+								</div>
+							</div>
+						</div>
+						<div id="hobby-contatti" class="flex">
+							<div id="hobby" class="wide">
+								<h2><span class="it"> I MIEI HOBBY </span>
+									<span class="en"> MY HOBBIES </span></h2>
+								<div class="hr2"></div>
+								<ul>
+									<li><span class="it"> Videogiochi </span>
+										<span class="en"> Videogames </span></li>
+									<li><span class="it"> Musica </span>
+										<span class="en"> Music </span></li>
+									<ul>
+										<li><span class="it"> Sassofono </span>
+											<span class="en"> Saxophone </span></li>
+										<li><span class="it"> Flauto dolce </span>
+											<span class="en"> Recorder </span></li>
+									</ul>
+									<li>Origami</li>
+									<li>Generative art</li>
+								</ul>
+							</div>
+							<div id="contatti" class="wide">
+								<h2><span class="it"> CONTATTI </span>
+									<span class="en"> CONTACTS </span></h2>
+								<div class="hr2"></div>
+								<ul>
+									<li>diego.oniarti@gmail.com</li>
+									<li>+39 391 134 5350</li>
+									<li><a target="_blank" href="https://www.instagram.com/diego.oniarti/">instagram</a></li>
+									<li><a target="_blank" href="https://www.linkedin.com/in/diego-oniarti-177300218/">linkedin</a></li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+
+				<div class="box" id="esperienza">
+					<div class="flex collapseButton"><h1><span class="it"> ESPERIENZA </span>
+							<span class="en"> EXPERIENCE </span></h1> <div class="V"></div></div>
+					<div class="hr"></div>
+
+					<div class="section">
+
+						<div id="esperienze" class="flex-column">
+
+
+							<div class="flex" style="width: 90%;">
+								<h2><span class="it"> Università di Trento - magistrale </span>
+									<span class="en"> University of Trento - master </span></h2>
+								<h2>2024 - Ongoing</h2>
+							</div>
+							<div class="hr2"></div>
+							<p> <span class="it"> Continuo il mio studio dell'informatica presso l'università di Trento, nel settore informatico e con un interesse mirato all'ambito delle fondamenta della computazione. </span>
+							<span class="en"> I keep studying computer science at Trento's university, in the sector of computational foundations </span> </p>
+
+
+							<div class="flex" style="width: 90%;">
+								<h2><span class="it"> Università di Trento - triennale </span>
+									<span class="en"> University of Trento - bachelor </span></h2>
+								<h2>2021 - 2024</h2>
+							</div>
+							<div class="hr2"></div>
+							<p> <span class="it"> Conseguito la laurea triennale in informatica presso l'università di Trento. </span>
+							<span class="en"> Graduated with a bachelor's degree in computer science from the University of Trento. </span> </p>
+
+
+							<div class="flex" style="width: 90%;">
+								<h2>Web Walley Reimagined</h2>
+								<h2>2021</h2>
+							</div>
+							<div class="hr2"></div>
+							<p> <span class="it"> 
+								Un evento organizzato dalla Fondazione Bruno Kessler e dall'Istituto Pavoniano Artigianelli di Trento. <br>
+								Durante la settimana di corso, un gruppo di studenti italiani e statunitensi segue corsi intensivi riguardanti data analisis e machine learning. <br>
+								Il progetto si chiude con la presentazione del lavoro che gli studenti hanno prodotto in modalità scrum.
+							</span>
+							<span class="en"> 
+								An event organized by the Bruno Kessler Foundation and the Pavonian Artigianelli Institute of Trento. <br>
+								During the week-long course, a group of Italian and American students attend intensive courses on data analysis and machine learning. <br>
+								The project concludes with a presentation of the work the students produced using scrum methodology.
+							</span> </p>
+
+
+							<div class="flex" style="width: 90%;">
+								<h2>ITT Buonarroti</h2>
+								<h2>2016 - 2021</h2>
+							</div>
+							<div class="hr2"></div>
+							<p> <span class="it"> Ho frequentato l'Istituto Tecnico Tecnologico Michelangelo Buonarroti di Trento. </span>
+							<span class="en"> I attended Trento's Buonarroti technical institute. </span> </p>
+
+
+							<div class="flex" style="width: 90%;">
+								<h2><span class="it"> Progetto PON Cittadinanza Europea </span>
+									<span class="en"> European Citizenship PON Project </span></h2>
+								<h2>2019</h2>
+							</div>
+							<div class="hr2"></div>
+							<p> <span class="it"> 
+								Un progetto dalla durata di vari mesi in cui un gruppo di studenti di scuola superiore impara il funzionamento dell'unione europea. <br>
+								Il progetto termina con 3 settimane di scambio culturale ad Amsterdam. In queste settimane gli studenti frequentano una scuola che pratica il metodo Montrssori d'insegnamento.
+							</span>
+							<span class="en"> 
+								A multi-month project in which a group of high school students learn about the European Union. <br>
+								The project concludes with a three-week long cultural exchange in Amsterdam. During these weeks, the students attend a school that practices the Montressori method of teaching.
+							</span> </p>
+
+
+							<div class="flex" style="width: 90%;">
+								<h2><span class="it"> Team Vincitore di Open Data HackaBot Trentino </span>
+									<span class="en"> Winner Team of Trentino Open Data HackaBot </span></h2>
+								<h2>2018</h2>
+							</div>
+							<div class="hr2"></div>
+							<p> <span class="it"> 
+								Un hackaton di due giorni in cui diversi gruppi utilizzano open data per sviluppare diverse aplicazioni. <br>
+								L'obbiettivo dei progetti presentati è quello di innovare il modo in cui l'amministrazione pubblica si interfaccia con cittadini e aziende. <br>
+								Il gruppo vincitore è scelto da stakeholder e busines locali. 
+							</span>
+							<span class="en"> 
+								A two-day hackathon in which different groups use open data to develop various applications. <br>
+								The goal of the submitted projects is to innovate the way public administration interacts with citizens and businesses. <br>
+								The winning group is chosen by local stakeholders and businesses.
+							</span> </p>
+						</div>
+
+					</div>
+				</div>
+
+
+				<div class="box" id="skills">
+					<div class="flex collapseButton"><h1>SKILLS</h1> <div class="V"></div></div>
+					<div class="hr"></div>
+
+					<div class="section">
+
+						<h2><span class="it"> Programmazione </span>
+							<span class="en"> Programming </span></h2>
+						<div class="hr2"></div>
+						<p> <span class="it"> 
+							Ho esperienza sia con il paradigma di programmazione procedurale che con quello ad oggetti, oltre a nozioni di programmazione funzionale. <br>
+							Conosco diversi linguaggi di programmazione tra cui: <code>C, C++, C#, Java, JavaScript, Python, Rust, Cuda</code>
+						</span>
+						<span class="en"> 
+							I have experience with both procedural and object-oriented programming paradigms, as well as basic functional programming. <br>
+							I am proficient in several programming languages, including: <code>C, C++, C#, Java, JavaScript, Python, Rust, and Cuda.</code>
+						</span> </p>
+
+						<h2>Teamwork</h2>
+						<div class="hr2"></div>
+						<p> <span class="it"> 
+							Ho partecipato a diversi progetti di gruppo, tentando sempre di svolgere la mia parte al meglio e di integrarmi con i miei colleghi
+						</span>
+						<span class="en"> 
+							I have participated in several group projects, always trying to do my part to the best of my ability and to integrate with my colleagues.
+						</span> </p>
+
+						<h2><span class="it"> <span class="it"> Progettazione Software </span>
+								<span class="en"> Software Design </span> </span>
+							<span class="en">  </span></h2>
+						<div class="hr2"></div>
+						<p> <span class="it">  Sono capace di leggere e scrivere diagrammi UML utili per l'analisi di requisiti e la progettazione di software conforme ad essi  </span>
+						<span class="en">  I am able to read and write UML diagrams useful for requirements analysis and software design compliant with them  </span> </p>
+
+					</div>
+				</div>
+
+
+				<div class="box" id="progetti">
+					<div class="flex collapseButton"><h1><span class="it"> PROGETTI </span>
+							<span class="en"> PROJECTS </span></h1> <div class="V"></div></div>
+					<div class="hr"></div>
+
+					<div class="section">
+
+						<p> <span class="it"> 
+							Questi sono alcuni progetti a cui ho lavorato principalmente in P5JS e ThreeJs. <br>
+							Alcuni sono semplici visualizzazioni di algoritmi, mentre altri sono progetti più creativi. <br>
+							Molti hanno richiami a progetti precedenti nella lista, mostrando come si può espandere su un idea iniziale poco alla volta. <br>
+							<br>
+							Sto ancora lavorando a scrivere una descrizione o piccolo articolo per ogni uno.
+						</span>
+						<span class="en"> 
+							These are some projects I've worked on, mainly in P5JS and ThreeJs. <br>
+							Some are simple algorithm visualizations, while others are more creative projects. <br>
+							Many have references to previous projects on the list, showing how you can gradually expand on an initial idea. <br>
+							<br>
+							I'm still working on writing a description or short article for each one.
+						</span> </p>
+						<div class="grid">
+							<div class="scheda">
+								<h1 class="faded">Path Finder</h1>
+								<img src="immagini/path.png" class="backgroundScheda" alt="path">
+								<a href="progetti/path/path.html"><div class="linkScheda"></div></a>
+							</div>
+							<div class="scheda">
+								<h1 class="faded">Maze Solver</h1>
+								<img src="immagini/mazeSolver.png" class="backgroundScheda" alt="maze solver">
+								<a href="progetti/mazeSolver/maze.html"><div class="linkScheda"></div></a>
+							</div>
+							<div class="scheda">
+								<h1 class="faded">CHILL</h1>
+								<img src="immagini/chill.png" class="backgroundScheda" alt="chill">
+								<a href="progetti/chill/chill.html"><div class="linkScheda"></div></a>
+							</div>
+						</div>
+						<div class="grid">
+							<div class="scheda">
+								<h1 class="faded">MazeWalker</h1>
+								<img src="immagini/maze.png" class="backgroundScheda" alt="maze walker">
+								<a href="progetti/mazeWalker/mazeWalker.html"><div class="linkScheda"></div></a>
+							</div>
+							<div class="scheda">
+								<h1 class="faded">3D Wave</h1>
+								<img src="immagini/3dwave.png" class="backgroundScheda" alt="3D wave">
+								<a href="progetti/primo/primo.html"><div class="linkScheda"></div></a>
+							</div>
+							<div class="scheda">
+								<h1 class="faded">Flock</h1>
+								<img src="immagini/flock.png" class="backgroundScheda" alt="flock">
+								<a href="progetti/flock3d/flock.html"><div class="linkScheda"></div></a>
+							</div>
+						</div>
+						<div class="grid">
+							<div class="scheda">
+								<h1 class="faded">Music Video</h1>
+								<img src="immagini/music.png" class="backgroundScheda" alt="music video">
+								<a href="progetti/musicVideo/musicVideo.html"><div class="linkScheda"></div></a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+
+		<div id="footer">
+			<p>
+			<span class="it">  fatto a mano, da me ♥  </span>
+			<span class="en">  handmade, by me ♥  </span>
+			</p>
+			<div id="palette">
+				<div id="p1"></div>
+				<div id="p2"></div>
+				<div id="p3"></div>
+				<div id="p4"></div>
+				<div id="p5"></div>
+				<div id="p6"></div>
+				<div id="p7"></div>
+				<div id="p8"></div>
+			</div>
+		</div>
+	</body>
 </html>
