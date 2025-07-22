@@ -14,335 +14,349 @@
 		<script src="../p5/p5.sound.min.js"></script>
 	</head>
 
+	<body>
 
-
-	<div id="navBar">
-		<div class="navBarSection" id="navTitle">
-			<a href="../../index.html">Diego Oniarti</a>
-			<a id="navCollapse">...</a>
-		</div>
-		<div class="navBarSection navCollapsible">
-			<a id="themeButton">◑</a>
-			<a id="languageButton">🇮🇹</a>
-		</div>
-	</div>
-
-
-	<div id="mainContainer">
-		<h1 id="titoloPagina"><span class="it"> MUSICA E VIDEO </span>
-			<span class="en"> MUSIC AND VIDEO </span></h1>
-
-		<div class="boxes">
-
-
-			<div class="box" id="">
-				<div class="flex collapseButton"><h1><span class="it"> IL RISULTATO </span>
-						<span class="en"> THE RESULT </span></h1> <div class="V"></div></div>
-				<div class="hr"></div>
-
-				<div class="section">
-
-					<div class="flex center", style="width: min(80vh, 100%); flex-direction:column; margin:auto">
-						<div id="final_sketch" class="wide" style="min-height: 1px;"></div>
-						<input type="range" class="wide" id="mode_slider" min="0" max="3" value="1" step="1">
-						<div class="wide">
-							<div id="spotify_embed"></div>
-						</div>
-					</div>
-					<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
-					<script src="./main_sketch/sketch.js" type="module" defer></script>
-
-				</div>
+		<div id="navBar">
+			<div class="navBarSection" id="navTitle">
+				<a href="../../index.html">Diego Oniarti</a>
+				<a id="navCollapse">...</a>
 			</div>
+			<div class="navBarSection navCollapsible">
+				<a id="themeButton">◑</a>
+				<a id="languageButton">🇮🇹</a>
+			</div>
+		</div>
 
-			<div class="box" id="">
-				<div class="flex collapseButton"><h1><span class="it"> COME FUNZIONA </span>
-						<span class="en"> HOW DOES IT WORK </span></h1> <div class="V"></div></div>
-				<div class="hr"></div>
 
-				<div class="section">
+		<div id="mainContainer">
+			<h1 id="titoloPagina"><span class="it"> MUSICA E VIDEO </span>
+				<span class="en"> MUSIC AND VIDEO </span></h1>
 
-					<div style="overflow:hidden">
-						<h2><span class="it"> Oggetti 3D e Prospettiva </span>
-							<span class="en"> 3D Objects and Perspective </span></h2>
-						<figure style="max-width: 400px; float: right; width: 30%;">
-							<div style="width: 100%;" id="flat_fish_div"></div>
-							<script type="module" src="./flat_fish/sketch.js" defer></script>
-							<figcaption>Fig.1 - <span class="it"> Un pesce che gira </span>
-								<span class="en"> A fish spinning </span></figcaption>
-						</figure>
+			<div class="boxes">
+
+
+				<div class="box" id="">
+					<div class="flex collapseButton"><h1><span class="it"> IL RISULTATO </span>
+							<span class="en"> THE RESULT </span></h1> <div class="V"></div></div>
+					<div class="hr"></div>
+
+					<div class="section">
+
+						<div class="flex center", style="width: min(80vh, 100%); flex-direction:column; margin:auto">
+							<div id="final_sketch" class="wide" style="min-height: 1px;"></div>
+							<input type="range" class="wide" id="mode_slider" min="0" max="3" value="1" step="1">
+							<div class="wide">
+								<div id="spotify_embed"></div>
+							</div>
+						</div>
+						<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+						<script src="./main_sketch/sketch.js" type="module" defer></script>
+
+					</div>
+				</div>
+
+				<div class="box" id="">
+					<div class="flex collapseButton"><h1><span class="it"> COME FUNZIONA </span>
+							<span class="en"> HOW DOES IT WORK </span></h1> <div class="V"></div></div>
+					<div class="hr"></div>
+
+					<div class="section">
+
+						<div style="overflow:hidden">
+							<h2><span class="it"> Oggetti 3D e Prospettiva </span>
+								<span class="en"> 3D Objects and Perspective </span></h2>
+							<figure style="max-width: 400px; float: right; width: 30%;">
+								<div style="width: 100%;" id="flat_fish_div"></div>
+								<script type="module" src="./flat_fish/sketch.js" defer></script>
+								<figcaption>Fig.1 - <span class="it"> Un pesce che gira </span>
+									<span class="en"> A fish spinning </span></figcaption>
+							</figure>
+							<p><span class="it"> 
+								Iniziamo disegnando degli oggetti 3D. Per fare questo possiamo usare delle librerie apposite come <a href="https://threejs.org/">Three.js</a> o la modalità 3D di <a href="https://p5js.org/">P5.js</a> (la libreria che stiamo usando per il 2D). <br>
+								<b>Oppure</b> possiamo implementare noi la proiezione di oggetti 3D sulla nostra canvas 2D. <br> 
+								Il primo passo sarà quello di caricare dei modelli 3D, non avremmo nulla da disegnare altrimenti. <br>
+								Una buona scelta è quella di usare file <code>.obj</code>, che possono essere modellati in programmi come <a href="https://www.blender.org/" target="_blank">blender</a>, sono human readable e relativamente semplici da parsare, persino in JavaScript. <br>
+								Un file <code>.obj</code>, infatti, ha una struttura di questo tipo: <br> 
+							</span>
+							<span class="en"> 
+								Let's start by drawing some 3D objects. We could use some appropriate libraries for this, like <a href="https://threejs.org/">Three.js</a>, or the 3D mode of <a href="https://p5js.org/">P5.js</a> (the library we're using right now). <br>
+								<b>Or</b> we could manually implement the projection of 3D objects on a 2D canvas. <br>
+								The first step will be loading the 3D objects, or else we won't have anything to draw in the first place. <br>
+								A good option for this is using <code>.obj</code> files. They can be exported from <a href="https://www.blender.org/" target="_blank">blender</a> and other 3D modelling programs, they're human readable and easy to parse, even in JavaScript. <br>
+							</span></p>
+							<div class="code">
+								<line>v -0.000000 0.000000 4.131257</line>
+								<line>v 0.000000 2.248623 -3.872571</line>
+								<line>v 0.000000 -1.724368 -3.768059</line>
+								<line></line>
+								<line>t 0.375000 1.000000</line>
+								<line>n 0.0000 0.8882 0.4594</line>
+								<line></line>
+								<line>f 11/1/1 2/2/1 9/3/1</line>
+								<line>f 17/4/2 9/5/2 2/6/2 12/7/2</line>
+								<line>f 12/8/3 2/9/3 13/10/3</line>
+							</div>
+							<p><span class="it">  Le righe del file hanno significati differenti in base al carattere iniziale.  </span>
+							<span class="en">  Each line has a different meaning depending on the first character.  </span></p>
+							<div class="it">
+
+								<ul>
+									<li><b><code>v</code></b>: Le coordinate <code>x</code>, <code>y</code>, e <code>z</code> di un vertice nello spazio </li>
+									<li><b><code>t</code></b> o <b><code>n</code></b>: Informazioni sulle texture e le normali dell'oggetto. Siccome vogliamo solo disegnare un wireframe possiamo trascurarle </li>
+									<li><b><code>f</code></b>: Una faccia dell'oggetto indicata come lista di indici. Ogni indice specifica un vertice che fa parte della faccia </li>
+								</ul>
+
+							</div>
+							<div class="en">
+
+								<ul>
+									<li><b><code>v</code></b>: The coordinates <code>x</code>, <code>y</code>, and <code>z</code> of a vertex in space </li>
+									<li><b><code>t</code></b> or <b><code>n</code></b>: Data about textures and normal vectors of the object. Since we're only drawing a wireframe we can discard these </li>
+									<li><b><code>f</code></b>: A face of the object, represented as a list of indexes. Each index points to a vertex which is part of the face </li>
+								</ul>
+
+							</div>
+							<p><span class="it"> 
+								Per disegnare l'oggetto iniziamo quindi dal mettere tutti i vertici in una lista, mantenendo l'ordine in cui vengono letti. <br>
+								Poi, per ogni faccia, disegnamo una linea tra ogni vertice indicato e il successivo. <br>
+								<br>
+								Per poter visualizzare meglio l'oggetto possiamo ruotarlo. Questo effetto può essere raggiunto facilmente moltiplicando le coordinate di ogni vertice per una <a target="_blank" href="https://en.wikipedia.org/wiki/Rotation_matrix">matrice di rotazione</a>.
+								Ora basta moltiplicare le coordinate di tutti i vertici per un fattore di scala per ottenere una visualizzazione come quella in <u>Fig.1</u>. <br>
+							</span>
+							<span class="en"> 
+								To draw the object we'll start by putting all the vertices in a list, maintaining their order from the file. <br>
+								Then, for each face, we draw a line connecting each vertex to the next, and joining the first and last. <br>
+								<br>
+								To get a better view of the model we can spin it around. This effect can be easily implemented by multiplying each vector's coordinates by a <a target="_blank" href="https://en.wikipedia.org/wiki/Rotation_matrix">rotation matric</a>. <br>
+								The last step is to uniformly scale the vectors up or down do fit the screen size and we get a visualization like that in <u>Fig.1</u>. <br>
+							</span></p>
+							<figure style="max-width: 400px; float: left; width: 50%;">
+								<div style="width: 100%;" id="meme_fish_div"></div>
+								<script type="module" src="./meme_fish/sketch.js" defer></script>
+								<figcaption>Fig.2 - Fish</figcaption>
+							</figure>
+							<p><span class="it"> 
+								Il modello ora ha un aspetto molto "piatto" siccome stiamo usando solo le coordinate <code>x</code> e <code>y</code> di ogni vertice. Per aggiungere l'effetto della prospettiva abbiamo due opzioni. <br>
+								Possiamo moltiplicare le coordinate dei vertici per una <a href="https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/building-basic-perspective-projection-matrix.html" target="_blank">matrice di proiezione</a>, che ci darebbe pieno controllo sul campo visivo e altri parametri. <br>
+								Oppure possiamo dividere i componenti <code>x,y</code> di ogni vertice per il componente <code>z</code>. Questo metodo è meno elegante e più limitato, ma più semplice da implementare. <br>
+								Usando la matrice di proiezione possiamo anche popolare un <a href="https://en.wikipedia.org/wiki/Z-buffering" target="_blank">buffer della profondità</a>, che per un progetto così semplice sarebbe eccessivo. <br>
+							</span>
+							<span class="en"> 
+								The model now had a very "flat" look since we're only using the <code>x</code> and <code>y</code> coordinates for each vertex. To add a perspective effect we have two main options. <br>
+								We can multiply the coordinates of each vertex by a <a href="https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/building-basic-perspective-projection-matrix.html" target="_blank">projection matrix</a>, which would give us full control over the field of view and other parameters. <br>
+								Or we can divide the <code>x,y</code> components of each vertex by it's the <code>z</code>. This method is less elegant and more limited, but easier to implement. <br>
+								Using a projection matrix could also allow us to populate a <a href="https://en.wikipedia.org/wiki/Z-buffering" target="_blank">depth buffer</a>, but we won't need it in this project. <br>
+							</span></p>
+						</div>
+						<h2><span class="it"> Effetto Glitch </span>
+							<span class="en"> Glitch Effect </span></h2>
 						<p><span class="it"> 
-							Iniziamo disegnando degli oggetti 3D. Per fare questo possiamo usare delle librerie apposite come <a href="https://threejs.org/">Three.js</a> o la modalità 3D di <a href="https://p5js.org/">P5.js</a> (la libreria che stiamo usando per il 2D). <br>
-							<b>Oppure</b> possiamo implementare noi la proiezione di oggetti 3D sulla nostra canvas 2D. <br> 
-							Il primo passo sarà quello di caricare dei modelli 3D, non avremmo nulla da disegnare altrimenti. <br>
-							Una buona scelta è quella di usare file <code>.obj</code>, che possono essere modellati in programmi come <a href="https://www.blender.org/" target="_blank">blender</a>, sono human readable e relativamente semplici da parsare, persino in JavaScript. <br>
-							Un file <code>.obj</code>, infatti, ha una struttura di questo tipo: <br> 
+							Un altro effetto carino l'ho scoperto tentando di emulare l'effetto mostrato in <a href="https://youtu.be/TdTMeNXCnTs">questo video</a>. L'effetto si basa sul disegnare linee senza cancellare lo sfondo tra un frame e l'altro. <br>
+							Oltre a questo, una linea non setta il colore della canvas, ma effettua un'operazione di xor. Questo fa in modo che le linee siano "visibili" quando sono in movimento, e spariscano quando l'animazione si ferma. <br>
+							I dettagli sono esplorati in maggiore dettaglio nel video originale. <br>
 						</span>
 						<span class="en"> 
-							Let's start by drawing some 3D objects. We could use some appropriate libraries for this, like <a href="https://threejs.org/">Three.js</a>, or the 3D mode of <a href="https://p5js.org/">P5.js</a> (the library we're using right now). <br>
-							<b>Or</b> we could manually implement the projection of 3D objects on a 2D canvas. <br>
-							The first step will be loading the 3D objects, or else we won't have anything to draw in the first place. <br>
-							A good option for this is using <code>.obj</code> files. They can be exported from <a href="https://www.blender.org/" target="_blank">blender</a> and other 3D modelling programs, they're human readable and easy to parse, even in JavaScript. <br>
+							Another cool effect is one I discovered while trying to emulate the one shown in <a href="https://youtu.be/TdTMeNXCnTs">this video</a>. The effect is based on drawing lines without ever clearing the background in between two frames. <br>
+							On top of that, a line does not simply set the color of its pixels, but performs a xor operation between the background color and the line's one. This makes it so that the lines are only "visible" while they are in movement, and vanish if the animation is paused. <br>
+							The details are better explored in the original video. <br>
 						</span></p>
-						<div class="code">
-							<line>v -0.000000 0.000000 4.131257</line>
-							<line>v 0.000000 2.248623 -3.872571</line>
-							<line>v 0.000000 -1.724368 -3.768059</line>
-							<line></line>
-							<line>t 0.375000 1.000000</line>
-							<line>n 0.0000 0.8882 0.4594</line>
-							<line></line>
-							<line>f 11/1/1 2/2/1 9/3/1</line>
-							<line>f 17/4/2 9/5/2 2/6/2 12/7/2</line>
-							<line>f 12/8/3 2/9/3 13/10/3</line>
-						</div>
-						<p><span class="it">  Le righe del file hanno significati differenti in base al carattere iniziale.  </span>
-						<span class="en">  Each line has a different meaning depending on the first character.  </span></p>
+						<h3><span class="it"> L'implementazione </span>
+							<span class="en"> The Implementation </span></h3>
+						<p><span class="it"> 
+							L'implementazione più ovvia che mi è venuta in mente all'inizio consisteva nel riscrivere una funzione <code>line</code> che eseguisse uno xor invece che settare il colore dei pixel. <br>
+							Questo metodo è un po' proibitivo però:
+						</span>
+						<span class="en"> 
+							The more intuitive solution that came to my mind was to rewrite the <code>line</code> function to perform a xor instead of setting the color of the pixels. <br>
+							This method is a bit limiting tho:
+						</span></p>
 						<div class="it">
 
 							<ul>
-								<li><b><code>v</code></b>: Le coordinate <code>x</code>, <code>y</code>, e <code>z</code> di un vertice nello spazio </li>
-								<li><b><code>t</code></b> o <b><code>n</code></b>: Informazioni sulle texture e le normali dell'oggetto. Siccome vogliamo solo disegnare un wireframe possiamo trascurarle </li>
-								<li><b><code>f</code></b>: Una faccia dell'oggetto indicata come lista di indici. Ogni indice specifica un vertice che fa parte della faccia </li>
+								<li>Dover implementare ogni primitiva da 0</li>
+								<li>Essere confinati solo alle primitive riscritte</li>
 							</ul>
 
 						</div>
 						<div class="en">
 
 							<ul>
-								<li><b><code>v</code></b>: The coordinates <code>x</code>, <code>y</code>, and <code>z</code> of a vertex in space </li>
-								<li><b><code>t</code></b> or <b><code>n</code></b>: Data about textures and normal vectors of the object. Since we're only drawing a wireframe we can discard these </li>
-								<li><b><code>f</code></b>: A face of the object, represented as a list of indexes. Each index points to a vertex which is part of the face </li>
+								<li>Each primitive would need to be implemented from scratch</li>
+								<li>Being limited to only use the primitives that were rewritten</li>
 							</ul>
 
 						</div>
+						<p><span class="it">  L'implementazione che ho scelto alla fine si basa su questo processo:  </span>
+						<span class="en">  The implementation I chose in the end is based on this process:  </span></p>
+
+						<div class="it">
+
+							<div class="code">
+								<line>crea 2 buffer "corrente" e "accumulatore"</line>
+								<line>setta tutti i punti del buffer accumulatore a 0</line>
+								<line>per ogni frame:</line>
+								<line>    setta tutto il buffer corrente a 0</line>
+								<line>    disegna le primitive normalmente (settando i pixel) sul buffer corrente</line>
+								<line>    usa una shader per fare lo xor tra i pixel dei due buffer e salva il risultato nell'accumulatore</line>
+								<line>    disegna l'accumulatore a schermo</line>
+							</div>
+
+						</div>
+						<div class="en">
+
+							<div class="code">
+								<line>create 2 buffers "current" and "accumulator"</line>
+								<line>set all the pixels in the accumulator buffer to 0</line>
+								<line>for each frame:</line>
+								<line>    set the current buffer to all zeros</line>
+								<line>    draw the image normally (setting the pixels) on the current buffer</line>
+								<line>    use a shader to perform the xor operation between the pixels in the two buffers, and save the result in the accumulator</line>
+								<line>    draw the accumulator on screen</line>
+							</div>
+
+						</div>
+
+						<p><span class="it">  Che permette di creare animazioni come queste:  </span>
+						<span class="en">  This allows us to create animations like these:  </span></p>
+						<div class="wide flex even" style="flex-wrap: wrap">
+							<div style="min-height:1px; width:24%" id="bouncing_lines"></div>  
+							<div style="min-height:1px; width:24%" id="bouncing_cube"></div>  
+							<div style="min-height:1px; width:24%" id="spinning_cube"></div>  
+							<div style="min-height:1px; width:24%" id="glitch_cube"></div>  
+						</div>
+						<script type="module" src="./xor_examples/bouncing_lines.js"></script>
+						<script type="module" src="./xor_examples/bouncing_cube.js"></script>
+						<script type="module" src="./xor_examples/spinning_cube.js"></script>
+						<script type="module" src="./xor_examples/glitch_cube.js"></script>
+
 						<p><span class="it"> 
-							Per disegnare l'oggetto iniziamo quindi dal mettere tutti i vertici in una lista, mantenendo l'ordine in cui vengono letti. <br>
-							Poi, per ogni faccia, disegnamo una linea tra ogni vertice indicato e il successivo. <br>
+							* Queste animazioni possono impattare le performance del browser a causa dell'utilizza di shader. Quindi sono disabilitate finché non le si clicca. <br>
 							<br>
-							Per poter visualizzare meglio l'oggetto possiamo ruotarlo. Questo effetto può essere raggiunto facilmente moltiplicando le coordinate di ogni vertice per una <a target="_blank" href="https://en.wikipedia.org/wiki/Rotation_matrix">matrice di rotazione</a>.
-							Ora basta moltiplicare le coordinate di tutti i vertici per un fattore di scala per ottenere una visualizzazione come quella in <u>Fig.1</u>. <br>
+							L'effetto visibile nel ultimo riquadro è quello usato nell'animazione completa per dare l'impressione che l'immagine stia "glitchando". È ottenuto ridisegnando periodicamente lo sfondo nel buffer accumulatore. <br>
+							La frequenza con cui viene ridisegnato è legata all'intensità degli alti nella canzone. <br>
 						</span>
 						<span class="en"> 
-							To draw the object we'll start by putting all the vertices in a list, maintaining their order from the file. <br>
-							Then, for each face, we draw a line connecting each vertex to the next, and joining the first and last. <br>
+							* These animations can impact the performance of some browsers due to the use of shaders and WebGL. For this reason they are disabled until clicked on. <br>
 							<br>
-							To get a better view of the model we can spin it around. This effect can be easily implemented by multiplying each vector's coordinates by a <a target="_blank" href="https://en.wikipedia.org/wiki/Rotation_matrix">rotation matric</a>. <br>
-							The last step is to uniformly scale the vectors up or down do fit the screen size and we get a visualization like that in <u>Fig.1</u>. <br>
+							The effect shown in the last frame is the one used in the full animation to give the "glitchy" effect to the image. It is obtained by periodically drawing the background again on the accumulator buffer. <br>
+							The frequency with which the background gets refreshed is tied to the high frequencies in the song. <br>
 						</span></p>
-						<figure style="max-width: 400px; float: left; width: 50%;">
-							<div style="width: 100%;" id="meme_fish_div"></div>
-							<script type="module" src="./meme_fish/sketch.js" defer></script>
-							<figcaption>Fig.2 - Fish</figcaption>
+
+						<h2><span class="it"> Aberrazione Cromatica </span>
+							<span class="en"> Chromatic Aberration </span></h2>
+						<figure style="float: right; width: min-content;">
+							<img src="images/aberrazione.jpg">
+							<script type="module" src="./flat_fish/sketch.js" defer></script>
+							<figcaption>Fig.3 - <span class="it"> Una foto affetta da aberrazione cromatica </span>
+								<span class="en"> A picture affected by chromatic aberration </span></figcaption>
 						</figure>
 						<p><span class="it"> 
-							Il modello ora ha un aspetto molto "piatto" siccome stiamo usando solo le coordinate <code>x</code> e <code>y</code> di ogni vertice. Per aggiungere l'effetto della prospettiva abbiamo due opzioni. <br>
-							Possiamo moltiplicare le coordinate dei vertici per una <a href="https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/building-basic-perspective-projection-matrix.html" target="_blank">matrice di proiezione</a>, che ci darebbe pieno controllo sul campo visivo e altri parametri. <br>
-							Oppure possiamo dividere i componenti <code>x,y</code> di ogni vertice per il componente <code>z</code>. Questo metodo è meno elegante e più limitato, ma più semplice da implementare. <br>
-							Usando la matrice di proiezione possiamo anche popolare un <a href="https://en.wikipedia.org/wiki/Z-buffering" target="_blank">buffer della profondità</a>, che per un progetto così semplice sarebbe eccessivo. <br>
+							L'<a href="https://it.wikipedia.org/wiki/Aberrazione_cromatica" target="_blank">aberrazione cromatica</a> è un fenomeno che si verifica in quasi ogni sistema ottico ed è causato direttamente dalla forma delle lenti. <br>
+							L'effetto si verifica solitamente intorno ai bordi di un'immagine, e appare come la separazione dei colori che la compongono. Quelli più vicini al rosso sono spostati verso il centro dell'immagine, mentre quelli tendenti al viola vengono spinti all'esterno. <br>
+							Per riprodurre l'effetto basta applicare una shader all'immagine e campionare i canali r,g, e b in punti più o meno vicini al centro. <br>
+							Possiamo anche modificare l'effetto in modi creativi. Come imporre che la direzione sia costante (anzi che irradiare dal centro) e manipolarne l'intensità. <br>
+							Altri scopi per cui si può usare questo effetto sono
 						</span>
 						<span class="en"> 
-							The model now had a very "flat" look since we're only using the <code>x</code> and <code>y</code> coordinates for each vertex. To add a perspective effect we have two main options. <br>
-							We can multiply the coordinates of each vertex by a <a href="https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/building-basic-perspective-projection-matrix.html" target="_blank">projection matrix</a>, which would give us full control over the field of view and other parameters. <br>
-							Or we can divide the <code>x,y</code> components of each vertex by it's the <code>z</code>. This method is less elegant and more limited, but easier to implement. <br>
-							Using a projection matrix could also allow us to populate a <a href="https://en.wikipedia.org/wiki/Z-buffering" target="_blank">depth buffer</a>, but we won't need it in this project. <br>
+							<a href="https://it.wikipedia.org/wiki/Aberrazione_cromatica" target="_blank">Chromatic aberration</a> is a phenomenon which manifests in almost every optical system and which is caused by the shape of the lenses. <br>
+							The effect is usually found near the edges of an image, and appears as a distortion in the colors. The red component of the colors is shifted closer to the center of the image, and the ones closer to violet are pushed outwards. <br>
+							To replicate this effect we just need to apply a shader to the image and sample the r,g, and b channels in points closer or further from the center of the image. <br>
+							We can even modify the effect in more creative ways for artistic purposes. We can for example use a constant direction (instead of pointing to the center of the image) and manipulate the intensity of the shifting. <br>
+							Other reasons this effect is commonly used are
 						</span></p>
-					</div>
-					<h2><span class="it"> Effetto Glitch </span>
-						<span class="en"> Glitch Effect </span></h2>
-					<p><span class="it"> 
-						Un altro effetto carino l'ho scoperto tentando di emulare l'effetto mostrato in <a href="https://youtu.be/TdTMeNXCnTs">questo video</a>. L'effetto si basa sul disegnare linee senza cancellare lo sfondo tra un frame e l'altro. <br>
-						Oltre a questo, una linea non setta il colore della canvas, ma effettua un'operazione di xor. Questo fa in modo che le linee siano "visibili" quando sono in movimento, e spariscano quando l'animazione si ferma. <br>
-						I dettagli sono esplorati in maggiore dettaglio nel video originale. <br>
-					</span>
-					<span class="en"> 
-						Another cool effect is one I discovered while trying to emulate the one shown in <a href="https://youtu.be/TdTMeNXCnTs">this video</a>. The effect is based on drawing lines without ever clearing the background in between two frames. <br>
-						On top of that, a line does not simply set the color of its pixels, but performs a xor operation between the background color and the line's one. This makes it so that the lines are only "visible" while they are in movement, and vanish if the animation is paused. <br>
-						The details are better explored in the original video. <br>
-					</span></p>
-					<h3><span class="it"> L'implementazione </span>
-						<span class="en"> The Implementation </span></h3>
-					<p><span class="it"> 
-						L'implementazione più ovvia che mi è venuta in mente all'inizio consisteva nel riscrivere una funzione <code>line</code> che eseguisse uno xor invece che settare il colore dei pixel. <br>
-						Questo metodo è un po' proibitivo però:
-					</span>
-					<span class="en"> 
-						The more intuitive solution that came to my mind was to rewrite the <code>line</code> function to perform a xor instead of setting the color of the pixels. <br>
-						This method is a bit limiting tho:
-					</span></p>
-					<div class="it">
+						<div class="it">
 
-						<ul>
-							<li>Dover implementare ogni primitiva da 0</li>
-							<li>Essere confinati solo alle primitive riscritte</li>
-						</ul>
+							<ul>
+								<li>Dare l'impressione di velocità in un'immagine</li>
+								<li>Attirare l'attenzione verso un punto focale</li>
+								<li>Trasmettere l'idea che qualcosa sia "sbagliato" nell'immagine</li>
+							</ul>
 
-					</div>
-					<div class="en">
-
-						<ul>
-							<li>Each primitive would need to be implemented from scratch</li>
-							<li>Being limited to only use the primitives that were rewritten</li>
-						</ul>
-
-					</div>
-					<p><span class="it">  L'implementazione che ho scelto alla fine si basa su questo processo:  </span>
-					<span class="en">  The implementation I chose in the end is based on this process:  </span></p>
-
-					<div class="it">
-
-						<div class="code">
-							<line>crea 2 buffer "corrente" e "accumulatore"</line>
-							<line>setta tutti i punti del buffer accumulatore a 0</line>
-							<line>per ogni frame:</line>
-							<line>    setta tutto il buffer corrente a 0</line>
-							<line>    disegna le primitive normalmente (settando i pixel) sul buffer corrente</line>
-							<line>    usa una shader per fare lo xor tra i pixel dei due buffer e salva il risultato nell'accumulatore</line>
-							<line>    disegna l'accumulatore a schermo</line>
 						</div>
+						<div class="en">
 
-					</div>
-					<div class="en">
+							<ul>
+								<li>Give a sense of speed to the image</li>
+								<li>Lead the viewer's attention towards a focal point</li>
+								<li>Comunicate the idea that something is "wrong" in the image</li>
+							</ul>
 
-						<div class="code">
-							<line>create 2 buffers "current" and "accumulator"</line>
-							<line>set all the pixels in the accumulator buffer to 0</line>
-							<line>for each frame:</line>
-							<line>    set the current buffer to all zeros</line>
-							<line>    draw the image normally (setting the pixels) on the current buffer</line>
-							<line>    use a shader to perform the xor operation between the pixels in the two buffers, and save the result in the accumulator</line>
-							<line>    draw the accumulator on screen</line>
 						</div>
+						<div class="wide flex even">
+							<div style="min-height:1px; width:33%" id="aberrazione_normale"></div>
+							<div style="min-height:1px; width:33%" id="aberrazione_direzionale"></div>
+						</div>
+						<script type="module" src="./aberrazione/normale.js"></script>
+						<script type="module" src="./aberrazione/direzionale.js"></script>
 
 					</div>
-
-					<p><span class="it">  Che permette di creare animazioni come queste:  </span>
-					<span class="en">  This allows us to create animations like these:  </span></p>
-					<div class="wide flex even" style="flex-wrap: wrap">
-						<div style="min-height:1px; width:24%" id="bouncing_lines"></div>  
-						<div style="min-height:1px; width:24%" id="bouncing_cube"></div>  
-						<div style="min-height:1px; width:24%" id="spinning_cube"></div>  
-						<div style="min-height:1px; width:24%" id="glitch_cube"></div>  
-					</div>
-					<script type="module" src="./xor_examples/bouncing_lines.js"></script>
-					<script type="module" src="./xor_examples/bouncing_cube.js"></script>
-					<script type="module" src="./xor_examples/spinning_cube.js"></script>
-					<script type="module" src="./xor_examples/glitch_cube.js"></script>
-
-					<p><span class="it"> 
-						* Queste animazioni possono impattare le performance del browser a causa dell'utilizza di shader. Quindi sono disabilitate finché non le si clicca. <br>
-						<br>
-						L'effetto visibile nel ultimo riquadro è quello usato nell'animazione completa per dare l'impressione che l'immagine stia "glitchando". È ottenuto ridisegnando periodicamente lo sfondo nel buffer accumulatore. <br>
-						La frequenza con cui viene ridisegnato è legata all'intensità degli alti nella canzone. <br>
-					</span>
-					<span class="en"> 
-						* These animations can impact the performance of some browsers due to the use of shaders and WebGL. For this reason they are disabled until clicked on. <br>
-						<br>
-						The effect shown in the last frame is the one used in the full animation to give the "glitchy" effect to the image. It is obtained by periodically drawing the background again on the accumulator buffer. <br>
-						The frequency with which the background gets refreshed is tied to the high frequencies in the song. <br>
-					</span></p>
-
-					<h2><span class="it"> Aberrazione Cromatica </span>
-						<span class="en"> Chromatic Aberration </span></h2>
-					<figure style="float: right; width: min-content;">
-						<img src="images/aberrazione.jpg">
-						<script type="module" src="./flat_fish/sketch.js" defer></script>
-						<figcaption>Fig.3 - <span class="it"> Una foto affetta da aberrazione cromatica </span>
-							<span class="en"> A picture affected by chromatic aberration </span></figcaption>
-					</figure>
-					<p><span class="it"> 
-						L'<a href="https://it.wikipedia.org/wiki/Aberrazione_cromatica" target="_blank">aberrazione cromatica</a> è un fenomeno che si verifica in quasi ogni sistema ottico ed è causato direttamente dalla forma delle lenti. <br>
-						L'effetto si verifica solitamente intorno ai bordi di un'immagine, e appare come la separazione dei colori che la compongono. Quelli più vicini al rosso sono spostati verso il centro dell'immagine, mentre quelli tendenti al viola vengono spinti all'esterno. <br>
-						Per riprodurre l'effetto basta applicare una shader all'immagine e campionare i canali r,g, e b in punti più o meno vicini al centro. <br>
-						Possiamo anche modificare l'effetto in modi creativi. Come imporre che la direzione sia costante (anzi che irradiare dal centro) e manipolarne l'intensità. <br>
-						Altri scopi per cui si può usare questo effetto sono
-					</span>
-					<span class="en"> 
-						<a href="https://it.wikipedia.org/wiki/Aberrazione_cromatica" target="_blank">Chromatic aberration</a> is a phenomenon which manifests in almost every optical system and which is caused by the shape of the lenses. <br>
-						The effect is usually found near the edges of an image, and appears as a distortion in the colors. The red component of the colors is shifted closer to the center of the image, and the ones closer to violet are pushed outwards. <br>
-						To replicate this effect we just need to apply a shader to the image and sample the r,g, and b channels in points closer or further from the center of the image. <br>
-						We can even modify the effect in more creative ways for artistic purposes. We can for example use a constant direction (instead of pointing to the center of the image) and manipulate the intensity of the shifting. <br>
-						Other reasons this effect is commonly used are
-					</span></p>
-					<div class="it">
-
-						<ul>
-							<li>Dare l'impressione di velocità in un'immagine</li>
-							<li>Attirare l'attenzione verso un punto focale</li>
-							<li>Trasmettere l'idea che qualcosa sia "sbagliato" nell'immagine</li>
-						</ul>
-
-					</div>
-					<div class="en">
-
-						<ul>
-							<li>Give a sense of speed to the image</li>
-							<li>Lead the viewer's attention towards a focal point</li>
-							<li>Comunicate the idea that something is "wrong" in the image</li>
-						</ul>
-
-					</div>
-					<div class="wide flex even">
-						<div style="min-height:1px; width:33%" id="aberrazione_normale"></div>
-						<div style="min-height:1px; width:33%" id="aberrazione_direzionale"></div>
-					</div>
-					<script type="module" src="./aberrazione/normale.js"></script>
-					<script type="module" src="./aberrazione/direzionale.js"></script>
-
 				</div>
-			</div>
 
-			<div class="box" id="">
-				<div class="flex collapseButton"><h1><span class="it"> ANIMAZIONE E RITMO </span>
-						<span class="en"> ANIMATION AND RITHM </span></h1> <div class="V"></div></div>
-				<div class="hr"></div>
+				<div class="box" id="">
+					<div class="flex collapseButton"><h1><span class="it"> ANIMAZIONE E RITMO </span>
+							<span class="en"> ANIMATION AND RITHM </span></h1> <div class="V"></div></div>
+					<div class="hr"></div>
 
-				<div class="section">
+					<div class="section">
 
-					<p><span class="it"> 
-						Per dare il ritmo all'animazione possiamo usare la <a href="https://www.youtube.com/watch?v=spUNpyF58BY" target="_blank">FFT</a> della canzone. <br>
-						Tramite questa possiamo calcolare l'energia del segnale in diverse bande di frequenza e associare ogni uno degli effetti mostrati sopra a una di esse. <br>
-						In questo caso:
-					</span>
-					<span class="en"> 
-						To give a sense of rhythm to the animation we can use the <a href="https://www.youtube.com/watch?v=spUNpyF58BY" target="_blank">FFT</a> of the song. <br>
-						Through this we can calculate the energy of the signal in different frequency bands, and link each of the effects shown to one of them. <br>
-						In this case:
-					</span></p>
-					<div class="it">
+						<p><span class="it"> 
+							Per dare il ritmo all'animazione possiamo usare la <a href="https://www.youtube.com/watch?v=spUNpyF58BY" target="_blank">FFT</a> della canzone. <br>
+							Tramite questa possiamo calcolare l'energia del segnale in diverse bande di frequenza e associare ogni uno degli effetti mostrati sopra a una di esse. <br>
+							In questo caso:
+						</span>
+						<span class="en"> 
+							To give a sense of rhythm to the animation we can use the <a href="https://www.youtube.com/watch?v=spUNpyF58BY" target="_blank">FFT</a> of the song. <br>
+							Through this we can calculate the energy of the signal in different frequency bands, and link each of the effects shown to one of them. <br>
+							In this case:
+						</span></p>
+						<div class="it">
 
-						<ul>
-							<li>I bassi della musica controllano la dimensione dell'oggetto. Le coordinate di ogni vertice vengono moltiplicate per uno scalare proporzionale all'energia dei bassi</li>
-							<li>La frequenza con cui viene attivato l'effetto di "glitch" è legata all'energia degli alti </li>
-							<li>La velocità con cui ruota l'oggetto è proporzionale all'energia totale del segnale (il volume) </li>
-							<li>L'intensità dell'aberrazione cromatica e il colore dello sfondo sono legati ai medi e gli alti della musica </li>
-						</ul>
+							<ul>
+								<li>I bassi della musica controllano la dimensione dell'oggetto. Le coordinate di ogni vertice vengono moltiplicate per uno scalare proporzionale all'energia dei bassi</li>
+								<li>La frequenza con cui viene attivato l'effetto di "glitch" è legata all'energia degli alti </li>
+								<li>La velocità con cui ruota l'oggetto è proporzionale all'energia totale del segnale (il volume) </li>
+								<li>L'intensità dell'aberrazione cromatica e il colore dello sfondo sono legati ai medi e gli alti della musica </li>
+							</ul>
+
+						</div>
+						<div class="en">
+
+							<ul>
+								<li>The bass of the song alters the size of the object. The coordinates of each vertex are multiplet by a scalar proportional to the energy in the base section</li>
+								<li>The frequency with which the glitchy effect is used is tied to the energy in the highs </li>
+								<li>The speed with which the object spins is linked to the total energy of the signal (the volume) </li>
+								<li>The intensity of the chromatic aberration and the change in the background color are proportional to the mid and high sections </li>
+							</ul>
+
+						</div>
+						<p><span class="it">  Un'altra idea sarebbe quella di isolare i singoli strumenti di una canzone e usare quelli per gestire elementi individuali dell'animazione, al posto delle bande di frequenza. <br>  </span>
+						<span class="en">  Another possibility would be to isolate the single instruments in a song and have each of them influence a certain element of the animation, instead of relaying on frequency bands  </span></p>
 
 					</div>
-					<div class="en">
-
-						<ul>
-							<li>The bass of the song alters the size of the object. The coordinates of each vertex are multiplet by a scalar proportional to the energy in the base section</li>
-							<li>The frequency with which the glitchy effect is used is tied to the energy in the highs </li>
-							<li>The speed with which the object spins is linked to the total energy of the signal (the volume) </li>
-							<li>The intensity of the chromatic aberration and the change in the background color are proportional to the mid and high sections </li>
-						</ul>
-
-					</div>
-					<p><span class="it">  Un'altra idea sarebbe quella di isolare i singoli strumenti di una canzone e usare quelli per gestire elementi individuali dell'animazione, al posto delle bande di frequenza. <br>  </span>
-					<span class="en">  Another possibility would be to isolate the single instruments in a song and have each of them influence a certain element of the animation, instead of relaying on frequency bands  </span></p>
-
 				</div>
-			</div>
 
+			</div>
 		</div>
-	</div>
 
 
 
+		<div id="footer">
+			<p>
+			<span class="it">  fatto a mano, da me ♥  </span>
+			<span class="en">  handmade, by me ♥  </span>
+			</p>
+			<div id="palette">
+				<div id="p1"></div>
+				<div id="p2"></div>
+				<div id="p3"></div>
+				<div id="p4"></div>
+				<div id="p5"></div>
+				<div id="p6"></div>
+				<div id="p7"></div>
+				<div id="p8"></div>
+			</div>
+		</div>
 
-
-
-
+	</body>
 
 </html>
