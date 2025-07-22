@@ -7,7 +7,7 @@ UPDATE:
 - [-] maze
 - [x] mazeSolver
 - [x] mazeWalker
-- [ ] musicVideo
+- [x] musicVideo
 - [ ] path
 - [ ] primo
 - [ ] rayCasting
