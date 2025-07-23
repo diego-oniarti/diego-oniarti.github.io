@@ -283,7 +283,7 @@ img {
         row-gap: 0px;
     }
     #mainContainer, .boxes, .box {
-        width: 100%;
+        width: calc(100% - 10px);
     }
     .box {
         border-radius: 0%;
