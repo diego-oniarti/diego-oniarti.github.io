@@ -45,15 +45,13 @@ body {
     margin: 0;
     background-color: var(--shade8);
     color: var(--shade1);
+    font-size: large;
 }
 
 a {
     color: var(--shade1);
 }
 
-p,ul {
-    font-size: large;
-}
 
 #mainContainer {
     padding-bottom: 35px;
@@ -276,6 +274,9 @@ img {
 
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
+    body {
+        font-size: unset;
+    }
     #mainContainer {
         min-height: calc(100vh - 33px - 63px);
     }
@@ -283,7 +284,8 @@ img {
         row-gap: 0px;
     }
     #mainContainer, .boxes, .box {
-        width: calc(100% - 10px);
+        width: calc(100% - 15px);
+        box-shadow: none;
     }
     .box {
         border-radius: 0%;
