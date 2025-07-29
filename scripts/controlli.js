@@ -15,6 +15,11 @@ document.getElementById('themeButton').addEventListener('click',e=>{
         document.getElementById('themeButton').innerHTML='◑';
     }
 });
+document.addEventListener('DOMContentLoaded', ()=>{
+    if (localStorage.getItem('theme')==='dark') {
+        document.getElementById('themeButton').innerHTML='◐';
+    }
+});
 
 document.documentElement.classList.add('no-theme-transition');
 const saved = localStorage.getItem('theme') || 'light';

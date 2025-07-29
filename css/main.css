@@ -6,11 +6,11 @@
     --shade5: #36647a;
     --shade6: #6087b7;
     --shade7: #dcedff;
-    --shade8: #ffffff;
+    --shade8: #fbfdff;
 }
 
 [data-theme="dark"] {
-    --shade1: #ffffff;
+    --shade1: #fbfdff;
     --shade2: #dcedff;
     --shade3: #6087b7;
     --shade4: #36647a;

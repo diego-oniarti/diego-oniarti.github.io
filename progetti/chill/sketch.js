@@ -45,7 +45,11 @@ function draw() {
             textAlign(CENTER,CENTER);
             noStroke();
             fill(255);
-            text("A/D per iniziare",width/2,height/2);
+            if (getLanguage()=='en') {
+                text("A/D to start",width/2,height/2);
+            }else{
+                text("A/D per iniziare",width/2,height/2);
+            }
             break;
         case stati.countdown:
             background(50);
@@ -115,7 +119,11 @@ function draw() {
             fill(256);
             noStroke();
             textAlign(CENTER, CENTER);
-            text(`Hai Perso\nPunteggio: ${game.score}\nLivello: ${game.level}`, width/2,height/2);
+            if (getLanguage()=='en') {
+                text(`You Lost\nScore: ${game.score}\nLevel: ${game.level}`, width/2,height/2);
+            }else{
+                text(`Hai Perso\nPunteggio: ${game.score}\nLivello: ${game.level}`, width/2,height/2);
+            }
             break;
     }
 }
